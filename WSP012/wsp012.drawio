@@ -313,8 +313,8 @@
       </root>
     </mxGraphModel>
   </diagram>
-  <diagram id="J8YT-CM9pv0q3QamHaMT" name="第 2 页">
-    <mxGraphModel dx="913" dy="2324" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+  <diagram id="J8YT-CM9pv0q3QamHaMT" name="product page">
+    <mxGraphModel dx="1405" dy="2946" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -446,6 +446,57 @@
         <mxCell id="y1JlSwF2LDeKbsJakvG_-9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="y1JlSwF2LDeKbsJakvG_-5" target="y1JlSwF2LDeKbsJakvG_-5">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
+        <mxCell id="mry1Bul7jaxb1nNUCn1D-1" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="44" y="910" width="740" height="340" as="geometry" />
+        </mxCell>
+        <mxCell id="mry1Bul7jaxb1nNUCn1D-2" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="155" y="980" width="120" height="50" as="geometry" />
+        </mxCell>
+        <UserObject label="Quick link" placeholders="1" name="Variable" id="mry1Bul7jaxb1nNUCn1D-3">
+          <mxCell style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;overflow=hidden;" vertex="1" parent="1">
+            <mxGeometry x="175" y="995" width="80" height="20" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <mxCell id="mry1Bul7jaxb1nNUCn1D-4" value="" style="shape=ext;double=1;rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="540" y="1030" width="130" height="60" as="geometry" />
+        </mxCell>
+        <UserObject label="&lt;meta charset=&quot;utf-8&quot;&gt;&lt;span style=&quot;color: rgb(0, 0, 0); font-family: &amp;quot;Nunito Sans&amp;quot;, sans-serif; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 700; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgb(243, 239, 236); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none;&quot;&gt;Subscribe for latest news&lt;/span&gt;" placeholders="1" name="Variable" id="mry1Bul7jaxb1nNUCn1D-5">
+          <mxCell style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;overflow=hidden;" vertex="1" parent="1">
+            <mxGeometry x="565" y="1050" width="80" height="20" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <mxCell id="mry1Bul7jaxb1nNUCn1D-6" value="" style="line;strokeWidth=2;html=1;" vertex="1" parent="1">
+          <mxGeometry x="525" y="1140" width="160" height="10" as="geometry" />
+        </mxCell>
+        <UserObject label="email" placeholders="1" name="Variable" id="mry1Bul7jaxb1nNUCn1D-7">
+          <mxCell style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;overflow=hidden;" vertex="1" parent="1">
+            <mxGeometry x="565" y="1120" width="80" height="20" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <mxCell id="mry1Bul7jaxb1nNUCn1D-8" value="" style="line;strokeWidth=2;html=1;" vertex="1" parent="1">
+          <mxGeometry x="135" y="1070" width="160" height="10" as="geometry" />
+        </mxCell>
+        <UserObject label="contact us" placeholders="1" name="Variable" id="mry1Bul7jaxb1nNUCn1D-9">
+          <mxCell style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;overflow=hidden;" vertex="1" parent="1">
+            <mxGeometry x="175" y="1050" width="80" height="20" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <mxCell id="mry1Bul7jaxb1nNUCn1D-10" value="" style="line;strokeWidth=2;html=1;" vertex="1" parent="1">
+          <mxGeometry x="135" y="1110" width="160" height="10" as="geometry" />
+        </mxCell>
+        <UserObject label="shopping policy" placeholders="1" name="Variable" id="mry1Bul7jaxb1nNUCn1D-11">
+          <mxCell style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;overflow=hidden;" vertex="1" parent="1">
+            <mxGeometry x="167.5" y="1090" width="95" height="20" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <mxCell id="mry1Bul7jaxb1nNUCn1D-12" value="" style="line;strokeWidth=2;html=1;" vertex="1" parent="1">
+          <mxGeometry x="135" y="1150" width="160" height="10" as="geometry" />
+        </mxCell>
+        <UserObject label="return policy" placeholders="1" name="Variable" id="mry1Bul7jaxb1nNUCn1D-13">
+          <mxCell style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;overflow=hidden;" vertex="1" parent="1">
+            <mxGeometry x="175" y="1130" width="80" height="20" as="geometry" />
+          </mxCell>
+        </UserObject>
       </root>
     </mxGraphModel>
   </diagram>
