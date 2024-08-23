@@ -30,3 +30,6 @@ npm install -D ts-node-dev
 ------裝node-postgres (讀postgresSQL database用)
 npm install pg  
 npm install -D @types/pg
+
+------裝dotenv (讀env用)
+npm install dotenv
