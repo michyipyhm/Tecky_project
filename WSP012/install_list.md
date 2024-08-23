@@ -33,3 +33,7 @@ npm install -D @types/pg
 
 ------裝dotenv (讀env用)
 npm install dotenv
+
+//useful web
+mailgun.com
+editorjs.org

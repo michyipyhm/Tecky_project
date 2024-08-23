@@ -1,7 +1,8 @@
 CREATE TABLE "shopping_cart"(
     "id" BIGINT NOT NULL,
     "product_id" BIGINT NOT NULL,
-    "user_id" BIGINT NOT NULL
+    "user_id" BIGINT NOT NULL,
+    "quantity" BIGINT NOT NULL
 );
 ALTER TABLE
     "shopping_cart" ADD PRIMARY KEY("id");
@@ -10,11 +11,13 @@ CREATE TABLE "user"(
     "username" VARCHAR(255) NOT NULL,
     "password" VARCHAR(255) NOT NULL,
     "nickname" VARCHAR(255) NOT NULL,
-    "email" VARCHAR(255) NOT NULL,
-    "phone" VARCHAR(255) NOT NULL,
+    "gender" VARCHAR(255) NOT NULL,
     "birthday" VARCHAR(255) NOT NULL,
+    "phone" VARCHAR(255) NOT NULL,
     "address" VARCHAR(255) NOT NULL,
-    "gender" VARCHAR(255) NOT NULL
+    "email" VARCHAR(255) NOT NULL,
+    "verification_code" VARCHAR(255) NOT NULL,
+    "status" BIGINT NOT NULL
 );
 ALTER TABLE
     "user" ADD PRIMARY KEY("id");
@@ -75,7 +78,7 @@ CREATE TABLE "comment"(
     "id" BIGINT NOT NULL,
     "user_id" BIGINT NOT NULL,
     "product_id" BIGINT NULL,
-    "comment_image" BIGINT NOT NULL,
+    "comment_image" VARCHAR(255) NOT NULL,
     "comment_text" BIGINT NOT NULL
 );
 ALTER TABLE
@@ -87,7 +90,8 @@ CREATE TABLE "order"(
     "total" VARCHAR(255) NOT NULL,
     "status" VARCHAR(255) NOT NULL,
     "order_date" VARCHAR(255) NOT NULL,
-    "payment_type" VARCHAR(255) NOT NULL
+    "stripe_id" BIGINT NOT NULL,
+    "payment_type" BIGINT NOT NULL
 );
 ALTER TABLE
     "order" ADD PRIMARY KEY("id");
@@ -107,18 +111,18 @@ ALTER TABLE
 CREATE TABLE "product"(
     "id" INTEGER NOT NULL,
     "product_name" VARCHAR(255) NOT NULL,
-    "product_price" VARCHAR(255) NOT NULL,
-    "brand_id" VARCHAR(255) NOT NULL,
-    "origin_id" BIGINT NOT NULL,
     "product_type" VARCHAR(255) NOT NULL,
     "camera_type" BIGINT NOT NULL,
+    "brand_id" VARCHAR(255) NOT NULL,
+    "origin_id" BIGINT NOT NULL,
+    "format_id" BIGINT NOT NULL,
+    "product_price" VARCHAR(255) NOT NULL,
     "product_quantity" VARCHAR(255) NOT NULL,
     "production_year" VARCHAR(255) NOT NULL,
     "weight" BIGINT NOT NULL,
     "pixel" BIGINT NOT NULL,
-    "product_status" BIGINT NOT NULL,
     "ISO" BIGINT NOT NULL,
-    "format_id" BIGINT NOT NULL
+    "is_used" BOOLEAN NOT NULL
 );
 ALTER TABLE
     "product" ADD PRIMARY KEY("id");
