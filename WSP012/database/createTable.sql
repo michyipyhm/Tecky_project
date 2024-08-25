@@ -1,8 +1,8 @@
 CREATE TABLE "shopping_cart"(
-    "id" BIGINT NOT NULL,
-    "product_id" BIGINT NOT NULL,
-    "user_id" BIGINT NOT NULL,
-    "quantity" BIGINT NOT NULL
+    "id" INTEGER NOT NULL,
+    "product_id" INTEGER NOT NULL,
+    "user_id" INTEGER NOT NULL,
+    "quantity" INTEGER NOT NULL
 );
 ALTER TABLE
     "shopping_cart" ADD PRIMARY KEY("id");
@@ -12,8 +12,8 @@ CREATE TABLE "user"(
     "password" VARCHAR(255) NOT NULL,
     "nickname" VARCHAR(255) NOT NULL,
     "gender" VARCHAR(255) NOT NULL,
-    "birthday" VARCHAR(255) NOT NULL,
-    "phone" VARCHAR(255) NOT NULL,
+    "birthday" DATE,
+    "phone" INTEGER NOT NULL,
     "address" VARCHAR(255) NOT NULL,
     "email" VARCHAR(255) NOT NULL,
     "verification_code" VARCHAR(255) NOT NULL,
@@ -30,7 +30,7 @@ ALTER TABLE
 CREATE TABLE "product_image"(
     "id" BIGINT NOT NULL,
     "product_id" BIGINT NOT NULL,
-    "image_path" BIGINT NOT NULL
+    "image_path" VARCHAR(255) NOT NULL
 );
 ALTER TABLE
     "product_image" ADD PRIMARY KEY("id");
@@ -53,17 +53,17 @@ ALTER TABLE
     "newsletters" ADD CONSTRAINT "newsletters_email_unique" UNIQUE("email");
 CREATE TABLE "format"(
     "id" BIGINT NOT NULL,
-    "format_name" BIGINT NOT NULL
+    "format_name" VARCHAR(255) NOT NULL
 );
 ALTER TABLE
     "format" ADD PRIMARY KEY("id");
 CREATE TABLE "order_details"(
     "id" INTEGER NOT NULL,
     "order_id" BIGINT NOT NULL,
-    "product_id" VARCHAR(255) NOT NULL,
-    "quantity" VARCHAR(255) NOT NULL,
-    "product_price" VARCHAR(255) NOT NULL,
-    "subtoal" VARCHAR(255) NOT NULL
+    "product_id" INTEGER NOT NULL,
+    "quantity" INTEGER NOT NULL,
+    "product_price" INTEGER NOT NULL,
+    "subtoal" INTEGER NOT NULL
 );
 ALTER TABLE
     "order_details" ADD PRIMARY KEY("id");
@@ -75,36 +75,36 @@ CREATE TABLE "admin_post"(
 ALTER TABLE
     "admin_post" ADD PRIMARY KEY("id");
 CREATE TABLE "comment"(
-    "id" BIGINT NOT NULL,
-    "user_id" BIGINT NOT NULL,
-    "product_id" BIGINT NULL,
+    "id" INTEGER NOT NULL,
+    "user_id" INTEGER NOT NULL,
+    "product_id" INTEGER NULL,
     "comment_image" VARCHAR(255) NOT NULL,
-    "comment_text" BIGINT NOT NULL
+    "comment_text" VARCHAR(255) NOT NULL
 );
 ALTER TABLE
     "comment" ADD PRIMARY KEY("id");
 CREATE TABLE "order"(
     "id" INTEGER NOT NULL,
-    "user_id" VARCHAR(255) NOT NULL,
-    "payment_id" VARCHAR(255) NOT NULL,
-    "total" VARCHAR(255) NOT NULL,
+    "user_id" INTEGER NOT NULL,
+    "payment_id" INTEGER NOT NULL,
+    "total" INTEGER NOT NULL,
     "status" VARCHAR(255) NOT NULL,
-    "order_date" VARCHAR(255) NOT NULL,
-    "stripe_id" BIGINT NOT NULL,
-    "payment_type" BIGINT NOT NULL
+    "order_date" DATE NOT NULL,
+    "stripe_id" INTEGER NOT NULL,
+    "payment_type" VARCHAR(255) NOT NULL
 );
 ALTER TABLE
     "order" ADD PRIMARY KEY("id");
 CREATE TABLE "origin"(
-    "id" BIGINT NOT NULL,
-    "origin_country" BIGINT NOT NULL
+    "id" INTEGER NOT NULL,
+    "origin_country" VARCHAR(255) NOT NULL
 );
 ALTER TABLE
     "origin" ADD PRIMARY KEY("id");
 CREATE TABLE "brand"(
     "id" BIGINT NOT NULL,
-    "brand_name" BIGINT NOT NULL,
-    "brand_logo" BIGINT NOT NULL
+    "brand_name" VARCHAR(255) NOT NULL,
+    "brand_logo" VARCHAR(255) NOT NULL
 );
 ALTER TABLE
     "brand" ADD PRIMARY KEY("id");
@@ -112,16 +112,16 @@ CREATE TABLE "product"(
     "id" INTEGER NOT NULL,
     "product_name" VARCHAR(255) NOT NULL,
     "product_type" VARCHAR(255) NOT NULL,
-    "camera_type" BIGINT NOT NULL,
-    "brand_id" VARCHAR(255) NOT NULL,
-    "origin_id" BIGINT NOT NULL,
-    "format_id" BIGINT NOT NULL,
-    "product_price" VARCHAR(255) NOT NULL,
-    "product_quantity" VARCHAR(255) NOT NULL,
-    "production_year" VARCHAR(255) NOT NULL,
-    "weight" BIGINT NOT NULL,
-    "pixel" BIGINT NOT NULL,
-    "ISO" BIGINT NOT NULL,
+    "camera_type" VARCHAR(255) NOT NULL,
+    "brand_id" INTEGER NOT NULL,
+    "origin_id" INTEGER NOT NULL,
+    "format_id" INTEGER NOT NULL,
+    "product_price" INTEGER NOT NULL,
+    "product_quantity" INTEGER NOT NULL,
+    "production_year" INTEGER NOT NULL,
+    "weight" INTEGER NOT NULL,
+    "pixel" INTEGER NULL,
+    "iso" INTEGER NULL,
     "is_used" BOOLEAN NOT NULL
 );
 ALTER TABLE
