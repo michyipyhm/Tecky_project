@@ -4,21 +4,16 @@
 npm init
 
 ------裝Type-Script(讀TS用)------
-npm install typescript
-npm install ts-node
-npm install @types/node
+npm install typescript ts-node @types/node
 
 ------裝express(開server用)------
-npm install express
-npm install -D @types/express
+npm install express -D @types/express
 
 ------裝session(認證user key用)------
-npm install express-session
-npm install -D @types/express-session
+npm install express-session -D @types/express-session
 
 ------裝json (read json file用)------
-npm install jsonfile
-npm install -D @types/jsonfile
+npm install jsonfile -D @types/jsonfile
 
 -----裝formidable (upload野用)------
 npm install formidable@2
@@ -28,11 +23,13 @@ npm install -D @types/formidable@2
 npm install -D ts-node-dev
 
 ------裝node-postgres (讀postgresSQL database用)
-npm install pg  
-npm install -D @types/pg
+npm install pg  -D @types/pg
 
 ------裝dotenv (讀env用)
 npm install dotenv
+
+------裝Stripe (for user俾錢用)
+npm install stripe @types/stripe
 
 //useful web
 mailgun.com
