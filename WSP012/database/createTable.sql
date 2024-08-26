@@ -12,12 +12,12 @@ CREATE TABLE "user"(
     "password" VARCHAR(255) NOT NULL,
     "nickname" VARCHAR(255) NOT NULL,
     "gender" VARCHAR(255) NOT NULL,
-    "birthday" DATE,
+    "birthday" DATE NOT NULL,
     "phone" INTEGER NOT NULL,
     "address" VARCHAR(255) NOT NULL,
     "email" VARCHAR(255) NOT NULL,
     "verification_code" VARCHAR(255) NOT NULL,
-    "status" BIGINT NOT NULL
+    "status" VARCHAR(255) NOT NULL
 );
 ALTER TABLE
     "user" ADD PRIMARY KEY("id");
@@ -28,8 +28,8 @@ ALTER TABLE
 ALTER TABLE
     "user" ADD CONSTRAINT "user_email_unique" UNIQUE("email");
 CREATE TABLE "product_image"(
-    "id" BIGINT NOT NULL,
-    "product_id" BIGINT NOT NULL,
+    "id" INTEGER NOT NULL,
+    "product_id" INTEGER NOT NULL,
     "image_path" VARCHAR(255) NOT NULL
 );
 ALTER TABLE
@@ -52,14 +52,14 @@ ALTER TABLE
 ALTER TABLE
     "newsletters" ADD CONSTRAINT "newsletters_email_unique" UNIQUE("email");
 CREATE TABLE "format"(
-    "id" BIGINT NOT NULL,
+    "id" INTEGER NOT NULL,
     "format_name" VARCHAR(255) NOT NULL
 );
 ALTER TABLE
     "format" ADD PRIMARY KEY("id");
 CREATE TABLE "order_details"(
     "id" INTEGER NOT NULL,
-    "order_id" BIGINT NOT NULL,
+    "order_id" INTEGER NOT NULL,
     "product_id" INTEGER NOT NULL,
     "quantity" INTEGER NOT NULL,
     "product_price" INTEGER NOT NULL,
@@ -69,7 +69,7 @@ ALTER TABLE
     "order_details" ADD PRIMARY KEY("id");
 CREATE TABLE "admin_post"(
     "id" INTEGER NOT NULL,
-    "product_id" VARCHAR(255) NOT NULL,
+    "product_id" INTEGER NOT NULL,
     "cover_image" VARCHAR(255) NOT NULL
 );
 ALTER TABLE
@@ -102,7 +102,7 @@ CREATE TABLE "origin"(
 ALTER TABLE
     "origin" ADD PRIMARY KEY("id");
 CREATE TABLE "brand"(
-    "id" BIGINT NOT NULL,
+    "id" INTEGER NOT NULL,
     "brand_name" VARCHAR(255) NOT NULL,
     "brand_logo" VARCHAR(255) NOT NULL
 );
@@ -112,16 +112,16 @@ CREATE TABLE "product"(
     "id" INTEGER NOT NULL,
     "product_name" VARCHAR(255) NOT NULL,
     "product_type" VARCHAR(255) NOT NULL,
-    "camera_type" VARCHAR(255) NOT NULL,
+    "camera_type" VARCHAR(255),
     "brand_id" INTEGER NOT NULL,
     "origin_id" INTEGER NOT NULL,
     "format_id" INTEGER NOT NULL,
     "product_price" INTEGER NOT NULL,
     "product_quantity" INTEGER NOT NULL,
-    "production_year" INTEGER NOT NULL,
-    "weight" INTEGER NOT NULL,
-    "pixel" INTEGER NULL,
-    "iso" INTEGER NULL,
+    "production_year" INTEGER,
+    "weight" INTEGER,
+    "pixel" INTEGER,
+    "iso" INTEGER,
     "is_used" BOOLEAN NOT NULL
 );
 ALTER TABLE
