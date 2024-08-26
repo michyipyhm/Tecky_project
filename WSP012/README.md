@@ -1,1 +1,0 @@
-# Tecky_project
