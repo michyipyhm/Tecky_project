@@ -5,16 +5,25 @@
   "scripts": {
     "start": "ts-node-dev main.ts",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "data":"psql -f database/init.sql && psql -f database/data.sql"
+    "data": "psql -f database/init.sql && psql -f database/data.sql"
   },
   "author": "",
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "@types/jsonfile": "^6.1.4",
+    "express-session": "^1.18.0",
+    "jsonfile": "^6.1.0",
     "ts-node": "^10.9.2",
     "typescript": "^5.5.4"
   },
   "devDependencies": {
+    "@types/express": "^4.17.21",
+    "@types/express-session": "^1.18.0",
+    "@types/pg": "^8.11.6",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "pg": "^8.12.0",
     "ts-node-dev": "^2.0.0"
   }
 }
