@@ -8,6 +8,16 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
+const pgClient = new Client({
+    database: process.env.DB_NAME,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    host: "localhost"
+    // port: process.env.DB_PORT ? parseInt(process.env.DB_PORT) : 5432
+  });
+  
+pgClient.connect();
+
 const app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -20,19 +30,27 @@ app.use(
         saveUninitialized: true,
     })
 );
+
 declare module "express-session" {
     interface SessionData {
         userId?: number;
     }
 }
+// app.get("/", function (req: Request, res: Response) {
+//     res.redirect("/main.html")
+//   });
 
-const pgClient = new Client({
-    database: process.env.DB_NAME,
-    user: process.env.DB_USERNAME,
-    password: process.env.DB_PASSWORD,
-    host: "localhost"
+//get photo from databases
+app.get('/main', async (req: Request, res: Response) => {
+    try {
+        const result = await pgClient.query(`select image_path from product_image where id = 1`);
+        console.log('result is!!!!!!!!', result)
+        res.json({ imagePath: result.rows[0].image_path });
+    } catch (error) {
+        console.log('error is!!!!!!!!!', error);
+        res.status(500).json({ message: "An error occurred while retrieving the image." });
+    }
 });
-pgClient.connect();
 
 app.post("/login", async (req: Request, res: Response) => {
     const data = req.body
@@ -91,6 +109,11 @@ app.post("/logout", async (req: Request, res: Response) => {
         res.json({message:"Please login first."})
     }
 })
+
+
+app.use((req, res) => {
+    res.redirect('404.html');
+  });
 
 const port = 8080;
 

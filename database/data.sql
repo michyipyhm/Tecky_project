@@ -17,11 +17,11 @@ INSERT INTO admin (admin_name,password)
 INSERT INTO brand (brand_name, brand_logo)
     VALUES  ('canon', 'WSP012/photo/CameraLogo/canon.png'),
     ('leica', 'WSP012/photo/CameraLogo/leica.png'), 
-    ('rollei', 'WSP012/photo/CameraLogo/rollei.png'), 
-    ('fujifilm', '/WSP012/photo/Cameralogo/fujifilm.png'), 
-    ('nikon', 'WSP012/photo/CameraLogo/nikon.png'), 
-    ('olympus', 'WSP012/photo/CameraLogo/olympus.png'), 
-    ('kodak', 'WSP012/photo/CameraLogo/kodak.png');
+    -- ('rollei', 'WSP012/photo/CameraLogo/rollei.png'), 
+    -- ('fujifilm', '/WSP012/photo/Cameralogo/fujifilm.png'), 
+    -- ('nikon', 'WSP012/photo/CameraLogo/nikon.png'), 
+    -- ('olympus', 'WSP012/photo/CameraLogo/olympus.png'), 
+    -- ('kodak', 'WSP012/photo/CameraLogo/kodak.png');
 
 /*
 UPDATE brand
@@ -50,9 +50,15 @@ INSERT INTO product (product_name,product_type,camera_type,brand_id,origin_id,fo
 
 
 /*菲林*/
+<<<<<<< HEAD
 INSERT INTO product (product_name,product_type,brand_id,origin_id,format_id,product_price,product_quantity,iso,is_used) 
     VALUES ('Fujifilm color 100', 'film',4,1,1,100,20,100,false),
     ('Fujifilm Superia Venus 800', 'film', 4,1,1,150,10,800,false);
+=======
+-- INSERT INTO product (product_name,product_type,brand_id,origin_id,format_id,product_price,product_quantity,iso,is_used) 
+--     VALUES ('Fujifilm color 100', 'film',4,1,1,100,20,100,false),
+--     ('Fujifilm Superia Venus 800', 'film', 4,1,1,150,10,800,false),
+>>>>>>> f971a92b1a6c381db4d1ad129cd4155c9ab0215c
     -- ('Fujifilm Superia 400', 'film', 4,1,1,120,20,400,false),
     -- ('Kodak colour plus 200', 'film', 7,3,1,120,40,200,false),
     -- ('Kodak gold 200', 'film', 7,3,1,100,50,200,false),
