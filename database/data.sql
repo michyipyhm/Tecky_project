@@ -38,8 +38,8 @@ INSERT INTO format (id, format_name)
     
 /*相機*/
 INSERT INTO product (product_name,product_type,camera_type,brand_id,origin_id,format_id,product_price,product_quantity,production_year,weight,pixel,is_used) 
-    VALUES ('Canon Canonet QL17 GIII','camera','film',1,1,1,2000,1,1972,620,0,0,true),
-    ('Leica M3','camera','film',2,2,1,3000,1,1954,580,0,0,true),
+    VALUES ('Canon Canonet QL17 GIII','camera','film',1,1,1,2000,1,1972,620,0,true),
+    ('Leica M3','camera','film',2,2,1,3000,1,1954,580,0,true);
     -- ('Rollei 35','camera','film',3,2,1,2500,1,1966,370,0,0,true),
     -- ('Fujifilm finepix 2700','camera','digital',4,1,2,1500,1,1999,250,0,0,true),
     -- ('Nikon coolpix 2700','camera','digital',5,1,2,1200,1,2013,125,0,0,true),
@@ -52,7 +52,7 @@ INSERT INTO product (product_name,product_type,camera_type,brand_id,origin_id,fo
 /*菲林*/
 INSERT INTO product (product_name,product_type,brand_id,origin_id,format_id,product_price,product_quantity,iso,is_used) 
     VALUES ('Fujifilm color 100', 'film',4,1,1,100,20,100,false),
-    ('Fujifilm Superia Venus 800', 'film', 4,1,1,150,10,800,false),
+    ('Fujifilm Superia Venus 800', 'film', 4,1,1,150,10,800,false);
     -- ('Fujifilm Superia 400', 'film', 4,1,1,120,20,400,false),
     -- ('Kodak colour plus 200', 'film', 7,3,1,120,40,200,false),
     -- ('Kodak gold 200', 'film', 7,3,1,100,50,200,false),
@@ -62,8 +62,8 @@ INSERT INTO product (product_name,product_type,brand_id,origin_id,format_id,prod
 INSERT INTO product_image (product_id, image_path) 
     VALUES 
     (1,'photo/Camera/filmcamera/CanonCanonetQL17a1.webp'), 
-    (1,'photo/Camera/filmcamera/CanonCanonetQL17a2.webp'),
-    (3,'photo/Camera/filmcamera/CanonCanonetQL17a3.webp'),
+    (1,'photo/Camera/filmcamera/CanonCanonetQL17a2.webp');
+    -- (3,'photo/Camera/filmcamera/CanonCanonetQL17a3.webp'),
     -- (4, 'WSP012/photo/Camera/filmcamera/CanonCanonetQL17a4.webp'),
     -- (5, 'WSP012/photo/Camera/filmcamera/CanonCanonetQL17a5.webp'),
     -- (6, 'WSP012/photo/Camera/filmcamera/CanonCanonetQL17a6.webp'),
