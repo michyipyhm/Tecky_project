@@ -10,3 +10,22 @@ function openNav() {
     document.getElementById("main").style.marginLeft = "0";
     document.body.style.backgroundColor = "white";
   }
+
+document.addEventListener("DOMContentLoaded", () => {
+  fetch("/main")
+   .then(response => response.json())
+   .then(data => {
+    const imagePath = data.imagePath;
+    console.log(imagePath);
+    const imgElement = document.createElement('img');
+    imgElement.src = imagePath;
+    document.body.appendChild(imgElement);
+   })
+   .catch(error => console.error('Error is:', error));
+
+   if (res.ok) {
+    window.location = "main.html"; // have to change to html instead
+  } else {
+    alert("Run FAILED");
+  }
+});
