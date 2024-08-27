@@ -37,21 +37,37 @@ declare module "express-session" {
         userId?: number;
     }
 }
-// app.get("/", function (req: Request, res: Response) {
-//     res.redirect("/main.html")
-//   });
+
 
 //get photo from databases
 app.get('/main', async (req: Request, res: Response) => {
     try {
-        const result = await pgClient.query(`select image_path from product_image where id = 1`);
-        console.log('result is!!!!!!!!', result)
-        res.json({ imagePath: result.rows[0].image_path });
+        const result = await pgClient.query(`select image_path from product_image where product_id between 1 and 6`);
+        console.log('result is!!!!!!!!', result);
+        res.json(result.rows.map(row => row.image_path));
     } catch (error) {
         console.log('error is!!!!!!!!!', error);
-        res.status(500).json({ message: "An error occurred while retrieving the image." });
+        res.status(500).json({ message: "An error occurred while retrieving the images." });
     }
 });
+
+//     try {
+//         const cardId = req.query.id;
+//         if (!cardId) {
+//             return res.status(400).json({ message: "Missing card ID parameter." });
+//         }
+//         const result = await pgClient.query(`select image_path from product_image where id = $1`, [cardId]);
+//         if (result.rows.length === 0) {
+//             return res.status(404).json({ message: "Image not found." 
+//             });
+//         }
+//         console.log('result is!!!!!!!!', result);
+//         res.json({ imagePath: result.rows[0].image_path });
+//     } catch (error) {
+//         console.log('error is!!!!!!!!!', error);
+//         res.status(500).json({ message: "An error occurred while retrieving the image." });
+//     } return
+// });
 
 app.post("/login", async (req: Request, res: Response) => {
     const data = req.body
