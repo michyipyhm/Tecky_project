@@ -14,6 +14,7 @@ function openNav() {
   window.onload = () => {
     const loginFormEle = document.querySelector("#login-form")
     loginFormEle.addEventListener("submit", async (e) => {
+        
         e.preventDefault()
         
         const username = e.target.username.value
@@ -34,6 +35,7 @@ function openNav() {
         // }
         const data = await res.json()
         if (res.ok) {
+            
             window.location = "/profile.html"
         } else {
             alert(data.message)
