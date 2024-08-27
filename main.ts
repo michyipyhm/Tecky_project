@@ -34,6 +34,10 @@ const pgClient = new Client({
 });
 pgClient.connect();
 
+// app.get('/', (req: Request, res: Response) => {
+//     res.sendFile(path.join(__dirname, 'public', 'main.html'));
+// });
+
 app.post("/login", async (req: Request, res: Response) => {
     const data = req.body
     const username = data.username

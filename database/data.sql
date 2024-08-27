@@ -38,8 +38,8 @@ INSERT INTO format (id, format_name)
     
 /*相機*/
 INSERT INTO product (product_name,product_type,camera_type,brand_id,origin_id,format_id,product_price,product_quantity,production_year,weight,pixel,is_used) 
-    VALUES ('Canon Canonet QL17 GIII','camera','film',1,1,1,2000,1,1972,620,0,0,true),
-    ('Leica M3','camera','film',2,2,1,3000,1,1954,580,0,0,true),
+    VALUES ('Canon Canonet QL17 GIII','camera','film',1,1,1,2000,1,1972,620,0,true),
+    ('Leica M3','camera','film',2,2,1,3000,1,1954,580,0,true),
     -- ('Rollei 35','camera','film',3,2,1,2500,1,1966,370,0,0,true),
     -- ('Fujifilm finepix 2700','camera','digital',4,1,2,1500,1,1999,250,0,0,true),
     -- ('Nikon coolpix 2700','camera','digital',5,1,2,1200,1,2013,125,0,0,true),
