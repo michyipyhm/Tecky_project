@@ -23,9 +23,9 @@ document.addEventListener("DOMContentLoaded", () => {
    })
    .catch(error => console.error('Error is:', error));
 
-   if (res.ok) {
-    window.location = "main.html"; // have to change to html instead
-  } else {
-    alert("Run FAILED");
-  }
+  //  if (res.ok) {
+  //   window.location = "main.html"; // have to change to html instead
+  // } else {
+  //   alert("Run FAILED");
+  // }
 });
