@@ -8,7 +8,18 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
+const pgClient = new Client({
+    database: process.env.DB_NAME,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    host: "localhost"
+    // port: process.env.DB_PORT ? parseInt(process.env.DB_PORT) : 5432
+  });
+  
+pgClient.connect();
+
 const app = express();
+
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static("public"));
@@ -20,19 +31,43 @@ app.use(
         saveUninitialized: true,
     })
 );
+
 declare module "express-session" {
     interface SessionData {
         userId?: number;
     }
 }
 
-const pgClient = new Client({
-    database: process.env.DB_NAME,
-    user: process.env.DB_USERNAME,
-    password: process.env.DB_PASSWORD,
-    host: "localhost"
+
+//get photo from databases
+app.get('/main', async (req: Request, res: Response) => {
+    try {
+        const result = await pgClient.query(`select image_path from product_image where product_id between 1 and 6`);
+        console.log('result is!!!!!!!!', result);
+        res.json(result.rows.map(row => row.image_path));
+    } catch (error) {
+        console.log('error is!!!!!!!!!', error);
+        res.status(500).json({ message: "An error occurred while retrieving the images." });
+    }
 });
-pgClient.connect();
+
+//     try {
+//         const cardId = req.query.id;
+//         if (!cardId) {
+//             return res.status(400).json({ message: "Missing card ID parameter." });
+//         }
+//         const result = await pgClient.query(`select image_path from product_image where id = $1`, [cardId]);
+//         if (result.rows.length === 0) {
+//             return res.status(404).json({ message: "Image not found." 
+//             });
+//         }
+//         console.log('result is!!!!!!!!', result);
+//         res.json({ imagePath: result.rows[0].image_path });
+//     } catch (error) {
+//         console.log('error is!!!!!!!!!', error);
+//         res.status(500).json({ message: "An error occurred while retrieving the image." });
+//     } return
+// });
 
 // app.get('/', (req: Request, res: Response) => {
 //     res.sendFile(path.join(__dirname, 'public', 'main.html'));
@@ -95,6 +130,11 @@ app.post("/logout", async (req: Request, res: Response) => {
         res.json({message:"Please login first."})
     }
 })
+
+
+app.use((req, res) => {
+    res.redirect('404.html');
+  });
 
 const port = 8080;
 
