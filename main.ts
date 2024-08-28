@@ -22,8 +22,6 @@ const app = express();
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(express.static("public"));
-app.use(express.static("private"));
 app.use(
     expressSession({
         secret: "Tecky-C32-WSP012-Michael-Victor-Kees",
@@ -127,12 +125,16 @@ app.post("/logout", async (req: Request, res: Response) => {
     }
 })
 
-
+app.use(express.static("public"));
+app.use(express.static("private"));
+ 
 app.use((req, res) => {
     res.redirect('404.html');
   });
 
 const port = 8080;
+
+
 
 app.listen(port, () => {
     console.log(`Server is running at http://localhost:${port}`);
