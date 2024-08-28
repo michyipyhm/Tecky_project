@@ -7,6 +7,9 @@ import { Client } from "pg";
 import dotenv from "dotenv";
 import { checkPassword, hashPassword } from "./utils/hash";
 import { userRouter } from "./routes/userRoutes";
+import Stripe from 'stripe';
+
+const stripe = require('stripe')('sk_test_51PreUORwdDaooQDsamp23arHGzTPt6evgQoLolZw1DcnkEIyIZ86rptWHnack4RBbeMAzEj6vdViamrhUXI5nmO200vL2SOcjX');
 
 
 dotenv.config();
@@ -16,7 +19,6 @@ export const pgClient = new Client({
     user: process.env.DB_USER,
     password: process.env.DB_PASSWORD,
     host: "localhost"
-    // port: process.env.DB_PORT ? parseInt(process.env.DB_PORT) : 5432
 });
 
 pgClient.connect();
@@ -39,6 +41,50 @@ declare module "express-session" {
     }
 }
 
+//shoppingCart讀database 來顯示現在購物車
+app.get('/api/shopping-cart', async (req, res) => {
+    try {
+        // 從 shopping_cart 中讀 product_id
+        const shoppingCartResult = await pgClient.query('SELECT product_id FROM shopping_cart');
+        const productIds = shoppingCartResult.rows.map(row => row.product_id);
+
+        // follow product_id 從 product 讀 product_name / product_price
+        const productNames = [];
+        for (const productId of productIds) {
+            const productResult = await pgClient.query('SELECT product_name, product_price FROM product WHERE id = $1', [productId]);
+            if (productResult.rows.length > 0) {
+                productNames.push(productResult.rows[0]);
+            }
+        }
+        res.status(200).json(productNames);
+    } catch (err) {
+        console.error(err);
+        res.status(500).send('Error fetching shopping cart');
+    }
+});
+
+//order結算
+app.post('/create-checkout-session', async (req, res) => {
+    const session = await stripe.checkout.sessions.create({
+        payment_method_types: ['card'],
+        line_items: [{
+            price_data: {
+                currency: req.body.currency,
+                product_data: {
+                    name: 'AAA',
+                },
+                unit_amount: req.body.price,
+            },
+            quantity: 1,
+        }],
+        mode: 'payment',
+        success_url: 'http://localhost:8080/index.html',
+        cancel_url: 'http://localhost:8080/shoppingcart.html',
+    });
+
+    res.json({ id: session.id });
+});
+
 
 //get photo from databases
 app.get('/main', async (req: Request, res: Response) => {
@@ -52,96 +98,6 @@ app.get('/main', async (req: Request, res: Response) => {
     }
 });
 
-<<<<<<< HEAD
-//     try {
-//         const cardId = req.query.id;
-//         if (!cardId) {
-//             return res.status(400).json({ message: "Missing card ID parameter." });
-//         }
-//         const result = await pgClient.query(`select image_path from product_image where id = $1`, [cardId]);
-//         if (result.rows.length === 0) {
-//             return res.status(404).json({ message: "Image not found." 
-//             });
-//         }
-//         console.log('result is!!!!!!!!', result);
-//         res.json({ imagePath: result.rows[0].image_path });
-//     } catch (error) {
-//         console.log('error is!!!!!!!!!', error);
-//         res.status(500).json({ message: "An error occurred while retrieving the image." });
-//     } return
-// });
-
-// app.get('/', (req: Request, res: Response) => {
-//     res.sendFile(path.join(__dirname, 'public', 'main.html'));
-// });
-
-app.post("/login", async (req: Request, res: Response) => {
-    const data = req.body
-    const username = data.username
-    const password = data.password
-    const result = ((await pgClient.query(`select * from member where username = '${username}' and password = '${password}';`)));
-    const row = result.rows[0]
-    const count = result.rowCount
-    if (count == 0) {
-        res.status(401).json({ message: "The username or password is incorrect." })
-        return
-    }
-    req.session.userId = row.id
-    res.json({ message: "Login successful.", nickanme: row.nickname, userId: req.session.userId })
-})
-
-
-
-app.post("/register", async (req: Request, res: Response) => {
-   
-    const data = req.body;
-    const username = data.username;
-    const password = data.password;
-    const nickname = data.nickname;
-    const gender = data.gender;
-    const birthday = data.birthday;
-    const phone = data.phone;
-    const address = data.address;
-    const email = data.email
-    const sql_1 = `Select * from member where username = '${username}'`;
-    const userResult = await pgClient.query(sql_1);
-    const row = userResult.rows;
-    const rowCount = userResult.rowCount;
-    if (rowCount == null || rowCount > 0) {
-        res.status(400).json({ message: "username exists in database" });
-        return;
-    }
-    const sql = `INSERT INTO member (username, password, nickname, gender, birthday, phone, address, email) 
-      VALUES ('${username}', '${password}', '${nickname}', '${gender}', '${birthday}', '${phone}', '${address}', '${email}')RETURNING id;`;
-
-    const insertResult = await pgClient.query(sql);
-    req.session.userId = insertResult.rows[0].id
-    res.json({ message: "Register successful" });
-});
-
-app.get("/userprofile", async (req: Request, res: Response) => {
-    const userId = req.session.userId
-    const sql_1 = `select id, username, nickname, gender, birthday, phone, address, email from member where id = $1`
-    const userResult = await pgClient.query(sql_1, [userId])
-    const userRows = userResult.rows
-    
-    
-    res.json({ message: "userprofile", user: userRows[0] })
-})
-
-app.post("/logout", async (req: Request, res: Response) => {
-    if (req.session.userId) {
-        req.session.destroy(() => {
-            res.json({ message: "Logout successful." })
-        })
-    } else {
-        res.json({ message: "Please login first." })
-    }
-})
-
-
-=======
->>>>>>> 8021298d27411d89bb91a540256e81c3eb47ab4c
 import { isLoggedIn } from './utils/guards'
 
 // In main.ts
