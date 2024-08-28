@@ -5,6 +5,9 @@ import fs from "fs";
 import jsonfile from "jsonfile";
 import { Client } from "pg";
 import dotenv from "dotenv";
+import { checkPassword, hashPassword } from "./utils/hash";
+import { userRouter } from "./routes/userRoutes";
+
 
 dotenv.config();
 
@@ -14,8 +17,8 @@ const pgClient = new Client({
     password: process.env.DB_PASSWORD,
     host: "localhost"
     // port: process.env.DB_PORT ? parseInt(process.env.DB_PORT) : 5432
-  });
-  
+});
+
 pgClient.connect();
 
 const app = express();
@@ -77,60 +80,75 @@ app.post("/login", async (req: Request, res: Response) => {
     const data = req.body
     const username = data.username
     const password = data.password
-    const result = ((await pgClient.query(`select * from users where username = '${username}' and password = '${password}';`)));
+    const result = ((await pgClient.query(`select * from member where username = '${username}' and password = '${password}';`)));
     const row = result.rows[0]
     const count = result.rowCount
     if (count == 0) {
-        res.status(401).json({message: "The username or password is incorrect."})
+        res.status(401).json({ message: "The username or password is incorrect." })
         return
     }
     req.session.userId = row.id
-    res.json({message: "Login successful.", nickanme: row.nickname,  userId: req.session.userId})
+    res.json({ message: "Login successful.", nickanme: row.nickname, userId: req.session.userId })
 })
+
+
 
 app.post("/register", async (req: Request, res: Response) => {
-    const data = req.body
-    const username = data.username
-    const password = data.password
-    const birthday = data.birthday
-    const nickname = data.nickname
-    const phone = data.phone
-    const sql_1 = `select * from users where username = '${username}'`
-    const userResult = await pgClient.query(sql_1)
-    const row = userResult.rows
-    const rowCount = userResult.rowCount
+   
+    const data = req.body;
+    const username = data.username;
+    const password = data.password;
+    const nickname = data.nickname;
+    const gender = data.gender;
+    const birthday = data.birthday;
+    const phone = data.phone;
+    const address = data.address;
+    const email = data.email
+    const sql_1 = `Select * from member where username = '${username}'`;
+    const userResult = await pgClient.query(sql_1);
+    const row = userResult.rows;
+    const rowCount = userResult.rowCount;
     if (rowCount == null || rowCount > 0) {
-        res.status(400).json({message: "Username already exists."})
-        return
+        res.status(400).json({ message: "username exists in database" });
+        return;
     }
-    const sql = `insert into users (username, password, birthday, nickname, phone)
-    values ('${username}', '${password}', '${birthday}', '${nickname}', '${phone}') returning id ;`
-    const insertResult = await pgClient.query(sql)
-    req.session.userId = insertResult.rows[0].id
+    const sql = `INSERT INTO member (username, password, nickname, gender, birthday, phone, address, email) 
+      VALUES ('${username}', '${password}', '${nickname}', '${gender}', '${birthday}', '${phone}', '${address}', '${email}')RETURNING id;`;
 
-    res.json({message: "Register successful.", userId: req.session.userId}) 
-})
+    const insertResult = await pgClient.query(sql);
+    req.session.userId = insertResult.rows[0].id
+    res.json({ message: "Register successful" });
+});
 
 app.get("/userprofile", async (req: Request, res: Response) => {
     const userId = req.session.userId
-    const sql_1 = `select id, username, birthday, nickname, phone from users where id = $1`
+    const sql_1 = `select id, username, nickname, gender, birthday, phone, address, email from member where id = $1`
     const userResult = await pgClient.query(sql_1, [userId])
     const userRows = userResult.rows
-    // const userCount = userResult.rowCount
-    console.log(userId)
-    res.json({message: "userprofile", user: userRows[0]})
+    
+    
+    res.json({ message: "userprofile", user: userRows[0] })
 })
 
 app.post("/logout", async (req: Request, res: Response) => {
     if (req.session.userId) {
-        req.session.destroy(() =>{
-            res.json({message:"Logout successful."})
+        req.session.destroy(() => {
+            res.json({ message: "Logout successful." })
         })
     } else {
-        res.json({message:"Please login first."})
+        res.json({ message: "Please login first." })
     }
 })
 
+
+import { isLoggedIn } from './utils/guards'
+
+// In main.ts
+app.use('/', userRouter)
+// app.use('/resources', isLoggedIn, appleRoutes) // protected resources
+
+app.use(express.static('public'))
+app.use(isLoggedIn, express.static('private'))
 
 app.use((req, res) => {
     res.redirect('404.html');

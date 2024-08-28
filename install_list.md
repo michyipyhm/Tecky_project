@@ -30,6 +30,9 @@ npm install dotenv
 ------裝Stripe (for user俾錢用)
 npm install stripe @types/stripe
 
+npm install bcryptjs(密碼加密)
+npm install -D @types/bcryptjs
+
 //useful web
 mailgun.com
 editorjs.org
