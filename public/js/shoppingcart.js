@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                     <option value="custom">Custom</option>
                                 </select>
                                 <div id="customInputContainer" style="display: none"><input type="text" id="customInput" name="customQuantity" placeholder="Custom" min="1"></div>
-                                <div class="productPrice">Product Price: $${product.product_price}</div>
+                                <div class="productPrice">Product Price: ${product.product_price}</div>
                         </div>
                     <div>
                     <button type="button" class="delectProduct">刪除</button> 
@@ -84,7 +84,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     totalPrice += productPrice * parseInt(quantity, 10);
                 });
                 const countingPriceDiv = document.getElementById('countingPrice');
-                countingPriceDiv.textContent = `Total Price: $${totalPrice.toFixed(2)}`;
+                countingPriceDiv.textContent = `Total Price: ${totalPrice.toFixed(2)}`;
             }
 
             updateTotalPrice();
