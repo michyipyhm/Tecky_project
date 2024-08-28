@@ -1,4 +1,3 @@
-
 function openNav() {
   document.getElementById("mySidenav").style.width = "250px";
   document.getElementById("main").style.marginLeft = "250px";
@@ -11,6 +10,7 @@ function closeNav() {
   document.body.style.backgroundColor = "white";
 }
 
+
 window.onload = () => {
   const registerEle = document.querySelector("#register-form")
   registerEle.addEventListener("submit", async (e) => {
@@ -22,6 +22,7 @@ window.onload = () => {
     const nickname = e.target.nickname.value
     const gender = e.target.gender.value
     const birthday = e.target.birthday.value
+    const phone = e.target.phone.value
     const address = e.target.address.value
     const email = e.target.email.value
 
