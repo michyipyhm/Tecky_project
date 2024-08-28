@@ -13,7 +13,6 @@
   "dependencies": {
     "@types/node": "^22.5.0",
     "@types/stripe": "^8.0.417",
-    "bcryptjs": "^2.4.3",
     "dotenv": "^16.4.5",
     "formidable": "^2.1.2",
     "stripe": "^16.8.0",
@@ -27,6 +26,7 @@
     "@types/formidable": "^2.0.6",
     "@types/jsonfile": "^6.1.4",
     "@types/pg": "^8.11.6",
+    "bcryptjs": "^2.4.3",
     "express": "^4.19.2",
     "express-session": "^1.18.0",
     "jsonfile": "^6.1.0",

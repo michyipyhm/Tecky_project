@@ -8,8 +8,54 @@
 body {
     background-color: #08192c;
     color: aliceblue;
-    margin-left: 5vh;
-    margin-right: 5vh;
+    margin-left: 10vh;
+    margin-right: 10vh;
+}
+
+.first-section {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.search-container{
+  display: flex;
+  align-items: center;
+}
+
+.search-bar{
+  width: 100%;
+  max-width: 400px;
+  max-height: 60px;
+  background: rgba(255, 255, 255, 0.547);
+  display: flex;
+  align-items: center;
+  border-radius: 50px;
+  padding: 8px 15px;
+}
+
+.search-bar input{
+  background: transparent;
+  flex: 1;
+  border: 0;
+  outline: none !important;
+  padding: 10px 8px;
+  font-size: 20px;
+  color: #93c1f7;
+
+}
+
+.search-button button img{
+  height: 35px;
+}
+
+.search-button button {
+  border: 0;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  background: transparent;
+  cursor: pointer;
 }
 
 .sidenav {
@@ -46,7 +92,7 @@ body {
     margin-left: 50px;
   }
 
-  #main {
+  #nav-main {
     transition: margin-left .5s;
     padding: 16px;
   }
@@ -88,9 +134,9 @@ body {
 }
   
 .carousel-caption {
-    background-color: rgba(0, 0, 0, 0.9);
+    /* background-color: rgba(0, 0, 0, 0.9); */
     bottom: auto;
-    height: 30%;
+    height: 50%;
  
 }
 
@@ -101,27 +147,39 @@ body {
 }
 
 .caption-inner-box {
+    
     width: 100%;
-    border-top: 5px solid white;
+    /* border-top: 5px solid white;
     border-bottom: 5px solid white;
-    background-color: violet;
+    background-color: violet; */
     height: 100%;
+    margin-top: 200px;
     display: flex;
     justify-content: center;
 
 }
 
-.caption-inner-box h1 {
-  font-size: 30px;
-  font-weight: 200px;
-  color: #fdddee;
+.carousel-item-inner .btn-box{
+  width: 400px;
+  height: 60px;
 }
 
-.caption-inner-box .btn-box{
-  width: 360px;
-  height: 50px;
 
 
+.btn-box {
+  
+  padding: 10px;
+  text-align: center;
+ 
+}
+
+.carousel-item-inner .btn-box {
+  opacity: 0; /* Start with opacity 0 */
+  transition: opacity 0.5s ease; /* Add transition effect */
+}
+
+.carousel-item-inner:hover .btn-box {
+  opacity: 1; /* Change opacity to 1 on hover */
 }
 
 .btn-box >a{
@@ -129,10 +187,10 @@ body {
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  width: 120px;
-  height: 80%;
-  background-color: #a2bede;
-  border: 2px solid #a2bede;
+  width: 200px;
+  height: 100%;
+  background-color: #d9f1f6;
+  border: 2px solid #d9f1f6;
   border-radius: 8px;
   font-size: 18px;
   color: #08192c;
@@ -159,7 +217,7 @@ body {
   left: 0;
   width: 0;
   height: 100%;
-  background: #75b4fb;
+  background: #93c1f7;
   z-index: -1;
   transition: .5s;
 }
@@ -167,6 +225,9 @@ body {
 .btn-box >a:hover::before {
   width: 100%;
 }
+
+
+
 
 .text1 {
   font-size: 18px;
