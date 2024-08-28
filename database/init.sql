@@ -59,7 +59,7 @@ CREATE TABLE product(
     "production_year" INTEGER,
     "weight" INTEGER,
     "pixel" INTEGER,
-    "ISO" INTEGER,
+    "iso" INTEGER,
     "is_used" BOOLEAN NOT NULL,
     FOREIGN KEY (brand_id) REFERENCES brand(id),
     FOREIGN KEY (origin_id) REFERENCES origin(id),
