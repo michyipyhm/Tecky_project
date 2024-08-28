@@ -16,8 +16,7 @@ npm install express-session -D @types/express-session
 npm install jsonfile -D @types/jsonfile
 
 -----裝formidable (upload野用)------
-npm install formidable@2
-npm install -D @types/formidable@2
+npm install formidable@2 -D @types/formidable@2
 
 -----裝dev mode (開發者模式 自動restart server)------
 npm install -D ts-node-dev

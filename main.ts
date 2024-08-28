@@ -7,6 +7,9 @@ import { Client } from "pg";
 import dotenv from "dotenv";
 import { checkPassword, hashPassword } from "./utils/hash";
 import { userRouter } from "./routes/userRoutes";
+import Stripe from 'stripe';
+
+const stripe = require('stripe')('sk_test_51PreUORwdDaooQDsamp23arHGzTPt6evgQoLolZw1DcnkEIyIZ86rptWHnack4RBbeMAzEj6vdViamrhUXI5nmO200vL2SOcjX');
 
 
 dotenv.config();
@@ -16,7 +19,6 @@ export const pgClient = new Client({
     user: process.env.DB_USER,
     password: process.env.DB_PASSWORD,
     host: "localhost"
-    // port: process.env.DB_PORT ? parseInt(process.env.DB_PORT) : 5432
 });
 
 pgClient.connect();
@@ -38,6 +40,50 @@ declare module "express-session" {
         userId?: number;
     }
 }
+
+//shoppingCart讀database 來顯示現在購物車
+app.get('/api/shopping-cart', async (req, res) => {
+    try {
+        // 從 shopping_cart 中讀 product_id
+        const shoppingCartResult = await pgClient.query('SELECT product_id FROM shopping_cart');
+        const productIds = shoppingCartResult.rows.map(row => row.product_id);
+
+        // follow product_id 從 product 讀 product_name / product_price
+        const productNames = [];
+        for (const productId of productIds) {
+            const productResult = await pgClient.query('SELECT product_name, product_price FROM product WHERE id = $1', [productId]);
+            if (productResult.rows.length > 0) {
+                productNames.push(productResult.rows[0]);
+            }
+        }
+        res.status(200).json(productNames);
+    } catch (err) {
+        console.error(err);
+        res.status(500).send('Error fetching shopping cart');
+    }
+});
+
+//order結算
+app.post('/create-checkout-session', async (req, res) => {
+    const session = await stripe.checkout.sessions.create({
+        payment_method_types: ['card'],
+        line_items: [{
+            price_data: {
+                currency: req.body.currency,
+                product_data: {
+                    name: 'AAA',
+                },
+                unit_amount: req.body.price,
+            },
+            quantity: 1,
+        }],
+        mode: 'payment',
+        success_url: 'http://localhost:8080/index.html',
+        cancel_url: 'http://localhost:8080/shoppingcart.html',
+    });
+
+    res.json({ id: session.id });
+});
 
 
 //get photo from databases

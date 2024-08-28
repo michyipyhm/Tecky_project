@@ -20,7 +20,7 @@ window.onload = async () => {
   const phoneLabel = document.querySelector("#phoneLabel");
   const addressLabel = document.querySelector("#addressLabel");
   const emailLabel = document.querySelector("#emailLabel");
- 
+
 
   await getUserProfile();
   async function getUserProfile() {
@@ -41,13 +41,16 @@ window.onload = async () => {
     }
   }
   async function logout() {
+
     const res = await fetch("/logout", {
+
       method: "POST",
+
     });
     const data = await res.json();
-    console.log(data)
+
     if (res.ok) {
-      window.location.href = "/";
+      window.location.href = "/index.html";
     } else {
       alert(data.message);
     }
@@ -57,10 +60,14 @@ window.onload = async () => {
 
 
   orderRecordBtn.addEventListener("click", (e) => {
-
+    window.location.href = "/order.html";
   });
 
-  logoutBtn.addEventListener("click", (e) => {
+  logoutBtn.addEventListener("click", () => {
+
     logout()
+
   })
 }
+
+
