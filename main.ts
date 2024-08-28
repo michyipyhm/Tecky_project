@@ -11,7 +11,7 @@ import { userRouter } from "./routes/userRoutes";
 
 dotenv.config();
 
-const pgClient = new Client({
+export const pgClient = new Client({
     database: process.env.DB_NAME,
     user: process.env.DB_USER,
     password: process.env.DB_PASSWORD,
@@ -25,8 +25,6 @@ const app = express();
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(express.static("public"));
-app.use(express.static("private"));
 app.use(
     expressSession({
         secret: "Tecky-C32-WSP012-Michael-Victor-Kees",
@@ -54,6 +52,7 @@ app.get('/main', async (req: Request, res: Response) => {
     }
 });
 
+<<<<<<< HEAD
 //     try {
 //         const cardId = req.query.id;
 //         if (!cardId) {
@@ -141,6 +140,8 @@ app.post("/logout", async (req: Request, res: Response) => {
 })
 
 
+=======
+>>>>>>> 8021298d27411d89bb91a540256e81c3eb47ab4c
 import { isLoggedIn } from './utils/guards'
 
 // In main.ts
@@ -152,9 +153,11 @@ app.use(isLoggedIn, express.static('private'))
 
 app.use((req, res) => {
     res.redirect('404.html');
-  });
+});
 
 const port = 8080;
+
+
 
 app.listen(port, () => {
     console.log(`Server is running at http://localhost:${port}`);
