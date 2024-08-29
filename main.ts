@@ -8,12 +8,8 @@ import { Client } from "pg";
 import dotenv from "dotenv";
 import { checkPassword, hashPassword } from "./utils/hash";
 import { userRouter } from "./routes/userRoutes";
-<<<<<<< HEAD
-import grant from "grant";
-=======
 import Stripe from 'stripe';
 import { getShoppingCart } from './routes/shoppingCartRoutes';
->>>>>>> 6d15d76eae62eb1a9ad900672824fc6e782875db
 
 const stripe = require("stripe")(
   "sk_test_51PreUORwdDaooQDsamp23arHGzTPt6evgQoLolZw1DcnkEIyIZ86rptWHnack4RBbeMAzEj6vdViamrhUXI5nmO200vL2SOcjX"
@@ -71,40 +67,6 @@ app.post("/create-checkout-session", async (req, res) => {
   res.json({ id: session.id });
 });
 
-//get photo from databases
-app.get("/api/product-image", async (req: Request, res: Response) => {
-  try {
-    const image_path_result = await pgClient.query(
-      `select image_path from product_image`
-    );
-    console.log("result is!!!!!!!!", image_path_result);
-    res.json(image_path_result.rows.map((row) => row.image_path));
-  } catch (error) {
-    console.log("error is!!!!!!!!!", error);
-    res
-      .status(500)
-      .json({ message: "An error occurred while retrieving the images." });
-  }
-});
-
-app.get("/api/product-info", async (req: Request, res: Response) => {
-  try {
-    const product_info_result = await pgClient.query(
-      `select product_name, product_price from product`
-    );
-    res.json(
-      product_info_result.rows.map((row) => ({
-        product_name: row.product_name,
-        product_price: row.product_price,
-      }))
-    );
-  } catch (error) {
-    console.log("error is!!!!!!!!!", error);
-    res.status(500).json({
-      message: "An error occurred while retrieving the product information.",
-    });
-  }
-});
 
 app.post("/test", async (req, res) => {
   console.log(req.body);
