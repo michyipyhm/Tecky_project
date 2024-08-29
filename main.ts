@@ -1,5 +1,6 @@
 import express, { query, Request, response, Response } from 'express';
 import expressSession from "express-session";
+import { isLoggedIn } from './utils/guards'
 import path from 'path';
 import fs from "fs";
 import jsonfile from "jsonfile";
@@ -10,7 +11,7 @@ import { userRouter } from "./routes/userRoutes";
 import Stripe from 'stripe';
 
 const stripe = require('stripe')('sk_test_51PreUORwdDaooQDsamp23arHGzTPt6evgQoLolZw1DcnkEIyIZ86rptWHnack4RBbeMAzEj6vdViamrhUXI5nmO200vL2SOcjX');
-
+const app = express();
 
 dotenv.config();
 
@@ -23,7 +24,6 @@ export const pgClient = new Client({
 
 pgClient.connect();
 
-const app = express();
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -41,7 +41,7 @@ declare module "express-session" {
     }
 }
 
-//shoppingCart讀database 來顯示現在購物車
+// shoppingCart讀database 來顯示現在購物車
 app.get('/api/shopping-cart', async (req, res) => {
     try {
         // 從 shopping_cart 中讀 product_id
@@ -63,7 +63,7 @@ app.get('/api/shopping-cart', async (req, res) => {
     }
 });
 
-//order結算
+// order結算
 app.post('/create-checkout-session', async (req, res) => {
     const session = await stripe.checkout.sessions.create({
         payment_method_types: ['card'],
@@ -89,16 +89,24 @@ app.post('/create-checkout-session', async (req, res) => {
 //get photo from databases
 app.get('/main', async (req: Request, res: Response) => {
     try {
-        const result = await pgClient.query(`select image_path from product_image where product_id between 1 and 6`);
-        console.log('result is!!!!!!!!', result);
-        res.json(result.rows.map(row => row.image_path));
+        const image_path_result = await pgClient.query(`select image_path from product_image`);
+        console.log('result is!!!!!!!!', image_path_result);
+        res.json(image_path_result.rows.map(row => row.image_path));
     } catch (error) {
         console.log('error is!!!!!!!!!', error);
         res.status(500).json({ message: "An error occurred while retrieving the images." });
     }
 });
 
-import { isLoggedIn } from './utils/guards'
+// app.get('/search', async (req: Request, res: Response) => {
+//     try {
+
+//     }
+
+// });
+
+
+
 
 // In main.ts
 app.use('/', userRouter)

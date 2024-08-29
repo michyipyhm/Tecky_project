@@ -44,7 +44,7 @@ INSERT INTO product (product_name,product_type,camera_type,brand_id,origin_id,fo
     ('Fujifilm finepix 2700','camera','digital',4,1,2,1500,1,1999,250,0,true),
     ('Nikon coolpix 2700','camera','digital',5,1,2,1200,1,2013,125,0,true),
     ('Olympus fe-3010','camera','digital',6,1,2,800,1,2009,108,0,true),
-    -- ('Nikon coolpix s2', 'camera', 'digital', 5,1,2,80 ̰,1,2005,160,0,true),
+    ('Nikon coolpix s2', 'camera', 'digital', 5,1,2,80,1,2005,160,0,true),
     -- ('Canon IXY digital 800IS', 'camera', 'digital',1,1,2,1400,1,2006,195,0,true),
     -- ('Fujifilm z700 EXR', 'camera', 'digital',4,1,2,1500,1,2010,158,0,true);
 

@@ -18,7 +18,7 @@ window.onload = async () => {
       console.log("final srccc for ${cardId} is***", imgElement.src);
     });
   } catch (error) {
-    console.error("Error is:", error);
+    console.log("Error is:", error);
   }
 };
 
@@ -35,3 +35,4 @@ function closeNav() {
   document.getElementById("main").style.marginLeft = "0";
   document.body.style.backgroundColor = "#08192c";
 }
+
