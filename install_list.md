@@ -16,8 +16,7 @@ npm install express-session -D @types/express-session
 npm install jsonfile -D @types/jsonfile
 
 -----裝formidable (upload野用)------
-npm install formidable@2
-npm install -D @types/formidable@2
+npm install formidable@2 -D @types/formidable@2
 
 -----裝dev mode (開發者模式 自動restart server)------
 npm install -D ts-node-dev
@@ -31,7 +30,8 @@ npm install dotenv
 ------裝Stripe (for user俾錢用)
 npm install stripe @types/stripe
 
-npm install bcryptjs(密碼加密)
+------(密碼加密)
+npm install bcryptjs
 npm install -D @types/bcryptjs
 
 npm install grant dotenv(連接google)
@@ -42,5 +42,11 @@ npm install cross-fetch(call GOOGLE API)
 mailgun.com
 editorjs.org
 
+<<<<<<< HEAD
 
 
+=======
+//steal pic website
+https://www.pakutaso.com/
+https://girlydrop.com/
+>>>>>>> 6d15d76eae62eb1a9ad900672824fc6e782875db

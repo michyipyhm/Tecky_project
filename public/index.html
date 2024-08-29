@@ -18,54 +18,8 @@
 
   <body>
 
-    <div id="first-section">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">Navbar</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNavDropdown">
-          <ul class="navbar-nav">
-            <li class="nav-item active">
-              <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Dropdown link
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                  <a class="dropdown-item" href="#">Action</a>
-                  <a class="dropdown-item" href="#">Another action</a>
-                  <a class="dropdown-item" href="#">Something else here</a>
-                </div>
-              </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Dropdown link
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                  <a class="dropdown-item" href="#">Action</a>
-                  <a class="dropdown-item" href="#">Another action</a>
-                  <a class="dropdown-item" href="#">Something else here</a>
-                </div>
-              </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Dropdown link
-              </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <a class="dropdown-item" href="#">Action</a>
-                <a class="dropdown-item" href="#">Another action</a>
-                <a class="dropdown-item" href="#">Something else here</a>
-              </div>
-            </li>
-          </ul>
-            <form class="form-inline">
-             <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-              <button class="submitbtn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-            </form>
-          </nav>
-      
+    <div class="first-section">
+  
       <div id="mySidenav" class="sidenav">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
         <a href="#">About</a>
@@ -75,9 +29,20 @@
         <a href="#">Clients</a>
         <a href="#">Clients</a>
       </div>
-      <div id="main">
+      <div id="nav-main">
         <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Home</span>
       </div>
+    
+      
+      <div class="search-container">
+        <form action="" class="search-bar">
+          <input type="text" placeholder="search..." name="q">
+          <div class="search-button">
+            <button type="submit"><img src="./photo/magnifying-glass.png" ></button>
+          </div>
+        </form>
+      </div> 
+  
     </div>
 
     <div id="second-section">
@@ -119,10 +84,9 @@
               <div class="carousel-caption d-none d-md-block">
                 <div class="caption-inner-parent">
                   <div class="caption-inner-box">
-                    <h1>CAMERA</h1>
                     <div class="btn-box">                
                       <a href="#">Buy Now!</a>
-                  </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -138,7 +102,9 @@
               <div class="carousel-caption d-none d-md-block">
                 <div class="caption-inner-parent">
                   <div class="caption-inner-box">
-                    <h5>2</h5>
+                    <div class="btn-box">                
+                      <a href="#">Buy Now!</a>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -154,7 +120,9 @@
               <div class="carousel-caption d-none d-md-block">
                 <div class="caption-inner-parent">
                   <div class="caption-inner-box">
-                    <h5>3</h5>
+                    <div class="btn-box">                
+                      <a href="#">Buy Now!</a>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -191,6 +159,8 @@
             <div class="card">
               <img src="" class="gallery-item" alt="gallery" id="card1" />
               <div class="card-body">
+                <div class="Product-name"></div>
+                <div class="Price">$</div>
                 <a href="#" class="btn btn-light">Add to cart</a>
               </div>
             </div>
@@ -199,6 +169,8 @@
             <div class="card">
               <img src="" class="gallery-item" alt="gallery" id="card2" />
               <div class="card-body">
+                <div class="Product-name"></div>
+                <div class="Price">$</div>
                 <a href="#" class="btn btn-light">Add to cart</a>
               </div>
             </div>
@@ -207,6 +179,8 @@
             <div class="card">
               <img src="" class="gallery-item" alt="gallery" id="card3" />
               <div class="card-body">
+                <div class="Product-name"></div>
+                <div class="Price">$</div>
                 <a href="#" class="btn btn-light">Add to cart</a>
               </div>
             </div>
@@ -215,6 +189,8 @@
             <div class="card">
               <img src="" class="gallery-item" alt="gallery" id="card4" />
               <div class="card-body">
+                <div class="Product-name"></div>
+                <div class="Price">$</div>
                 <a href="#" class="btn btn-light">Add to cart</a>
               </div>
             </div>
@@ -223,6 +199,8 @@
             <div class="card">
               <img src="" class="gallery-item" alt="gallery" id="card5" />
               <div class="card-body">
+                <div class="Product-name"></div>
+                <div class="Price">$</div>
                 <a href="#" class="btn btn-light">Add to cart</a>
               </div>
             </div>
@@ -231,6 +209,8 @@
             <div class="card">
               <img src="" class="gallery-item" alt="gallery" id="card6" />
               <div class="card-body">
+                <div class="Product-name"></div>
+                <div class="Price">$</div>
                 <a href="#" class="btn btn-light">Add to cart</a>
               </div>
             </div>
