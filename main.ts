@@ -7,6 +7,7 @@ import { Client } from "pg";
 import dotenv from "dotenv";
 import { checkPassword, hashPassword } from "./utils/hash";
 import { userRouter } from "./routes/userRoutes";
+import grant from "grant";
 
 
 dotenv.config();
@@ -40,7 +41,6 @@ declare module "express-session" {
 }
 
 
-//get photo from databases
 app.get('/main', async (req: Request, res: Response) => {
     try {
         const result = await pgClient.query(`select image_path from product_image where product_id between 1 and 6`);
@@ -54,9 +54,7 @@ app.get('/main', async (req: Request, res: Response) => {
 
 import { isLoggedIn } from './utils/guards'
 
-// In main.ts
 app.use('/', userRouter)
-// app.use('/resources', isLoggedIn, appleRoutes) // protected resources
 
 app.use(express.static('public'))
 app.use(isLoggedIn, express.static('private'))
@@ -66,8 +64,6 @@ app.use((req, res) => {
 });
 
 const port = 8080;
-
-
 
 app.listen(port, () => {
     console.log(`Server is running at http://localhost:${port}`);

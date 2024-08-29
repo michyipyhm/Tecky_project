@@ -34,6 +34,13 @@ npm install stripe @types/stripe
 npm install bcryptjs(密碼加密)
 npm install -D @types/bcryptjs
 
+npm install grant dotenv(連接google)
+
+npm install cross-fetch(call GOOGLE API)
+
 //useful web
 mailgun.com
 editorjs.org
+
+
+
