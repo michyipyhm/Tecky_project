@@ -13,11 +13,6 @@
   "dependencies": {
     "@types/node": "^22.5.0",
     "@types/stripe": "^8.0.417",
-<<<<<<< HEAD
-    "bcryptjs": "^2.4.3",
-    "cross-fetch": "^4.0.0",
-=======
->>>>>>> 6d15d76eae62eb1a9ad900672824fc6e782875db
     "dotenv": "^16.4.5",
     "formidable": "^2.1.2",
     "grant": "^5.4.22",
