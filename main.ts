@@ -8,7 +8,12 @@ import { Client } from "pg";
 import dotenv from "dotenv";
 import { checkPassword, hashPassword } from "./utils/hash";
 import { userRouter } from "./routes/userRoutes";
-import Stripe from "stripe";
+<<<<<<< HEAD
+import grant from "grant";
+=======
+import Stripe from 'stripe';
+import { getShoppingCart } from './routes/shoppingCartRoutes';
+>>>>>>> 6d15d76eae62eb1a9ad900672824fc6e782875db
 
 const stripe = require("stripe")(
   "sk_test_51PreUORwdDaooQDsamp23arHGzTPt6evgQoLolZw1DcnkEIyIZ86rptWHnack4RBbeMAzEj6vdViamrhUXI5nmO200vL2SOcjX"
@@ -41,33 +46,6 @@ declare module "express-session" {
     userId?: number;
   }
 }
-
-// shoppingCart讀database 來顯示現在購物車
-app.get("/api/shopping-cart", async (req, res) => {
-  try {
-    // 從 shopping_cart 中讀 product_id
-    const shoppingCartResult = await pgClient.query(
-      "SELECT product_id FROM shopping_cart"
-    );
-    const productIds = shoppingCartResult.rows.map((row) => row.product_id);
-
-    // follow product_id 從 product 讀 product_name / product_price
-    const productNames = [];
-    for (const productId of productIds) {
-      const productResult = await pgClient.query(
-        "SELECT product_name, product_price FROM product WHERE id = $1",
-        [productId]
-      );
-      if (productResult.rows.length > 0) {
-        productNames.push(productResult.rows[0]);
-      }
-    }
-    res.status(200).json(productNames);
-  } catch (err) {
-    console.error(err);
-    res.status(500).send("Error fetching shopping cart");
-  }
-});
 
 // order結算
 app.post("/create-checkout-session", async (req, res) => {
@@ -153,9 +131,9 @@ app.post("/test", async (req, res) => {
   
 });
 
-// In main.ts
-app.use("/", userRouter);
+app.use('/', userRouter)
 // app.use('/resources', isLoggedIn, appleRoutes) // protected resources
+app.use('/api/shopping-cart', getShoppingCart);
 
 app.use(express.static("public"));
 app.use(isLoggedIn, express.static("private"));
