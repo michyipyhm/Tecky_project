@@ -1,6 +1,16 @@
 document.addEventListener('DOMContentLoaded', () => {
     fetch('/api/shopping-cart')
-        .then(response => response.json())
+        .then(async response => {
+            if (!response.ok) {
+                if (response.status === 401) {
+                    const data = await response.json();
+                    throw new Error(data.message);
+                } else {
+                    throw new Error('Network response was not ok');
+                }
+            }
+            return response.json();
+        })
         .then(products => {
             const productList = document.getElementById('product-list');
             let totalPrice = 0;
@@ -33,6 +43,28 @@ document.addEventListener('DOMContentLoaded', () => {
                     <button type="button" class="delectProduct">刪除</button> 
                 </fieldset></div>
             `;
+                productDiv.querySelector('.delectProduct').addEventListener('click', function () {
+                    productDiv.remove();
+                    const productId = product.product_id
+
+                    fetch('/deleteProduct', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ productId: productId })
+                    })
+                        .then(response => {
+                            if (response.ok) {
+                                productDiv.remove();
+                            } else {
+                                console.error('error');
+                            }
+                        })
+                        .catch(error => {
+                            console.error('error:', error);
+                        });
+                });
                 productList.appendChild(productDiv);
                 totalPrice += parseFloat(product.product_price);
 
@@ -90,6 +122,8 @@ document.addEventListener('DOMContentLoaded', () => {
             updateTotalPrice();
         })
         .catch(error => {
-            console.error('Error fetching shopping cart:', error);
+            console.error('Error fetching shopping cart:', error.message);
+            alert(error.message);
+            window.location.href = "/login.html";
         });
 });

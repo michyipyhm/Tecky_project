@@ -8,11 +8,11 @@ format_id: 1 = 135mm, 2 = digital
 
 do not copy*/
 
-INSERT INTO member (username,password,nickname,email)
-    VALUES ('michael', '12345678', 'mickkkkkk', 'mick@example.com');
+-- INSERT INTO member (username,password,nickname,email)
+--     VALUES ('michael', '12345678', 'mickkkkkk', 'mick@example.com');
 
-INSERT INTO admin (admin_name,password)
-    VALUES ('admin1', '12345678');
+-- INSERT INTO admin (admin_name,password)
+--     VALUES ('admin1', '12345678');
     
 INSERT INTO brand (brand_name, brand_logo)
     VALUES  ('canon', '../photo/CameraLogo/canon.png'),
