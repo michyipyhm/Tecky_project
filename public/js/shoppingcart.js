@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const quantitySelect = productDiv.querySelector('#quantity');
                 const customInputContainer = productDiv.querySelector('#customInputContainer');
                 const productPriceDiv = productDiv.querySelector('.productPrice');
-                const productPrice = parseFloat(product.product_price);
+                const productPrice = parseFloat(product.product_price)
 
                 quantitySelect.addEventListener('change', function () {
                     let quantity = this.value;
