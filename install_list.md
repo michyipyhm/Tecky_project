@@ -42,11 +42,6 @@ npm install cross-fetch(call GOOGLE API)
 mailgun.com
 editorjs.org
 
-<<<<<<< HEAD
-
-
-=======
 //steal pic website
 https://www.pakutaso.com/
 https://girlydrop.com/
->>>>>>> 6d15d76eae62eb1a9ad900672824fc6e782875db
