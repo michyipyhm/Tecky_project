@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         </div>
                         <div class="productQuantity_Price">
                             <label for="quantity">Quantity:</label>
-                                <select id="quantity" name="quantity">
+                                <select id="quantity" name="quantity" value="${product.quantity}">
                                     <option value="1">1</option>
                                     <option value="2">2</option>
                                     <option value="3">3</option>

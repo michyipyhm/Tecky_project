@@ -8,43 +8,30 @@ format_id: 1 = 135mm, 2 = digital
 
 do not copy*/
 
-INSERT INTO member (username,password,nickname,email)
-    VALUES ('michael', '$2a$10$aDx2ZW1MbQh3B3oPGwiURugFx3jqkngllyuRA/VecA4XKNhHp9udK', 'mickkkkkk', 'mick@example.com');
 
-INSERT INTO admin (admin_name,password)
-    VALUES ('admin1', '$2a$10$aDx2ZW1MbQh3B3oPGwiURugFx3jqkngllyuRA/VecA4XKNhHp9udK');
-    
-INSERT INTO brand (brand_name, brand_logo)
-    VALUES  ('canon', '../photo/CameraLogo/canon.png'),
-    ('leica', '../photo/CameraLogo/leica.png'), 
-    -- ('rollei', 'WSP012/photo/CameraLogo/rollei.png'), 
-    -- ('fujifilm', '/WSP012/photo/Cameralogo/fujifilm.png'), 
-    -- ('nikon', 'WSP012/photo/CameraLogo/nikon.png'), 
-    -- ('olympus', 'WSP012/photo/CameraLogo/olympus.png'), 
-    -- ('kodak', 'WSP012/photo/CameraLogo/kodak.png');
-
-/*
-UPDATE brand
-SET brand_logo = 'WSP012/photo/Logo/canon.png'
-WHERE brand_name = 'canon';*/
-
-INSERT INTO origin (id, origin_country)
-    VALUES (1, 'japan'), (2, 'germany'), (3, 'usa');
+INSERT INTO brand (brand_name, brand_logo) VALUES  ('canon', '../photo/CameraLogo/canon.png'),('leica', '../photo/CameraLogo/leica.png'),
+    ('rollei', 'WSP012/photo/CameraLogo/rollei.png'), 
+    ('fujifilm', '/WSP012/photo/Cameralogo/fujifilm.png'), 
+    ('nikon', 'WSP012/photo/CameraLogo/nikon.png'), 
+    ('olympus', 'WSP012/photo/CameraLogo/olympus.png'), 
+    ('kodak', 'WSP012/photo/CameraLogo/kodak.png');
 
 
-INSERT INTO format (id, format_name)
-    VALUES (1, '135mm'), (2, 'digital');
+INSERT INTO origin (id, origin_country) VALUES (1, 'japan'), (2, 'germany'), (3, 'usa');
+
+
+INSERT INTO format (id, format_name) VALUES (1, '135mm'), (2, 'digital');
 
     
 /*相機*/
 INSERT INTO product (product_name,product_type,camera_type,brand_id,origin_id,format_id,product_price,product_quantity,production_year,weight,pixel,is_used) 
     VALUES ('Canon Canonet QL17 GIII','camera','film',1,1,1,2000,1,1972,620,0,true),
-    ('Leica M3','camera','film',2,2,1,3000,1,1954,580,0,true);
+    ('Leica M3','camera','film',2,2,1,3000,1,1954,580,0,true),
     ('Rollei 35','camera','film',3,2,1,2500,1,1966,370,0,true),
     ('Fujifilm finepix 2700','camera','digital',4,1,2,1500,1,1999,250,0,true),
     ('Nikon coolpix 2700','camera','digital',5,1,2,1200,1,2013,125,0,true),
     ('Olympus fe-3010','camera','digital',6,1,2,800,1,2009,108,0,true),
-    ('Nikon coolpix s2', 'camera', 'digital', 5,1,2,80,1,2005,160,0,true),
+    ('Nikon coolpix s2', 'camera', 'digital', 5,1,2,80,1,2005,160,0,true);
     -- ('Canon IXY digital 800IS', 'camera', 'digital',1,1,2,1400,1,2006,195,0,true),
     -- ('Fujifilm z700 EXR', 'camera', 'digital',4,1,2,1500,1,2010,158,0,true);
 
@@ -62,7 +49,7 @@ INSERT INTO product (product_name,product_type,brand_id,origin_id,format_id,prod
 
 INSERT INTO product_image (product_id, image_path) 
     VALUES 
-    (1,'/photo/Camera/filmcamera/CanonCanonetQL17a1.webp'), 
+    (1,'/photo/Camera/filmcamera/CanonCanonetQL17a1.webp'),
     -- (1,'/photo/Camera/filmcamera/CanonCanonetQL17a2.webp');
     -- ('photo/Camera/filmcamera/CanonCanonetQL17a3.webp'),
     -- ( '/photo/Camera/filmcamera/CanonCanonetQL17a4.webp'),
@@ -104,7 +91,7 @@ INSERT INTO product_image (product_id, image_path)
     -- ( '/photo/Camera/digitalcamera/camE2.jpg'),
     -- ( '/photo/Camera/digitalcamera/camE3.jpg'),
     -- ( '/photo/Camera/digitalcamera/camE4.jpg'),
-    (9, '/photo/Camera/digitalcamera/camF1.jpg'),
+    (9, '/photo/Camera/digitalcamera/camF1.jpg');
     -- ( '/photo/Camera/digitalcamera/camF2.jpg'),
     -- ( '/photo/Camera/digitalcamera/camF3.jpg'),
     -- ( '/photo/Camera/digitalcamera/camF4.jpg'),
@@ -116,6 +103,12 @@ INSERT INTO product_image (product_id, image_path)
     -- ( '/photo/film/kodakultramax400.webp');
 
 
-
+INSERT INTO shopping_cart (product_id,member_id,quantity) VALUES
+    (1,1,1),
+    (2,1,2),
+    (3,2,3),
+    (4,2,4),
+    (5,3,5),
+    (6,3,6)
 
 

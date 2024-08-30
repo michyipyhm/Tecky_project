@@ -5,7 +5,7 @@
   "scripts": {
     "start": "ts-node-dev main.ts",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "data": "psql -f database/init.sql && psql -f database/data.sql"
+    "data": "psql -f database/init.sql && ts-node database/insert_user.ts && psql -f database/data.sql"
   },
   "author": "",
   "license": "ISC",
