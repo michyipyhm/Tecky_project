@@ -38,7 +38,7 @@ window.onload = async () => {
     if (res.ok) {
       const user = data.user;
       const date = formatDate(new Date(user.birthday))
-      console.log({date})
+      
       usernameLabel.innerHTML = user.username;
       nicknameLabel.innerHTML = user.nickname;
       genderLabel.innerHTML = user.gender;
@@ -76,7 +76,7 @@ logoutBtn.addEventListener("click", (e) => {
 })
 
 shoppingCartBtn.addEventListener("click", (e) => {
-  window.location.href = "/shoppingcart.html";
+  window.location.href = "http://localhost:8080/shoppingcart.html";
 });
 
 updateBtn.addEventListener("click", (e) => {
