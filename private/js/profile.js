@@ -63,15 +63,25 @@ async function logout() {
 }
 const logoutBtn = document.querySelector("#logoutBtn");
 const orderRecordBtn = document.querySelector("#orderRecordBtn");
+const shoppingCartBtn = document.querySelector("#shoppingCartBtn");
+const updateDateBtn = document.querySelector("#updateBtn");
+
 
 orderRecordBtn.addEventListener("click", (e) => {
   window.location.href = "/order.html";
 });
 
-logoutBtn.addEventListener("click", () => {
+logoutBtn.addEventListener("click", (e) => {
   logout()
-
 })
+
+shoppingCartBtn.addEventListener("click", (e) => {
+  window.location.href = "/shoppingcart.html";
+});
+
+updateBtn.addEventListener("click", (e) => {
+  
+});
 
 
 
