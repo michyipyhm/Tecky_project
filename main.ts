@@ -8,12 +8,8 @@ import { Client } from "pg";
 import dotenv from "dotenv";
 import { checkPassword, hashPassword } from "./utils/hash";
 import { userRouter } from "./routes/userRoutes";
-<<<<<<< HEAD
-import grant from "grant";
-=======
 import Stripe from 'stripe';
 import { getShoppingCart } from './routes/shoppingCartRoutes';
->>>>>>> 6d15d76eae62eb1a9ad900672824fc6e782875db
 
 const stripe = require("stripe")(
   "sk_test_51PreUORwdDaooQDsamp23arHGzTPt6evgQoLolZw1DcnkEIyIZ86rptWHnack4RBbeMAzEj6vdViamrhUXI5nmO200vL2SOcjX"
