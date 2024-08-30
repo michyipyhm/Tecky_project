@@ -36,7 +36,7 @@ function openNav() {
         const data = await res.json()
         if (res.ok) {
             
-            window.location = "/profile.html"
+            window.location = "/index.html"
         } else {
             alert(data.message)
         }
