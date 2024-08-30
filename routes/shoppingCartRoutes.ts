@@ -1,7 +1,11 @@
-import { Request, Response } from 'express';
+import { Request, Response, Router } from 'express';
 import { pgClient } from '../main';
 
-export async function getShoppingCart(req: Request, res: Response) {
+export const shoppingCartRouter = Router()
+
+shoppingCartRouter.get("/", getShoppingCart)
+
+async function getShoppingCart(req: Request, res: Response) {
     //檢查session userId / 是否有login
     const userId = req.session.userId;
     if (!userId) {
@@ -11,10 +15,17 @@ export async function getShoppingCart(req: Request, res: Response) {
     try {
 
         // 根據 product_id 從 product 讀取 product_name 和 product_price
-        let queryResult = await pgClient.query(`select * from shopping_cart join product  on product.id = shopping_cart.product_id where member_id =${userId};`)
+        let queryResult = await pgClient.query(`select * from shopping_cart join product on product.id = shopping_cart.product_id where member_id =${userId};`)
         let data = queryResult.rows
 
-        res.status(200).json({data});
+        let totalPriceQueryResult = await pgClient.query(`select sum(product_price * quantity) as total from shopping_cart 
+join product on product.id = shopping_cart.product_id
+where member_id =${userId}; `)
+
+        let totalPrice = totalPriceQueryResult.rows[0]
+
+        console.log(data)
+        res.status(200).json({ data, totalPrice });
     } catch (err) {
         console.error(err);
         res.status(500).send('Error fetching shopping cart');
