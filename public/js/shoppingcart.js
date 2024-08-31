@@ -3,10 +3,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     let res = await fetch("/shoppingcart")
 
     let result = await res.json()
-    console.log(result)
-    const productList = document.getElementById('product-list');
 
-    let totalPrice = 0;
+    const productList = document.getElementById('product-list');
 
     for (let product of result.data) {
         const productDiv = document.createElement('div');
@@ -28,123 +26,62 @@ document.addEventListener('DOMContentLoaded', async () => {
                                 <option value="4" ${product.quantity == 4 ? "selected" : ""}>4</option>
                                 <option value="5" ${product.quantity == 5 ? "selected" : ""}>5</option>
                             </select>
-                            <div id="customInputContainer" style="display: none"><input type="text" id="customInput" name="customQuantity" placeholder="Custom" min="1"></div>
                             <div class="productPrice">Product Price: ${product.product_price}</div>
                     </div>
                 <div>
-                <button type="button" class="delectProduct">刪除</button>
+                <button type="button" id="deleteProduct" name="deleteProduct">刪除</button>
             </fieldset></div>
         `;
         productList.appendChild(productDiv);
+        
+        //選擇數量
+        const quantitySelect = document.getElementById('quantity')
+        quantitySelect.addEventListener("change", async (e) => {
+            e.preventDefault()
+            const newQuantity =  e.target.value
+            const id = product.product_id
+            const body = {
+                id: id,
+                quantity: newQuantity
+            }
+            const res = await fetch("/selectedQuantity", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(body)
+            })
+            const data = await res.json()
+            if (res.ok) {
+                alert(data.message);
+            }
+        })
+        //刪除物品
+        const deleteProduct = productDiv.querySelector('#deleteProduct')
+        deleteProduct.addEventListener("click", async (e) => {
+            e.preventDefault()
+            const id = product.product_id
+            console.log(id)
+            const body = {
+                id: id
+            }
+            const res = await fetch("/deleteShoppingCartItem", {
+                method: "DELETE",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(body)
+            })
+            const data = await res.json()
+            if (res.ok) {
+                alert(data.message);
+                productDiv.remove();
+                return;
+            }
+        })
+
+
+        const totalPrice = document.getElementById('totalPrice');
+        totalPrice.textContent = `Total Price: ${result.totalPrice.total}`;
     }
 });
-
-
-
-
-//     productDiv.querySelector('.delectProduct').addEventListener('click', function () {
-//         productDiv.remove();
-//         const productId = product.product_id
-
-//         fetch('/deleteProduct', {
-//             method: 'POST',
-//             headers: {
-//                 'Content-Type': 'application/json'
-//             },
-//             body: JSON.stringify({ productId: productId })
-//         })
-//             .then(response => {
-//                 if (response.ok) {
-//                     productDiv.remove();
-//                 } else {
-//                     console.error('error');
-//                 }
-//             })
-//             .catch(error => {
-//                 console.error('error:', error);
-//             });
-//     });
-
-
-//     const quantitySelect = productDiv.querySelector('#quantity');
-//     const customInputContainer = productDiv.querySelector('#customInputContainer');
-//     const productPriceDiv = productDiv.querySelector('.productPrice');
-//     const productPrice = parseFloat(product.product_price)
-
-//     quantitySelect.addEventListener('change', function () {
-//         let quantity = this.value;
-//         if (quantity === 'custom') {
-//             quantitySelect.style.display = 'none';
-//             customInputContainer.style.display = 'block';
-//             quantity = customInput.value || 1;
-//         } else {
-//             quantitySelect.style.display = 'block';
-//             customInputContainer.style.display = 'none';
-//         }
-//         const newPrice = productPrice * parseInt(quantity, 10);
-//         productPriceDiv.textContent = `Product Price: ${newPrice.toFixed(2)}`;
-//         updateTotalPrice();
-//     });
-
-//     const customInput = productDiv.querySelector('#customInput');
-//     customInput.addEventListener('input', function () {
-//         let quantity = this.value || 1;
-//         const newPrice = productPrice * parseInt(quantity, 10);
-//         productPriceDiv.textContent = `Product Price: ${newPrice.toFixed(2)}`;
-//         updateTotalPrice();
-//     });
-
-//     customInput.addEventListener('keypress', function (event) {
-//         if (!/[0-9]/.test(event.key) && event.key !== 'Backspace') {
-//             event.preventDefault();
-//         }
-//     });
-// });
-
-// function updateTotalPrice() {
-//     totalPrice = 0;
-//     document.querySelectorAll('.product').forEach(productDiv => {
-//         const quantitySelect = productDiv.querySelector('#quantity');
-//         const customInput = productDiv.querySelector('#customInput');
-//         const productPrice = parseFloat(productDiv.querySelector('.productPrice').textContent.split(': ')[1]);
-//         let quantity = quantitySelect.value;
-//         if (quantity === 'custom') {
-//             quantity = customInput.value || 1;
-//         }
-//         totalPrice += productPrice * parseInt(quantity, 10);
-//     });
-//     const countingPriceDiv = document.getElementById('countingPrice');
-//     countingPriceDiv.textContent = `Total Price: ${totalPrice.toFixed(2)}`;
-// }
-
-// updateTotalPrice();
-
-
-
-
-
-
-
-
-// fetch('/shoppingcart')
-//     .then(async (response) => {
-//         if (!response.ok) {
-//             if (response.status === 401) {
-//                 const data = await response.json();
-//                 throw new Error(data.message);
-//             } else {
-//                 throw new Error('Network response was not ok');
-//             }
-//         }
-//         let products = await response.json().data;
-//         console.log(products)
-
-//         return products
-//     })
-//     .then(products => {
-//     })
-//     .catch(error => {
-//         console.error('Error fetching shopping cart:', error.message);
-//         alert(error.message);
-//         window.location.href = "/login.html";
-//     });

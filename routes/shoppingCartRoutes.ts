@@ -1,19 +1,15 @@
-import { Request, Response, Router } from 'express';
+import express, { Request, Response, Router } from 'express';
 import { pgClient } from '../main';
 
-export const shoppingCartRouter = Router()
+export const shoppingCartRouter = express.Router()
 
-shoppingCartRouter.get("/", getShoppingCart)
-
-async function getShoppingCart(req: Request, res: Response) {
-    //檢查session userId / 是否有login
+shoppingCartRouter.get("/shoppingcart", async (req, res) =>{
     const userId = req.session.userId;
     if (!userId) {
         res.status(401).json({ message: "Please login first." });
         return;
     }
     try {
-
         // 根據 product_id 從 product 讀取 product_name 和 product_price
         let queryResult = await pgClient.query(`select * from shopping_cart join product on product.id = shopping_cart.product_id where member_id =${userId};`)
         let data = queryResult.rows
@@ -21,13 +17,23 @@ async function getShoppingCart(req: Request, res: Response) {
         let totalPriceQueryResult = await pgClient.query(`select sum(product_price * quantity) as total from shopping_cart 
 join product on product.id = shopping_cart.product_id
 where member_id =${userId}; `)
-
-        let totalPrice = totalPriceQueryResult.rows[0]
-
-        console.log(data)
+        let totalPrice = totalPriceQueryResult.rows[0];
         res.status(200).json({ data, totalPrice });
     } catch (err) {
         console.error(err);
         res.status(500).send('Error fetching shopping cart');
     }
-}
+})
+
+shoppingCartRouter.post('/selectedQuantity', async (req, res) =>{
+    const data = req.body
+    const id = data.id
+    const quantity = data.quantity
+    try {
+        await pgClient.query(`UPDATE shopping_cart SET quantity = '${quantity}' WHERE id = '${id}';`)
+    res.status(200).json({ message: 'Quantity updated!' });
+    } catch (err) {
+      console.error(err);
+      res.status(500).send('Quantity failed');
+    }
+})

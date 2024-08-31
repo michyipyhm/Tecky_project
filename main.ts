@@ -6,6 +6,7 @@ import dotenv from "dotenv";
 import { userRouter } from "./routes/userRoutes";
 import Stripe from 'stripe';
 import { shoppingCartRouter } from './routes/shoppingCartRoutes';
+import { shoppingCartDeleteRoutes} from './routes/shoppingCartDeleteRoutes';
 
 const stripe = require("stripe")(
   "sk_test_51PreUORwdDaooQDsamp23arHGzTPt6evgQoLolZw1DcnkEIyIZ86rptWHnack4RBbeMAzEj6vdViamrhUXI5nmO200vL2SOcjX"
@@ -126,7 +127,9 @@ app.post("/test", async (req, res) => {
 });
 
 app.use('/', userRouter)
-app.use('/shoppingcart', shoppingCartRouter);
+app.use('/', shoppingCartRouter);
+app.use('/', shoppingCartDeleteRoutes);
+
 
 
 app.use(express.static("public"));
