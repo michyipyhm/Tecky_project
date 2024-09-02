@@ -26,9 +26,9 @@ where member_id =${userId}; `)
 })
 
 shoppingCartRouter.post('/selectedQuantity', async (req, res) =>{
-    const data = req.body
-    const id = data.id
-    const quantity = data.quantity
+    let data = req.body
+    let id = data.id
+    let quantity = data.quantity
     try {
         await pgClient.query(`UPDATE shopping_cart SET quantity = '${quantity}' WHERE id = '${id}';`)
     res.status(200).json({ message: 'Quantity updated!' });
