@@ -45,7 +45,7 @@ app.get("/api/product-image", async (req: Request, res: Response) => {
     const image_path_result = await pgClient.query(
       `select image_path from product_image`
     );
-    console.log("result is!!!!!!!!", image_path_result);
+    // console.log("result is!!!!!!!!", image_path_result);
     res.json(image_path_result.rows.map((row) => row.image_path));
   } catch (error) {
     console.log("error is!!!!!!!!!", error);
