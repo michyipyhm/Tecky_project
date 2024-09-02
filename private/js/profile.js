@@ -1,3 +1,5 @@
+// const { isMemberName } = require("typescript");
+
 function openNav() {
   document.getElementById("mySidenav").style.width = "250px";
   document.getElementById("main").style.marginLeft = "250px";
@@ -25,7 +27,7 @@ window.onload = async () => {
     const year = date.getFullYear();
     const month = String(date.getMonth() + 1).padStart(2, '0');
     const day = String(date.getDate()).padStart(2, '0');
-  
+
     return `${day}-${month}-${year}`;
   }
 
@@ -33,12 +35,13 @@ window.onload = async () => {
   async function getUserProfile() {
     const res = await fetch("/userprofile");
     const data = await res.json();
-    
+    console.log(data)
+
 
     if (res.ok) {
       const user = data.user;
       const date = formatDate(new Date(user.birthday))
-      
+
       usernameLabel.innerHTML = user.username;
       nicknameLabel.innerHTML = user.nickname;
       genderLabel.innerHTML = user.gender;
@@ -64,7 +67,7 @@ async function logout() {
 const logoutBtn = document.querySelector("#logoutBtn");
 const orderRecordBtn = document.querySelector("#orderRecordBtn");
 const shoppingCartBtn = document.querySelector("#shoppingCartBtn");
-const updateDateBtn = document.querySelector("#updateBtn");
+const updateBtn = document.querySelector("#updateBtn");
 
 
 orderRecordBtn.addEventListener("click", (e) => {
@@ -79,11 +82,9 @@ shoppingCartBtn.addEventListener("click", (e) => {
   window.location.href = "http://localhost:8080/shoppingcart.html";
 });
 
+
+
 updateBtn.addEventListener("click", (e) => {
-  
+  window.location.href = "/profileupdate.html";
+
 });
-
-
-
-
-

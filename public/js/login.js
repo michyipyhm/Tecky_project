@@ -30,9 +30,7 @@ function openNav() {
             },
             body: JSON.stringify(body)
         })
-        // if (res.status === 200) {
-
-        // }
+        
         const data = await res.json()
         if (res.ok) {
             
