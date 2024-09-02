@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     let result = await res.json()
 
-    const productList = document.getElementById('product-list');
+    const shoppingCartForm = document.getElementById('shoppingCartForm');
 
     for (let product of result.data) {
         const productDiv = document.createElement('div');
@@ -32,13 +32,13 @@ document.addEventListener('DOMContentLoaded', async () => {
                 <button type="button" id="deleteProduct" name="deleteProduct">刪除</button>
             </fieldset></div>
         `;
-        productList.appendChild(productDiv);
-        
+        shoppingCartForm.appendChild(productDiv);
+
         //選擇數量
         const quantitySelect = document.getElementById('quantity')
         quantitySelect.addEventListener("change", async (e) => {
             e.preventDefault()
-            const newQuantity =  e.target.value
+            const newQuantity = e.target.value
             const id = product.product_id
             const body = {
                 id: id,
@@ -60,8 +60,8 @@ document.addEventListener('DOMContentLoaded', async () => {
         const deleteProduct = productDiv.querySelector('#deleteProduct')
         deleteProduct.addEventListener("click", async (e) => {
             e.preventDefault()
+
             const id = product.product_id
-            console.log(id)
             const body = {
                 id: id
             }
@@ -80,8 +80,26 @@ document.addEventListener('DOMContentLoaded', async () => {
             }
         })
 
-
         const totalPrice = document.getElementById('totalPrice');
         totalPrice.textContent = `Total Price: ${result.totalPrice.total}`;
     }
 });
+
+//去結算畫面
+const OrderBtn = document.querySelector('#order-button')
+OrderBtn.addEventListener("click", async (e) => {
+    e.preventDefault()
+
+    const res = await fetch("/shoppingCartSendOrder", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({})
+    })
+    if (res.ok) {
+        const data = await res.json()
+        alert(data.message)
+        window.location.href = "/settlement.html"
+    }
+})
