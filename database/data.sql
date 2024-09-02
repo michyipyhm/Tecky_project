@@ -8,20 +8,23 @@ format_id: 1 = 135mm, 2 = digital
 
 do not copy*/
 
--- INSERT INTO member (username,password,nickname,email)
---     VALUES ('michael', '12345678', 'mickkkkkk', 'mick@example.com');
 
+<<<<<<< HEAD
 -- INSERT INTO admin (admin_name,password)
 --     VALUES ('admin1', '12345678');
     
 INSERT INTO brand (brand_name, brand_logo)
     VALUES  ('canon', '../photo/CameraLogo/canon.png'),
     ('leica', '../photo/CameraLogo/leica.png'),
+=======
+INSERT INTO brand (brand_name, brand_logo) VALUES  ('canon', '../photo/CameraLogo/canon.png'),('leica', '../photo/CameraLogo/leica.png'),
+>>>>>>> 0a5c57ffec6f8e603b81795bb3f7a84fa28fd497
     ('rollei', 'WSP012/photo/CameraLogo/rollei.png'), 
     ('fujifilm', '/WSP012/photo/Cameralogo/fujifilm.png'), 
     ('nikon', 'WSP012/photo/CameraLogo/nikon.png'), 
     ('olympus', 'WSP012/photo/CameraLogo/olympus.png'), 
     ('kodak', 'WSP012/photo/CameraLogo/kodak.png');
+<<<<<<< HEAD
 
 /*
 UPDATE brand
@@ -34,6 +37,14 @@ INSERT INTO origin ( origin_country)
 
 INSERT INTO format ( format_name)
     VALUES ( '135mm'), ( '120mm');
+=======
+
+
+INSERT INTO origin (id, origin_country) VALUES (1, 'japan'), (2, 'germany'), (3, 'usa');
+
+
+INSERT INTO format (id, format_name) VALUES (1, '135mm'), (2, 'digital');
+>>>>>>> 0a5c57ffec6f8e603b81795bb3f7a84fa28fd497
 
     
 /*相機*/
@@ -62,7 +73,7 @@ INSERT INTO product (product_name,product_type,brand_id,origin_id,format_id,prod
 
 INSERT INTO product_image (product_id, image_path) 
     VALUES 
-    (1,'/photo/Camera/filmcamera/CanonCanonetQL17a1.webp'), 
+    (1,'/photo/Camera/filmcamera/CanonCanonetQL17a1.webp'),
     -- (1,'/photo/Camera/filmcamera/CanonCanonetQL17a2.webp');
     -- ('photo/Camera/filmcamera/CanonCanonetQL17a3.webp'),
     -- ( '/photo/Camera/filmcamera/CanonCanonetQL17a4.webp'),
@@ -116,6 +127,12 @@ INSERT INTO product_image (product_id, image_path)
     -- ( '/photo/film/kodakultramax400.webp');
 
 
-
+INSERT INTO shopping_cart (product_id,member_id,quantity) VALUES
+    (1,1,1),
+    (2,1,2),
+    (3,2,3),
+    (4,2,4),
+    (5,3,5),
+    (6,3,6)
 
 

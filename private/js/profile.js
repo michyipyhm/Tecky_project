@@ -1,3 +1,5 @@
+// const { isMemberName } = require("typescript");
+
 function openNav() {
   document.getElementById("mySidenav").style.width = "250px";
   document.getElementById("main").style.marginLeft = "250px";
@@ -25,20 +27,21 @@ window.onload = async () => {
     const year = date.getFullYear();
     const month = String(date.getMonth() + 1).padStart(2, '0');
     const day = String(date.getDate()).padStart(2, '0');
-  
-    return `${year}-${month}-${day}`;
+
+    return `${day}-${month}-${year}`;
   }
 
   await getUserProfile();
   async function getUserProfile() {
     const res = await fetch("/userprofile");
     const data = await res.json();
-    
+    console.log(data)
+
 
     if (res.ok) {
       const user = data.user;
       const date = formatDate(new Date(user.birthday))
-      console.log({date})
+
       usernameLabel.innerHTML = user.username;
       nicknameLabel.innerHTML = user.nickname;
       genderLabel.innerHTML = user.gender;
@@ -63,17 +66,25 @@ async function logout() {
 }
 const logoutBtn = document.querySelector("#logoutBtn");
 const orderRecordBtn = document.querySelector("#orderRecordBtn");
+const shoppingCartBtn = document.querySelector("#shoppingCartBtn");
+const updateBtn = document.querySelector("#updateBtn");
+
 
 orderRecordBtn.addEventListener("click", (e) => {
   window.location.href = "/order.html";
 });
 
-logoutBtn.addEventListener("click", () => {
+logoutBtn.addEventListener("click", (e) => {
   logout()
-
 })
 
+shoppingCartBtn.addEventListener("click", (e) => {
+  window.location.href = "http://localhost:8080/shoppingcart.html";
+});
 
 
 
+updateBtn.addEventListener("click", (e) => {
+  window.location.href = "/profileupdate.html";
 
+});

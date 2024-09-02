@@ -69,7 +69,7 @@ CREATE TABLE product(
 CREATE TABLE shopping_cart(
     "id" SERIAL PRIMARY KEY,
     "product_id" INTEGER NOT NULL,
-    "user_id" INTEGER NOT NULL,
+    "member_id" INTEGER NOT NULL,
     "quantity" INTEGER NOT NULL,
     FOREIGN KEY (product_id) REFERENCES product(id)
 );

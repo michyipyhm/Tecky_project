@@ -1,17 +1,18 @@
 import express, { query, Request, response, Response } from "express";
 import expressSession from "express-session";
 import { isLoggedIn } from "./utils/guards";
-import path from "path";
-import fs from "fs";
-import jsonfile from "jsonfile";
 import { Client } from "pg";
 import dotenv from "dotenv";
-import { checkPassword, hashPassword } from "./utils/hash";
 import { userRouter } from "./routes/userRoutes";
 import Stripe from 'stripe';
+<<<<<<< HEAD
 import { getShoppingCart } from './routes/shoppingCartRoutes';
 import { productInfo } from './routes/mainPageProduct';
 import { filter } from './routes/filter';
+=======
+import { shoppingCartRouter } from './routes/shoppingCartRoutes';
+import { shoppingCartDeleteRoutes} from './routes/shoppingCartDeleteRoutes';
+>>>>>>> 0a5c57ffec6f8e603b81795bb3f7a84fa28fd497
 
 const stripe = require("stripe")(
   "sk_test_51PreUORwdDaooQDsamp23arHGzTPt6evgQoLolZw1DcnkEIyIZ86rptWHnack4RBbeMAzEj6vdViamrhUXI5nmO200vL2SOcjX"
@@ -46,6 +47,8 @@ declare module "express-session" {
   }
 }
 
+
+
 // order結算
 app.post("/create-checkout-session", async (req, res) => {
   const session = await stripe.checkout.sessions.create({
@@ -70,14 +73,65 @@ app.post("/create-checkout-session", async (req, res) => {
   res.json({ id: session.id });
 });
 
+<<<<<<< HEAD
+=======
+//get photo from databases
+app.get("/api/product-image", async (req: Request, res: Response) => {
+  try {
+    const image_path_result = await pgClient.query(
+      `select image_path from product_image`
+    );
+    // console.log("result is!!!!!!!!", image_path_result);
+    res.json(image_path_result.rows.map((row) => row.image_path));
+  } catch (error) {
+    console.log("error is!!!!!!!!!", error);
+    res
+      .status(500)
+      .json({ message: "An error occurred while retrieving the images." });
+  }
+});
+>>>>>>> 0a5c57ffec6f8e603b81795bb3f7a84fa28fd497
 
 
+<<<<<<< HEAD
 
 app.use('/', userRouter)
 // app.use('/resources', isLoggedIn, appleRoutes) // protected resources
 app.use('/api/shopping-cart', getShoppingCart);
 app.use('/', productInfo)
 app.use('/', filter)
+=======
+app.post("/test", async (req, res) => {
+  console.log(req.body);
+
+  let query = `SELECT * FROM product 
+    JOIN product_image ON product.id = product_image.product_id 
+    JOIN brand ON product.brand_id = brand.id
+    JOIN origin ON product.origin_id = origin.id
+    JOIN format ON product.format_id = format.id`;
+
+  if (Object.keys(req.body).length > 0) {
+    query += " WHERE ";
+    let count = 0;
+
+    for (let key in req.body) {
+      console.log(key);
+      if (count > 0) query += " AND ";
+      query += `${key} = '${req.body[key]}'`;
+      count++;
+    }
+  }
+  console.log(query);
+
+
+});
+
+app.use('/', userRouter)
+app.use('/', shoppingCartRouter);
+app.use('/', shoppingCartDeleteRoutes);
+
+
+>>>>>>> 0a5c57ffec6f8e603b81795bb3f7a84fa28fd497
 
 app.use(express.static("public"));
 app.use(isLoggedIn, express.static("private"));

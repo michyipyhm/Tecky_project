@@ -19,6 +19,7 @@ function openNav() {
         
         const username = e.target.username.value
         const password = e.target.password.value
+        
         const body = {
             username: username,
             password: password
@@ -30,13 +31,11 @@ function openNav() {
             },
             body: JSON.stringify(body)
         })
-        // if (res.status === 200) {
-
-        // }
+        
         const data = await res.json()
         if (res.ok) {
             
-            window.location = "/profile.html"
+            window.location = "/index.html"
         } else {
             alert(data.message)
         }

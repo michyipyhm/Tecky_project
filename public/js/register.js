@@ -46,7 +46,7 @@ window.onload = () => {
     })
     const data = await res.json()
     if (res.ok) {
-      window.location = "/login.html"
+      window.location.href = "/login.html"
     } else {
       alert(data.message)
     }
