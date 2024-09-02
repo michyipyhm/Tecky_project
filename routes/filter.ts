@@ -9,8 +9,8 @@ let flow_one_Digital = [
   "product_type",
   "camera_type",
   "is_used",
-  "origin",
-  "brand",
+  "origin_country",
+  "brand_name",
   "weight",
 ];
 
@@ -18,13 +18,13 @@ let flow_one_Analog = [
   "product_type",
   "camera_type",
   "is_used",
-  "ISO",
-  "origin",
-  "brand",
+  "iso",
+  "origin_country",
+  "brand_name",
   "weight",
 ];
 
-let flow_two = ["product_type", "format_name", "ISO", "origin", "brand"];
+let flow_two = ["product_type", "format_name", "iso", "origin_country", "brand_name"];
 
 filter.post("/filter", async (req, res) => {
   console.log("reqbody is", req.body);
@@ -66,7 +66,7 @@ filter.post("/filter", async (req, res) => {
   let destined_flow;
 
   if (req.body.product_type === "camera") {
-    if (req.body.cameraType === "digital") {
+    if (req.body.camera_type === "digital") {
       destined_flow = flow_one_Digital;
     } else { 
       destined_flow = flow_one_Analog;
@@ -82,6 +82,7 @@ filter.post("/filter", async (req, res) => {
   console.log("currentIndex is", currentIndex);
 
   nextCriteria = destined_flow[currentIndex + 1];
+
   console.log("*******nextCriteria is", nextCriteria);
 
   let optionQuery = `SELECT ${nextCriteria} FROM product 
@@ -118,4 +119,5 @@ filter.post("/filter", async (req, res) => {
     nextOptions: nextOptions,
     products,
   });
+  return;
 });

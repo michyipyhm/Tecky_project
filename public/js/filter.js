@@ -1,14 +1,46 @@
 const productTypeSelect = document.getElementById("productType");
 
-
 const handleSelectChange = async (e) => {
   e.preventDefault();
-  console.log("js 5 camera type selected:", e.target.value);
+  console.log("js 5 selected:", e.target.value, e.target.name + "_area");
+  
   let body = {};
+  const formData = new FormData(document.querySelector("#filterForm"));
+  console.log("js 10 formData is", formData);
 
-  body[e.target.name] = e.target.value.toLowerCase();
+  let clearArray = [
+    "product_type_area",
+    "camera_type_area",
+    "is_used_area",
+    "format_name_area",
+    "iso_area",
+    "origin_country_area",
+    "brand_name_area"
+  ]
 
-  console.log('request body is', body);
+  let currentPosition = clearArray.findIndex((element) => element == e.target.name + "_area");
+  console.log("current position is", currentPosition);
+  
+  for (let i = currentPosition + 1; i < clearArray.length; i++) {
+    clearContent(clearArray[i]);
+  }
+
+
+  // let ammendBody = Object.keys(body);
+  // let startIndex = Math.max(0, ammendBody.length - currentPosition);
+  
+  // for (let i = startIndex; i < currentPosition; i++) {
+  //   delete body[clearArray[i]];
+  // }
+
+  for (const [key, value] of formData) {
+    console.log(`"js340: ", ${key}: ${value}\n`);
+    body[key] = value.toLowerCase();
+  }
+
+  console.log("new formData", formData);
+
+  console.log("request body is", body);
   const res = await fetch("/filter", {
     method: "POST",
     headers: {
@@ -18,7 +50,7 @@ const handleSelectChange = async (e) => {
   });
   const result = await res.json();
 
-  console.log('js 20 result is',result);
+  console.log("js 20 result is", result);
 
   console.log(document.querySelector(`#${result.nextCriteria + "_area"}`));
 
@@ -42,27 +74,27 @@ const handleSelectChange = async (e) => {
       htmlName = "isUsed";
       displayName = "New or Used";
       break;
-    case "origin":
-      htmlName = "origin";
+    case "origin_country":
+      htmlName = "originCountry";
       displayName = "Origin";
       break;
-    case "brand":
-      htmlName = "brand";
+    case "brand_name":
+      htmlName = "brandName";
       displayName = "Brand";
       break;
-    case "weight":
-      htmlName = "weight";
-      displayName = "Weight";
+    case "iso":
+      htmlName = "iso";
+      displayName = "ISO";
       break;
   }
 
   let dynamicHTML = "";
   console.log("Nextcrit result is", result.nextCriteria);
   for (let option of result.nextOptions) {
-    console.log('js61 option is', option);
+    console.log("js61 option is", option);
     if (
       option[`${result.nextCriteria}`] !== undefined &&
-      option[`${result.nextCriteria}`]
+      option[`${result.nextCriteria}`] !== null
     ) {
       dynamicHTML += `<option value="${option[`${result.nextCriteria}`]}">${
         option[`${result.nextCriteria}`]
@@ -70,17 +102,17 @@ const handleSelectChange = async (e) => {
     }
   }
 
-  console.log(displayName, "html",htmlName);
+  console.log(displayName, "html", htmlName);
   console.log(dynamicHTML);
   document.querySelector(`#${result.nextCriteria + "_area"}`).innerHTML = `
           <label for="${htmlName}">${displayName}:</label>
-            <select name="${htmlName}" id="${htmlName}">
+            <select name="${result.nextCriteria}" id="${htmlName}">
               <option value="" disabled selected>Select ${displayName}</option>
               ${dynamicHTML}
             </select>`;
 
   const newSelect = document.querySelector(`#${htmlName}`);
-  console.log("new select is",newSelect)
+  console.log("new select is", newSelect);
   if (newSelect) {
     newSelect.addEventListener("change", handleSelectChange);
   } else {
@@ -90,7 +122,6 @@ const handleSelectChange = async (e) => {
 
 productTypeSelect.addEventListener("change", handleSelectChange);
 
-
-function clearContent() {
-  document.querySelector(`#${result.nextCriteria + "_area"}`).innerHTML = "";
+function clearContent(target) {
+  document.querySelector(`#${target}`).innerHTML = "";
 }

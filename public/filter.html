@@ -36,7 +36,7 @@
     <div id="second-section">
       <h1>Filter Products</h1>
       <form id="filterForm">
-        <div id="productTypeArea">
+        <div id="product_type_area">
           <label for="productType">Product Type:</label>
           <select name="product_type" id="productType">
             <option value="" disabled selected>Select Product Type</option>
@@ -45,15 +45,32 @@
           </select>
         </div>
         <div id="camera_type_area"></div>
-        <div id="isUsed_area"></div>
-        <div id="ISO_area"></div>
+        <div id="is_used_area"></div>
         <div id="format_name_area"></div>
-
-        <div id="origin_area"></div>
-        <div id="brand_area"></div>
+        <div id="iso_area"></div>
+        <div id="origin_country_area"></div>
+        <div id="brand_name_area"></div>
       </form>
       <div id="results"></div>
     </div>
+
+    <section class="gallery min-vh-100">
+      <div class="container-lg">
+        <div class="row gy-4 row-cols-1 row-cols-sm-2 row-cols-md-3">
+          <div class="col">
+            <div class="card" id="card1">
+              <img src="" class="gallery-item" alt="gallery" />
+              <div class="card-body">
+                <div class="product-name"></div>
+                <div class="price"></div>
+                <a href="#" class="btn btn-light">Add to cart</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <script src="./js/filter.js"></script>
   </body>
 </html>
