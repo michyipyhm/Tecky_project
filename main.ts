@@ -8,6 +8,7 @@ import Stripe from 'stripe';
 import { shoppingCartRouter } from './routes/shoppingCartRoutes';
 import { shoppingCartDeleteRoutes} from './routes/shoppingCartDeleteRoutes';
 
+
 const stripe = require("stripe")(
   "sk_test_51PreUORwdDaooQDsamp23arHGzTPt6evgQoLolZw1DcnkEIyIZ86rptWHnack4RBbeMAzEj6vdViamrhUXI5nmO200vL2SOcjX"
 );
@@ -131,7 +132,7 @@ app.use('/', shoppingCartRouter);
 app.use('/', shoppingCartDeleteRoutes);
 
 
-
+app.use(express.static("uploads"));
 app.use(express.static("public"));
 app.use(isLoggedIn, express.static("private"));
 

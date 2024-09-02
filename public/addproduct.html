@@ -30,12 +30,12 @@
         <div id="main">
             <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Home</span>
         </div>
-        <h1>Product Update Page</h1>
+        <h1>Add New Product Page</h1>
 
         <div class="container">
             <div>
 
-                <form method="post" id="addproduct-form">
+                <form  id="addproduct-form">
                     <div>
                         <div>
                             <label>Product Name:</label>
@@ -51,6 +51,30 @@
                             <label>Camera Type:</label>
                             <input type="text" id="cameratype" name="cameratype" value="" />
                         </div>
+
+                        <label for="brand">Brand</label>
+                        <select type="radio" id="brand" name="brand">
+                            <option value="1">Canon</option>
+                            <option value="2">Leica</option>
+                            <option value="3">Rollei</option>
+                            <option value="4">Fujifilm</option>
+                            <option value="5">Nikon</option>
+                            <option value="6">Olympus</option>
+                            <option value="7">Kodak</option>
+                        </select>
+
+                        <label for="origin">Origin Country</label>
+                        <select type="radio" id="origin" name="origin">
+                            <option value="1">Japan</option>
+                            <option value="2">Germany</option>
+                            <option value="3">USA</option>
+                        </select>
+
+                        <label for="format">Format</label>
+                        <select type="radio" id="format" name="format">
+                            <option value="1">135MM</option>
+                            <option value="2">Digital</option>
+                        </select>
 
                         <div>
                             <label>Product Price:</label>
@@ -82,15 +106,10 @@
                             <input type="text" id="iso" name="iso" value="" />
                         </div>
 
-                        <div>
-                            <label>Pixel:</label>
-                            <input type="text" id="pixel" name="pixel" value="" />
-                        </div>
-
                         <label for="isused">Is Used:</label>
                         <select type="radio" id="isused" name="isused">
-                            <option>Brand New</option>
-                            <option>Second Hand</option>
+                            <option value="false">Brand New</option>
+                            <option value="true">Second Hand</option>
                         </select>
 
                         <!-- <form method="post" enctype="multipart/form-data"> -->

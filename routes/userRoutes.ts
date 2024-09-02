@@ -1,6 +1,9 @@
 import express, { Request, Response } from "express";
 import { pgClient } from "../main";
 import { checkPassword, hashPassword } from "../utils/hash";
+import formidable from 'formidable';
+import * as fs from 'fs';
+
 
 export const userRouter = express.Router();
 //////////////////////////////////////////
@@ -158,4 +161,58 @@ userRouter.post("/adminlogin", async (req: Request, res: Response) => {//http://
   req.session.userId = row.id
   res.json({ message: "Login successful.", userId: req.session.userId })
   return;
+})
+////////////////////////////////////////////////////////
+
+userRouter.post("/addproduct", async (req: Request, res: Response) => {//http://localhost:8080/adminlogin.html
+  const data = req.body;
+  console.log("data:[" + data + "]");
+  const productname = data.productname;
+  console.log("productname:[" + productname + "]");
+  const producttype = data.producttype;
+  console.log("producttype:[" + producttype + "]");
+  const cameratype = data.cameratype;
+  const brand = data.brand;
+  const origin = data.origin;
+  const format = data.format;
+  const productprice = data.productprice;
+  const productquantity = data.productquantity;
+  const productyear = data.productyear;
+  const weight = data.weight;
+  const pixel = data.pixel;
+  const iso = data.iso;
+  const isused = data.isused;
+
+
+  const sql = `INSERT INTO product (product_name, product_type, brand_id, camera_type, origin_id, format_id, camera_type, product_price, product_quantity, product_year, weight, pixel, iso, is_used) 
+    VALUES ('${productname}', '${producttype}', '${cameratype}', '${brand}', '${origin}', '${format}', '${productprice}', '${productquantity}', '${productyear}', '${weight}', '${pixel}', '${iso}', '${isused}')RETURNING id;`;
+const productid = await pgClient.query(sql);
+console.log("productid:[" + JSON.stringify(productid) + "]");
+
+const uploadDir = './uploads'
+fs.mkdirSync(uploadDir, { recursive: true })
+const app = express()
+app.use(express.urlencoded({ extended: true }))
+app.use(express.json())
+
+userRouter.post("/addproduct", async (req: Request, res: Response) => {//http://localhost:8080/adminlogin.html
+
+  // const imageuploads = data.imageuploads;
+  // const sql_2 = `INSERT INTO product_image(product_id, image_path)
+  // VALUES ('${productid}'), '${imageuploads}'`;
+  const form = formidable({
+    uploadDir,
+    keepExtensions: true,
+    maxFiles: 1,
+    maxFileSize: 2000 * 1024, // 2MB
+    filter: part => part.mimetype?.startsWith('image/') || false,
+  })
+  // form.parse(req, (err, fields, files) => {
+  //   console.log({ err, fields, files })
+  //   res.json({ fields, files })
+  // })
+  let data = await form.parse(req);
+  console.log(data)
+})
+
 })
