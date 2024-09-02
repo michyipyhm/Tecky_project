@@ -10,10 +10,11 @@ export async function hashPassword(plainPassword: string) {
   return hash
 }
 
-/**
+/*
  * @params options.plainPassword: supplied when login
  * @params options.hashedPassword: looked up from database
  */
+
 export async function checkPassword(options: {
   plainPassword: string
   hashedPassword: string

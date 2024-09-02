@@ -76,14 +76,24 @@ CREATE TABLE shopping_cart(
 
 CREATE TABLE orders(
     "id" SERIAL PRIMARY KEY,
-    "user_id" INTEGER NOT NULL,
-    "payment_id" INTEGER NOT NULL,
+    "member_id" INTEGER NOT NULL,
     "total" INTEGER NOT NULL,
-    "status" VARCHAR(255) NOT NULL,
-    "order_date" DATE NOT NULL,
-    "stripe_id" INTEGER NOT NULL,
-    "payment_type" VARCHAR(255) NOT NULL,
-    FOREIGN KEY (user_id) REFERENCES member(id)
+    "state" VARCHAR(255),
+    "stripe_id" INTEGER,
+    "payment_type" VARCHAR(255),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (member_id) REFERENCES member(id)
+);
+
+CREATE TABLE order_details(
+    "id" SERIAL PRIMARY KEY,
+    "orders_id" INTEGER,
+    "product_id" INTEGER,
+    "quantity" INTEGER,
+    "product_price" INTEGER,
+    "subtotal" INTEGER,
+    FOREIGN KEY (product_id) REFERENCES product(id),
+    FOREIGN KEY (orders_id) REFERENCES orders(id)
 );
 
 CREATE TABLE product_image(
@@ -93,7 +103,7 @@ CREATE TABLE product_image(
     FOREIGN KEY (product_id) REFERENCES product(id)
 );
 
-
+<<<<<<< HEAD
 CREATE TABLE order_details(
     "id" SERIAL PRIMARY KEY,
     "orders_id" INTEGER NOT NULL,
@@ -105,6 +115,8 @@ CREATE TABLE order_details(
     FOREIGN KEY (orders_id) REFERENCES orders(id)
 );
 
+=======
+>>>>>>> e58e0c0b9b1ab8926b6e7674a635c4532dd80c09
 CREATE TABLE admin_post(
     "id" SERIAL PRIMARY KEY,
     "product_id" INTEGER NOT NULL,
@@ -114,12 +126,12 @@ CREATE TABLE admin_post(
 
 CREATE TABLE comment(
     "id" SERIAL PRIMARY KEY,
-    "user_id" INTEGER NOT NULL,
+    "member_id" INTEGER NOT NULL,
     "orders_id" INTEGER NOT NULL,
     "product_id" INTEGER NULL,
     "comment_image" VARCHAR(255) NOT NULL,
     "comment_text" VARCHAR(255) NOT NULL,
-    FOREIGN KEY (user_id) REFERENCES member(id),
+    FOREIGN KEY (member_id) REFERENCES member(id),
     FOREIGN KEY (orders_id) REFERENCES orders(id),
     FOREIGN KEY (product_id) REFERENCES product(id)
 );
