@@ -3,10 +3,11 @@ import { pgClient } from '../main';
 
 
 
-const app = express();
+
+export const productInfo = express();
 
 //get photo from databases
-app.get("/api/product-image", async (req: Request, res: Response) => {
+productInfo.get("/api/product-image", async (req: Request, res: Response) => {
     try {
       const image_path_result = await pgClient.query(
         `select image_path from product_image`
@@ -21,7 +22,7 @@ app.get("/api/product-image", async (req: Request, res: Response) => {
     }
   });
   
-  app.get("/api/product-info", async (req: Request, res: Response) => {
+  productInfo.get("/api/product-info", async (req: Request, res: Response) => {
     try {
       const product_info_result = await pgClient.query(
         `select product_name, product_price from product`
@@ -39,3 +40,5 @@ app.get("/api/product-image", async (req: Request, res: Response) => {
       });
     }
   });
+
+

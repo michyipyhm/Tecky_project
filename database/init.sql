@@ -93,7 +93,6 @@ CREATE TABLE product_image(
     FOREIGN KEY (product_id) REFERENCES product(id)
 );
 
-
 CREATE TABLE order_details(
     "id" SERIAL PRIMARY KEY,
     "orders_id" INTEGER NOT NULL,
