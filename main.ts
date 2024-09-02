@@ -1,15 +1,12 @@
 import express, { query, Request, response, Response } from "express";
 import expressSession from "express-session";
 import { isLoggedIn } from "./utils/guards";
-import path from "path";
-import fs from "fs";
-import jsonfile from "jsonfile";
 import { Client } from "pg";
 import dotenv from "dotenv";
-import { checkPassword, hashPassword } from "./utils/hash";
 import { userRouter } from "./routes/userRoutes";
 import Stripe from 'stripe';
-import { getShoppingCart } from './routes/shoppingCartRoutes';
+import { shoppingCartRouter } from './routes/shoppingCartRoutes';
+import { shoppingCartDeleteRoutes} from './routes/shoppingCartDeleteRoutes';
 
 const stripe = require("stripe")(
   "sk_test_51PreUORwdDaooQDsamp23arHGzTPt6evgQoLolZw1DcnkEIyIZ86rptWHnack4RBbeMAzEj6vdViamrhUXI5nmO200vL2SOcjX"
@@ -42,6 +39,8 @@ declare module "express-session" {
     userId?: number;
   }
 }
+
+
 
 // order結算
 app.post("/create-checkout-session", async (req, res) => {
@@ -124,12 +123,14 @@ app.post("/test", async (req, res) => {
   }
   console.log(query);
 
-  
+
 });
 
 app.use('/', userRouter)
-// app.use('/resources', isLoggedIn, appleRoutes) // protected resources
-app.use('/api/shopping-cart', getShoppingCart);
+app.use('/', shoppingCartRouter);
+app.use('/', shoppingCartDeleteRoutes);
+
+
 
 app.use(express.static("public"));
 app.use(isLoggedIn, express.static("private"));

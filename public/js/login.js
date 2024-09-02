@@ -19,6 +19,7 @@ function openNav() {
         
         const username = e.target.username.value
         const password = e.target.password.value
+        
         const body = {
             username: username,
             password: password
