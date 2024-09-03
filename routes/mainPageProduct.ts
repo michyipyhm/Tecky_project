@@ -14,6 +14,7 @@ productInfo.get("/api/product-image", async (req: Request, res: Response) => {
       );
       console.log("result is!!!!!!!!", image_path_result);
       res.json(image_path_result.rows.map((row) => row.image_path));
+    
     } catch (error) {
       console.log("error is!!!!!!!!!", error);
       res
