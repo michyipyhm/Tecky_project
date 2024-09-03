@@ -12,13 +12,6 @@ import { shoppingCartSendOrder} from './routes/shoppingCartSendOrder';
 import { orderRoutes} from './routes/orderRoutes';
 import { stripeCheckout} from './routes/stripeCheckout';
 
-<<<<<<< HEAD
-
-const stripe = require("stripe")(
-  "sk_test_51PreUORwdDaooQDsamp23arHGzTPt6evgQoLolZw1DcnkEIyIZ86rptWHnack4RBbeMAzEj6vdViamrhUXI5nmO200vL2SOcjX"
-);
-=======
->>>>>>> e050d83bd8c699745fc21eab5eef74ba211f00b7
 const app = express();
 
 dotenv.config();
@@ -51,18 +44,12 @@ declare module "express-session" {
 app.use('/', userRouter)
 app.use('/', shoppingCartRouter);
 app.use('/', shoppingCartDeleteRoutes);
-<<<<<<< HEAD
-
-
-app.use(express.static("uploads"));
-=======
 app.use('/', shoppingCartSendOrder);
 app.use('/', orderRoutes);
 app.use('/', stripeCheckout)
 app.use('/', productInfo)
 app.use('/', filter)
 
->>>>>>> e050d83bd8c699745fc21eab5eef74ba211f00b7
 app.use(express.static("public"));
 app.use(isLoggedIn, express.static("private"));
 
