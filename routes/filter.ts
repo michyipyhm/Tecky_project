@@ -150,23 +150,6 @@ filter.post("/filter", async (req, res) => {
     }
   }
 
-  // let imagePath ;
-  // try {
-  //   // const image_path_result = await pgClient.query(
-  //   //   `select image_path from product_image`
-  //   // );
-  //   // console.log("result is!!!!!!!!", image_path_result);
-  //   imagePath = (await (pgClient.query(query))).rows;
-  //   console.log("imagePath is >>>>>>>", imagePath);
-  //   // .rows.map((row) => row.image_path);
-
-  // } catch (error) {
-  //   console.log("imagePath error >>>>>", error);
-  //   res
-  //     .status(500)
-  //     .json({ message: "An error occurred while retrieving the images." });
-  // }
-
   res.status(200).json({
     nextCriteria: nextCriteria,
     nextOptions: nextOptions,
