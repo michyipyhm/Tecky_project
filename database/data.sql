@@ -42,19 +42,19 @@ INSERT INTO product (product_name,product_type,camera_type,brand_id,origin_id,fo
     ('Fujifilm finepix 2700','camera','digital',4,1,2,1500,1,1999,250,0,true),
     ('Nikon coolpix 2700','camera','digital',5,1,2,1200,1,2013,125,0,true),
     ('Olympus fe-3010','camera','digital',6,1,2,800,1,2009,108,0,true),
-    ('Nikon coolpix s2', 'camera', 'digital', 5,1,2,800,1,2005,160,0,true);
-    -- ('Canon IXY digital 800IS', 'camera', 'digital',1,1,2,1400,1,2006,195,0,true),
-    -- ('Fujifilm z700 EXR', 'camera', 'digital',4,1,2,1500,1,2010,158,0,true);
+    ('Nikon coolpix s2', 'camera', 'digital', 5,1,2,800,1,2005,160,0,true),
+    ('Canon IXY digital 800IS', 'camera', 'digital',1,1,2,1400,1,2006,195,0,true),
+    ('Fujifilm z700 EXR', 'camera', 'digital',4,1,2,1500,1,2010,158,0,true);
 
 
 /*菲林*/
 INSERT INTO product (product_name,product_type,brand_id,origin_id,format_id,product_price,product_quantity,iso,is_used) 
     VALUES ('Fujifilm color 100', 'film',4,1,1,100,20,100,false),
-    ('Fujifilm Superia Venus 800', 'film', 4,1,1,150,10,800,false);
-    -- ('Fujifilm Superia 400', 'film', 4,1,1,120,20,400,false),
-    -- ('Kodak colour plus 200', 'film', 7,3,1,120,40,200,false),
-    -- ('Kodak gold 200', 'film', 7,3,1,100,50,200,false),
-    -- ('Kodak ultramax 400', 'film', 7,3,1,140,20,400,false);
+    ('Fujifilm Superia Venus 800', 'film', 4,1,1,150,10,800,false),
+    ('Fujifilm Superia 400', 'film', 4,1,1,120,20,400,false),
+    ('Kodak colour plus 200', 'film', 7,3,1,120,40,200,false),
+    ('Kodak gold 200', 'film', 7,3,1,100,50,200,false),
+    ('Kodak ultramax 400', 'film', 7,3,1,140,20,400,false);
 
 
 
@@ -98,20 +98,20 @@ INSERT INTO product_image (product_id, image_path)
     -- ( '/photo/Camera/digitalcamera/camD2.jpg'),
     -- ( '/photo/Camera/digitalcamera/camD3.jpg'),
     -- ( '/photo/Camera/digitalcamera/camD4.jpg'),
-    -- (8, '/photo/Camera/digitalcamera/camE1.jpg'),
+    (8, '/photo/Camera/digitalcamera/camE1.jpg'),
     -- ( '/photo/Camera/digitalcamera/camE2.jpg'),
     -- ( '/photo/Camera/digitalcamera/camE3.jpg'),
     -- ( '/photo/Camera/digitalcamera/camE4.jpg'),
-    -- (9, '/photo/Camera/digitalcamera/camF1.jpg');
+    (9, '/photo/Camera/digitalcamera/camF1.jpg'),
     -- ( '/photo/Camera/digitalcamera/camF2.jpg'),
     -- ( '/photo/Camera/digitalcamera/camF3.jpg'),
     -- ( '/photo/Camera/digitalcamera/camF4.jpg'),
-    (8, '/photo/film/fujicolor100.webp'),
-    (9, '/photo/film/fujicolorSuperiaVenus800.webp');
-    -- ( '/photo/film/fujifilmSuperia400.webp'),
-    -- ( '/photo/film/kodakcolourplus200.webp'),
-    -- ( '/photo/film/kodakgold200.webp'),
-    -- ( '/photo/film/kodakultramax400.webp');
+    (10, '/photo/film/fujicolor100.webp'),
+    (11, '/photo/film/fujicolorSuperiaVenus800.webp'),
+    (12, '/photo/film/fujifilmSuperia400.webp'),
+    (13, '/photo/film/kodakcolourplus200.webp'),
+    (14, '/photo/film/kodakgold200.webp'),
+    (15,'/photo/film/kodakultramax400.webp');
 
 
 INSERT INTO shopping_cart (product_id,member_id,quantity) VALUES

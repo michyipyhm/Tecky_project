@@ -3,6 +3,7 @@ window.onload = async () => {
 
   try {
     const response = await fetch("/api/product-image");
+    console.log("response is:", response)
     if (!response.ok) {
       throw new Error("fetch error!");
     }
