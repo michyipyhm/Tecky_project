@@ -79,7 +79,7 @@ CREATE TABLE orders(
     "member_id" INTEGER NOT NULL,
     "total" INTEGER NOT NULL,
     "state" VARCHAR(255),
-    "stripe_id" INTEGER,
+    "stripe_id" VARCHAR(255),
     "payment_type" VARCHAR(255),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (member_id) REFERENCES member(id)
@@ -103,20 +103,6 @@ CREATE TABLE product_image(
     FOREIGN KEY (product_id) REFERENCES product(id)
 );
 
-<<<<<<< HEAD
-CREATE TABLE order_details(
-    "id" SERIAL PRIMARY KEY,
-    "orders_id" INTEGER NOT NULL,
-    "product_id" INTEGER NOT NULL,
-    "quantity" INTEGER NOT NULL,
-    "product_price" INTEGER NOT NULL,
-    "subtoal" INTEGER NOT NULL,
-    FOREIGN KEY (product_id) REFERENCES product(id),
-    FOREIGN KEY (orders_id) REFERENCES orders(id)
-);
-
-=======
->>>>>>> e58e0c0b9b1ab8926b6e7674a635c4532dd80c09
 CREATE TABLE admin_post(
     "id" SERIAL PRIMARY KEY,
     "product_id" INTEGER NOT NULL,

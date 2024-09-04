@@ -10,7 +10,6 @@ shoppingCartRouter.get("/shoppingcart", async (req, res) =>{
         return;
     }
     try {
-        // 根據 product_id 從 product 讀取 product_name 和 product_price
         let queryResult = await pgClient.query(`select * from shopping_cart join product on product.id = shopping_cart.product_id where member_id =${userId};`)
         let data = queryResult.rows
 

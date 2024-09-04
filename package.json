@@ -18,7 +18,7 @@
     "dotenv": "^16.4.5",
     "formidable": "^2.1.2",
     "grant": "^5.4.22",
-    "stripe": "^16.8.0",
+    "stripe": "^16.9.0",
     "ts-node": "^10.9.2",
     "typescript": "^5.5.4"
   },

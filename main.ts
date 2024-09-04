@@ -7,10 +7,10 @@ import { userRouter } from "./routes/userRoutes";
 import { productInfo } from './routes/mainPageProduct';
 import { filter } from './routes/filter';
 import { shoppingCartRouter } from './routes/shoppingCartRoutes';
-import { shoppingCartDeleteRoutes} from './routes/shoppingCartDeleteRoutes';
-import { shoppingCartSendOrder} from './routes/shoppingCartSendOrder';
-import { orderRoutes} from './routes/orderRoutes';
-import { stripeCheckout} from './routes/stripeCheckout';
+import { shoppingCartDeleteRoutes } from './routes/shoppingCartDeleteRoutes';
+import { shoppingCartSendOrder } from './routes/shoppingCartSendOrder';
+import { orderRoutes } from './routes/orderRoutes';
+import { stripeCheckout } from './routes/stripeCheckout';
 
 const app = express();
 
@@ -24,6 +24,8 @@ export const pgClient = new Client({
 });
 
 pgClient.connect();
+
+app.use('/', stripeCheckout)
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -46,7 +48,6 @@ app.use('/', shoppingCartRouter);
 app.use('/', shoppingCartDeleteRoutes);
 app.use('/', shoppingCartSendOrder);
 app.use('/', orderRoutes);
-app.use('/', stripeCheckout)
 app.use('/', productInfo)
 app.use('/', filter)
 

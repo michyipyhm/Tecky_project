@@ -7,13 +7,15 @@
 </head>
 <body>
     <h1>Order Details</h1>
-    <div id="orderDetailsForm"></div>
+    <form id="checkout">
+    <div id="orderDetails"></div>
     <br><br>
     <div>Total Price: $ <span id="totalPrice"><span></span></div>
     <br><br>
-    <button id="checkOutBtn">前往付款</button>
+    <button type="submit" id="checkOutBtn">前往付款</button></form>
     <br><br>
     <a id="mylink" href="./order.html">ORDER PAGE</a>
+    <script src="https://js.stripe.com/v3/"></script>
     <script src="./js/orderdetails.js"></script>
 </body>
 </html>
