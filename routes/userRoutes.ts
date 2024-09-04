@@ -1,6 +1,9 @@
 import express, { Request, Response } from "express";
 import { pgClient } from "../main";
 import { checkPassword, hashPassword } from "../utils/hash";
+import formidable from 'formidable';
+import * as fs from 'fs';
+
 
 export const userRouter = express.Router();
 //////////////////////////////////////////
@@ -159,3 +162,47 @@ userRouter.post("/adminlogin", async (req: Request, res: Response) => {//http://
   res.json({ message: "Login successful.", userId: req.session.userId })
   return;
 })
+
+
+
+userRouter.post("/addproduct", async (req: Request, res: Response) => {//http://localhost:8080/adminlogin.html
+
+
+  const uploadDir = './uploads'
+  const form = formidable({
+    uploadDir,
+    keepExtensions: true,
+    maxFiles: 1,
+    maxFileSize: 2000 * 1024, // 2MB
+    filter: part => part.mimetype?.startsWith('image/') || false,
+  })
+  try {
+    // handle incoming multipart form data using formidable
+    let parsedResult = ((await form.parse(req)) as any);
+    let data = parsedResult[0];
+
+    let image = parsedResult[1]
+
+    console.log("image is ", image.imageuploads[0].newFilename)
+
+    const sql = `INSERT INTO product (product_name, product_type, camera_type, brand_id, origin_id, format_id, product_price, product_quantity, production_year, weight, pixel, "ISO", is_used) 
+  VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13) RETURNING id;`;
+
+
+    const result = await pgClient.query(sql, [data.productname[0], data.producttype[0], data.cameratype[0], data.brand[0], data.origin[0], data.format[0], data.productprice[0], data.productquantity[0], data.productionyear[0], data.weight[0], data.pixel[0], data.iso[0], data.isused[0]]);
+
+    console.log("result  product id is !!!", result.rows[0].id)
+    // console.log("productid:[" + JSON.stringify(productid) + "]");
+    const sql_2 = `INSERT INTO product_image(product_id, image_path)
+VALUES ($1,$2)`;
+    const result2 = await pgClient.query(sql_2, [result.rows[0].id, image.imageuploads[0].newFilename])
+
+    return data
+  } catch (error) {
+    console.log("catch error!", error);
+    if (error instanceof Error)
+      return res.status(500).json({ message: error.message });
+    else return res.status(500).json({ message: "Internal Server Error" });
+  }
+
+});

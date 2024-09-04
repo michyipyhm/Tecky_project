@@ -38,6 +38,10 @@ npm install grant dotenv(連接google)
 
 npm install cross-fetch(call GOOGLE API)
 
+------(upload file to server)
+npm install formidable
+npm install formidable@v3
+
 //useful web
 mailgun.com
 editorjs.org
