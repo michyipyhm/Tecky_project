@@ -5,6 +5,7 @@ export const shoppingCartSendOrder = express.Router()
 
 shoppingCartSendOrder.post("/shoppingCartSendOrder", async (req, res) => {
   const userId = req.session.userId;
+  console.log(userId) //1
   try {
     const shoppingCartQuery = await pgClient.query
       (`select * from shopping_cart join product on product.id = shopping_cart.product_id where member_id =${userId};`)

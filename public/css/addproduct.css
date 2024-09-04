@@ -56,14 +56,7 @@
     .sidenav a {font-size: 18px;}
   }
 
-  .preview {
-    background:#888888;
-    width:550px;
-    height:auto;
-    text-align:center;
-  }
-  .preview img{
-    height:320px;
-    order:1;
-    vertical-align : middle;
+  #preview_imageuploads_img {
+    width:100px ;
+    height:100px ;
   }

@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             </fieldset></div>
         `;
         shoppingCartForm.appendChild(productDiv);
-
+        console.log(quantity)
         //選擇數量
         const quantitySelect = document.getElementById('quantity')
         quantitySelect.addEventListener("change", async (e) => {
@@ -85,7 +85,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 });
 
-//去結算畫面
+//去order畫面
 const OrderBtn = document.querySelector('#order-button')
 OrderBtn.addEventListener("click", async (e) => {
     e.preventDefault()
@@ -100,6 +100,6 @@ OrderBtn.addEventListener("click", async (e) => {
     if (res.ok) {
         const data = await res.json()
         alert(data.message)
-        window.location.href = "/settlement.html"
+        window.location.href = "/order.html"
     }
 })

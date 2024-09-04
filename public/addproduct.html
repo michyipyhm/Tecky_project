@@ -30,27 +30,53 @@
         <div id="main">
             <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Home</span>
         </div>
-        <h1>Product Update Page</h1>
+        <h1>Add New Product Page</h1>
 
         <div class="container">
             <div>
 
-                <form method="post" id="addproduct-form">
+                <form id="addproduct-form">
                     <div>
                         <div>
                             <label>Product Name:</label>
                             <input type="text" id="productname" name="productname" value="" />
                         </div>
 
-                        <div>
-                            <label>Product Type:</label>
-                            <input type="text" id="producttype" name="producttype" value="" />
-                        </div>
+                        <label for="producttype">Product Type</label>
+                        <select type="radio" id="producttype" name="producttype">
+                            <option value="1">Camera</option>
+                            <option value="2">Film</option>
+                        </select>
 
-                        <div>
-                            <label>Camera Type:</label>
-                            <input type="text" id="cameratype" name="cameratype" value="" />
-                        </div>
+                        <label for="cameratype">Camera Type</label>
+                        <select type="radio" id="cameratype" name="cameratype" >
+                            <option value="1">Digital</option>
+                            <option value="2">Film</option>
+                        </select>
+
+                        <label for="brand">Brand</label>
+                        <select type="radio" id="brand" name="brand">
+                            <option value="1">Canon</option>
+                            <option value="2">Leica</option>
+                            <option value="3">Rollei</option>
+                            <option value="4">Fujifilm</option>
+                            <option value="5">Nikon</option>
+                            <option value="6">Olympus</option>
+                            <option value="7">Kodak</option>
+                        </select>
+
+                        <label for="origin">Origin Country</label>
+                        <select type="radio" id="origin" name="origin">
+                            <option value="1">Japan</option>
+                            <option value="2">Germany</option>
+                            <option value="3">USA</option>
+                        </select>
+
+                        <label for="format">Format</label>
+                        <select type="radio" id="format" name="format" disabled="disabled">
+                            <option value="1">135MM</option>
+                            <option value="2">Digital</option>
+                        </select>
 
                         <div>
                             <label>Product Price:</label>
@@ -64,48 +90,38 @@
 
                         <div>
                             <label>Production Year:</label>
-                            <input type="text" id="productyear" name="productyear" value="" />
+                            <input type="text" id="productionyear" name="productionyear" value=""  />
                         </div>
 
                         <div>
                             <label>Weight:</label>
-                            <input type="text" id="weight" name="weight" value="" />
+                            <input type="text" id="weight" name="weight" value=""  />
                         </div>
 
                         <div>
                             <label>Pixel:</label>
-                            <input type="text" id="pixel" name="pixel" value="" />
+                            <input type="text" id="pixel" name="pixel" value=""  />
                         </div>
 
                         <div>
                             <label>ISO:</label>
-                            <input type="text" id="iso" name="iso" value="" />
-                        </div>
-
-                        <div>
-                            <label>Pixel:</label>
-                            <input type="text" id="pixel" name="pixel" value="" />
+                            <input type="text" id="iso" name="iso" value="" disabled="disabled" />
                         </div>
 
                         <label for="isused">Is Used:</label>
                         <select type="radio" id="isused" name="isused">
-                            <option>Brand New</option>
-                            <option>Second Hand</option>
+                            <option value="false">Brand New</option>
+                            <option value="true">Second Hand</option>
                         </select>
 
-                        <!-- <form method="post" enctype="multipart/form-data"> -->
-                        <div>
-                            <input type="file" id="imageuploads" name="imageuploads" accept=".jpg, .jpeg, .png, .webp"
-                                style="position:absolute;height:320px;width:550px;">
+                        <div action="./uploads" enctype="multipart/form-data">
+
+                            <input name="imageuploads" type="file" onchange="readURL(this)" targetID="preview_imageuploads_img" accept="image/gif, image/jpeg, image/png" />
+                         
+                            <img id="preview_imageuploads_img" src="#" />
+                         
                         </div>
-                        <div class="preview"
-                            style="float:left;background:#cccccc;height:320px;width:550px;text-align:center;z-index:1;">
-                            <p style="line-height: 300px;">Product Image</p>
-                        </div>
-                        <!-- </form> -->
-
-
-
+                
                         <button type="submit">Update</button>
 
 
@@ -113,6 +129,8 @@
                 </form>
             </div>
         </div>
+
+        
         <div class="footer">
             <div>
                 <h2>ABOUT US</h2>
