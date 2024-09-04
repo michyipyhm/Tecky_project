@@ -1,5 +1,84 @@
 const productTypeSelect = document.getElementById("productType");
 
+const decOrderBtn = document.querySelector("#price-dec");
+const ascOrderBtn = document.querySelector("#price-asc");
+
+const handlePriceOrder = async (e) => {
+  decOrderBtn.addEventListener("click", () => {
+    setPriceOrder("dec");
+  });
+  ascOrderBtn.addEventListener("click", () => {
+    setPriceOrder("asc");
+  });
+
+  async function setPriceOrder(order) {
+    const priceOrder = {
+      price_order: order,
+    };
+    let body={};
+
+    const formData = new FormData(document.querySelector("#filterForm"));
+
+    let test = [...formData];
+
+    let limit = test[0].length;
+    console.log("limit is", limit);
+
+    // let count = 0;
+    for (const [key, value] of formData) {
+      console.log(`"js340: ", ${key}: ${value}\n`);
+      body[key] = value.toLowerCase();
+      // count++;
+      // if (count === limit) {
+      //   break;
+      // }
+    }
+
+    console.log("price order is", priceOrder);
+
+    body = { ...body, ...priceOrder };
+
+    console.log("request body is", body);
+
+    try {
+      const res = await fetch("/filter", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(body),
+      });
+      const result = await res.json();
+      console.log("result is", result);
+
+
+  document.querySelector(`#products-container`).innerHTML = "";
+  for (let i = 0; i < result.products.length; i++) {
+    console.log("product is", result.products[i]);
+    let imagePath = result.products[i].image_path;
+    let productName = result.products[i].product_name;
+    let price = result.products[i].product_price;
+
+    document.querySelector(`#products-container`).innerHTML += `
+          <div class="col">
+            <div class="card" id="card1">
+              <img src="${imagePath}" class="gallery-item" alt="gallery" />
+              <div class="card-body">
+                <div class="product-name">${productName}</div>
+                <div class="price">${price}</div>
+                <a href="#" class="btn btn-light">Add to cart</a>
+              </div>
+            </div>
+          </div>`;
+  }
+    } catch {
+      console.error("Error fetching data");
+    }
+  }
+};
+
+handlePriceOrder();
+
 const handleSelectChange = async (e) => {
   e.preventDefault();
   console.log("js 5 selected:", e.target.value, e.target.name + "_area");
@@ -27,7 +106,6 @@ const handleSelectChange = async (e) => {
   }
   const formData = new FormData(document.querySelector("#filterForm"));
   console.log("js 10 formData is", formData);
-
 
   // let ammendBody = Object.keys(body);
   // let startIndex = Math.max(0, ammendBody.length - currentPosition);
