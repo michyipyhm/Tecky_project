@@ -24,7 +24,13 @@ let flow_one_Analog = [
   "weight",
 ];
 
-let flow_two = ["product_type", "format_name", "iso", "origin_country", "brand_name"];
+let flow_two = [
+  "product_type",
+  "format_name",
+  "iso",
+  "origin_country",
+  "brand_name",
+];
 
 filter.post("/filter", async (req, res) => {
   console.log("reqbody is", req.body);
@@ -35,17 +41,30 @@ filter.post("/filter", async (req, res) => {
       JOIN origin ON product.origin_id = origin.id
       JOIN format ON product.format_id = format.id`;
 
+  // let priceHighToLow;
+  // let priceLowToHigh;
+
   if (Object.keys(req.body).length > 0) {
     query += " WHERE ";
     let count = 0;
 
     for (let key in req.body) {
-      console.log(key);
+      console.log("key is", key);
       if (count > 0) query += " AND ";
       query += `${key} = '${req.body[key]}'`;
       count++;
     }
   }
+
+
+  if (req.body.order === "dec") {
+      query += ` ORDER BY product_price DESC`;
+    } else if (req.body.order === "asc") {
+      query += ` ORDER BY product_price ASC`;
+    }
+
+  // priceHighToLow = await pgClient.query(query += `ORDER BY product_price DESC`);
+  // priceLowToHigh = await pgClient.query(query += `ORDER BY product_price ASC`);
 
   let products;
   try {
@@ -54,6 +73,8 @@ filter.post("/filter", async (req, res) => {
     res.status(500).json({ message: "filter error" });
   }
 
+  // console.log("products are", products)
+
   let ObjectArray = Object.keys(req.body);
 
   let lastCriteria =
@@ -61,20 +82,17 @@ filter.post("/filter", async (req, res) => {
   console.log("last criteria is", lastCriteria);
 
   let nextCriteria;
-  console.log("nextCriteria is", req.body);
-
   let destined_flow;
 
   if (req.body.product_type === "camera") {
     if (req.body.camera_type === "digital") {
       destined_flow = flow_one_Digital;
-    } else { 
+    } else {
       destined_flow = flow_one_Analog;
     }
   } else {
     destined_flow = flow_two;
   }
-
 
   console.log(" destined flow is", destined_flow);
   let currentIndex;
@@ -105,19 +123,38 @@ filter.post("/filter", async (req, res) => {
 
     optionQuery += ` GROUP BY ${nextCriteria}`;
   }
+
   console.log("optionQuery is", optionQuery);
 
   let nextOptions;
   try {
     nextOptions = (await pgClient.query(optionQuery)).rows;
+    console.log("nextOptions are", nextOptions);
   } catch (err) {
     res.status(500).json({ message: "filter error" });
   }
 
+  // let imagePath ;
+  // try {
+  //   // const image_path_result = await pgClient.query(
+  //   //   `select image_path from product_image`
+  //   // );
+  //   // console.log("result is!!!!!!!!", image_path_result);
+  //   imagePath = (await (pgClient.query(query))).rows;
+  //   console.log("imagePath is >>>>>>>", imagePath);
+  //   // .rows.map((row) => row.image_path);
+  
+  // } catch (error) {
+  //   console.log("imagePath error >>>>>", error);
+  //   res
+  //     .status(500)
+  //     .json({ message: "An error occurred while retrieving the images." });
+  // }
+
   res.status(200).json({
     nextCriteria: nextCriteria,
     nextOptions: nextOptions,
-    products,
+    products: products,
   });
   return;
 });

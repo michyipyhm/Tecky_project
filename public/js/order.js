@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         orderDiv.className = 'order';
         orderDiv.innerHTML = `
             <div><fieldset>
-                <div class="orderId">Order Number: ${order.id}</div>
+                <div class="orderId">Order Number: <span>TECKYACADEMY-C32-WSP012-</span>${order.id}</div>
                 <div class="orderTotalPrice">Price: ${order.total}</div>
                 <div class="orderStatus">Status: ${order.state} </div>
                 <div class="orderDate">Order Date: ${createdDate}</div>

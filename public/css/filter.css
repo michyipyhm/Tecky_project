@@ -1,15 +1,15 @@
 * {
-    margin: 0;
-    padding: 0;
-    /* box-sizing: border-box; */
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  margin: 0;
+  padding: 0;
+  /* box-sizing: border-box; */
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
 }
 
 body {
-    background-color: #08192c;
-    color: aliceblue;
-    margin-left: 10vh;
-    margin-right: 10vh;
+  background-color: #08192c;
+  color: aliceblue;
+  margin-left: 10vh;
+  margin-right: 10vh;
 }
 
 .first-section {
@@ -19,79 +19,184 @@ body {
 }
 
 .sidenav {
-    height: 100%;
-    width: 0;
-    position: fixed;
-    z-index: 1;
-    top: 0;
-    left: 0;
-    background-color: #111;
-    overflow-x: hidden;
-    transition: 0.5s;
-    padding-top: 60px;
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+}
+
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+#nav-main {
+  transition: margin-left 0.5s;
+  padding: 16px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {
+    padding-top: 15px;
   }
-  
   .sidenav a {
-    padding: 8px 8px 8px 32px;
-    text-decoration: none;
-    font-size: 25px;
-    color: #818181;
-    display: block;
-    transition: 0.3s;
+    font-size: 18px;
   }
-  
-  .sidenav a:hover {
-    color: #f1f1f1;
-  }
-  
-  .sidenav .closebtn {
+}
+
+.form-inline {
+  width: 330px;
+  height: 76px;
+}
+
+.form-control {
+  width: 50%;
+  height: 30px;
+}
+
+/*Price input*/
+.price-input-container {
+  width: 100%;
+}
+
+.price-input .price-field {
+  display: flex;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+.price-field span {
+  margin-right: 10px;
+  font-size: 15px;
+}
+
+.price-field input {
+  flex: 1;
+  height: 25px;
+  font-size: 15px;
+  border-radius: 9px;
+  text-align: center;
+  border: 0px;
+  background: #e4e4e4;
+}
+
+.price-input {
+  width: 28%;
+  font-size: 19px;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/*slide contailer*/
+.slider-container {
+  width: 30%;
+}
+
+.slider-container {
+  height: 6px;
+  position: relative;
+  background: #e4e4e4;
+  border-radius: 5px;
+}
+
+.slider-container .price-slider {
+  height: 100%;
+  left: 25%;
+  right: 15%;
+  position: absolute;
+  border-radius: 5px;
+  background: #76e8ff;
+}
+
+.range-input {
+  position: relative;
+}
+
+.range-input input {
+  position: absolute;
+  width: 30%;
+  height: 5px;
+  background: none;
+  top: -5px;
+  pointer-events: none;
+  cursor: pointer;
+  -webkit-appearance: none;
+}
+
+/* .range-input */
+/* .range-input {
+    position: relative;
+}
+
+.range-input input {
     position: absolute;
-    top: 0;
-    right: 25px;
-    font-size: 36px;
-    margin-left: 50px;
-  }
+    width: 100%;
+    height: 5px;
+    background: none;
+    top: -5px;
+    pointer-events: none;
+    cursor: pointer;
+    -webkit-appearance: none;
+}
 
-  #nav-main {
-    transition: margin-left .5s;
-    padding: 16px;
-  }
-  
-  @media screen and (max-height: 450px) {
-    .sidenav {padding-top: 15px;}
-    .sidenav a {font-size: 18px;}
-  }
+input[type="range"]::-webkit-slider-thumb {
+  height: 18px;
+  width: 18px;
+  border-radius: 70%;
+  background: #555;
+  pointer-events: auto;
+  -webkit-appearance: none;
+} */
 
- .form-inline{
-    width:330px ;
-    height:76px ;
- }
+.btn {
+  margin-top: 10px;
+}
 
- .form-control{
-    width: 50%;
-    height: 30px;
- }
-
- img{
+img {
   max-width: 100%;
 }
 
-.gallery{
+.gallery {
   background-color: #08192c;
   padding: 0px 10%;
   margin-top: 30px;
-
 }
-  
-.gallery img{
+
+.gallery img {
   background-color: #d9f1f6;
   padding: 15px;
   width: 100%;
   height: 100%;
-  box-shadow: 0 0 15px rgba(0,0,0,0.3);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
   cursor: pointer;
 }
 
-#gallery-modal .modal-img{
+#gallery-modal .modal-img {
   width: 100%;
 }

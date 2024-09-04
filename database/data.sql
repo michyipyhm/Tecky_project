@@ -9,18 +9,29 @@ format_id: 1 = 135mm, 2 = digital
 do not copy*/
 
 
-INSERT INTO brand (brand_name, brand_logo) VALUES  ('canon', '../photo/CameraLogo/canon.png'),('leica', '../photo/CameraLogo/leica.png'),
+-- INSERT INTO admin (admin_name,password)
+--     VALUES ('admin1', '12345678');
+    
+INSERT INTO brand (brand_name, brand_logo)
+    VALUES  ('canon', '../photo/CameraLogo/canon.png'),
+    ('leica', '../photo/CameraLogo/leica.png'),
     ('rollei', 'WSP012/photo/CameraLogo/rollei.png'), 
     ('fujifilm', '/WSP012/photo/Cameralogo/fujifilm.png'), 
     ('nikon', 'WSP012/photo/CameraLogo/nikon.png'), 
     ('olympus', 'WSP012/photo/CameraLogo/olympus.png'), 
     ('kodak', 'WSP012/photo/CameraLogo/kodak.png');
 
+/*
+UPDATE brand
+SET brand_logo = 'WSP012/photo/Logo/canon.png'
+WHERE brand_name = 'canon';*/
 
-INSERT INTO origin (id, origin_country) VALUES (1, 'japan'), (2, 'germany'), (3, 'usa');
+INSERT INTO origin ( origin_country)
+    VALUES ( 'japan'), ( 'germany'), ( 'usa');
 
 
-INSERT INTO format (id, format_name) VALUES (1, '135mm'), (2, 'digital');
+INSERT INTO format ( format_name)
+    VALUES ( '135mm'), ( '120mm');
 
     
 /*相機*/
@@ -31,7 +42,7 @@ INSERT INTO product (product_name,product_type,camera_type,brand_id,origin_id,fo
     ('Fujifilm finepix 2700','camera','digital',4,1,2,1500,1,1999,250,0,true),
     ('Nikon coolpix 2700','camera','digital',5,1,2,1200,1,2013,125,0,true),
     ('Olympus fe-3010','camera','digital',6,1,2,800,1,2009,108,0,true),
-    ('Nikon coolpix s2', 'camera', 'digital', 5,1,2,80,1,2005,160,0,true);
+    ('Nikon coolpix s2', 'camera', 'digital', 5,1,2,800,1,2005,160,0,true);
     -- ('Canon IXY digital 800IS', 'camera', 'digital',1,1,2,1400,1,2006,195,0,true),
     -- ('Fujifilm z700 EXR', 'camera', 'digital',4,1,2,1500,1,2010,158,0,true);
 
@@ -87,16 +98,16 @@ INSERT INTO product_image (product_id, image_path)
     -- ( '/photo/Camera/digitalcamera/camD2.jpg'),
     -- ( '/photo/Camera/digitalcamera/camD3.jpg'),
     -- ( '/photo/Camera/digitalcamera/camD4.jpg'),
-    (8, '/photo/Camera/digitalcamera/camE1.jpg'),
+    -- (8, '/photo/Camera/digitalcamera/camE1.jpg'),
     -- ( '/photo/Camera/digitalcamera/camE2.jpg'),
     -- ( '/photo/Camera/digitalcamera/camE3.jpg'),
     -- ( '/photo/Camera/digitalcamera/camE4.jpg'),
-    (9, '/photo/Camera/digitalcamera/camF1.jpg');
+    -- (9, '/photo/Camera/digitalcamera/camF1.jpg');
     -- ( '/photo/Camera/digitalcamera/camF2.jpg'),
     -- ( '/photo/Camera/digitalcamera/camF3.jpg'),
     -- ( '/photo/Camera/digitalcamera/camF4.jpg'),
-    -- ( '/photo/film/fujicolor100.webp'),
-    -- ( '/photo/film/fujicolorSuperiaVenus800.webp');
+    (8, '/photo/film/fujicolor100.webp'),
+    (9, '/photo/film/fujicolorSuperiaVenus800.webp');
     -- ( '/photo/film/fujifilmSuperia400.webp'),
     -- ( '/photo/film/kodakcolourplus200.webp'),
     -- ( '/photo/film/kodakgold200.webp'),
