@@ -9,18 +9,29 @@ format_id: 1 = 135mm, 2 = digital
 do not copy*/
 
 
+<<<<<<< HEAD
+INSERT INTO brand (brand_name, brand_logo) VALUES  ('canon', '../photo/CameraLogo/canon.png'),('leica', '../photo/CameraLogo/leica.png'),
+=======
 -- INSERT INTO admin (admin_name,password)
 --     VALUES ('admin1', '12345678');
     
 INSERT INTO brand (brand_name, brand_logo)
     VALUES  ('canon', '../photo/CameraLogo/canon.png'),
     ('leica', '../photo/CameraLogo/leica.png'),
+>>>>>>> 8f054e0df910000e75b83538630b2028130a77f0
     ('rollei', 'WSP012/photo/CameraLogo/rollei.png'), 
     ('fujifilm', '/WSP012/photo/Cameralogo/fujifilm.png'), 
     ('nikon', 'WSP012/photo/CameraLogo/nikon.png'), 
     ('olympus', 'WSP012/photo/CameraLogo/olympus.png'), 
     ('kodak', 'WSP012/photo/CameraLogo/kodak.png');
 
+<<<<<<< HEAD
+
+INSERT INTO origin (id, origin_country) VALUES (1, 'japan'), (2, 'germany'), (3, 'usa');
+
+
+INSERT INTO format (id, format_name) VALUES (1, '135mm'), (2, 'digital');
+=======
 /*
 UPDATE brand
 SET brand_logo = 'WSP012/photo/Logo/canon.png'
@@ -32,6 +43,7 @@ INSERT INTO origin ( origin_country)
 
 INSERT INTO format ( format_name)
     VALUES ( '135mm'), ( '120mm');
+>>>>>>> 8f054e0df910000e75b83538630b2028130a77f0
 
     
 /*相機*/

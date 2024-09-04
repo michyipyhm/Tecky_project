@@ -44,22 +44,25 @@ window.onload = () => {
 		const formData = new FormData(form)
 		const res = await fetch("/addproduct", {
 			method: "POST",
-			body: formData,
+			body: formData
 		})
+		if (res.ok) {
+			console.log("add product successful")
+		}
 	})
 }
 //////////////////////////////////////////////////
 const producttypeEle = document.getElementById("producttype");
 producttypeEle.addEventListener("change", async () => {
 	const value = producttypeEle.value
-	if (value === "1") {
+	if (value === "camera") {
 		document.getElementById("cameratype").disabled = false;
 		document.getElementById("format").disabled = true;
 		document.getElementById("pixel").disabled = false;
 		document.getElementById("isused").disabled = false;
 		document.getElementById("productionyear").disabled = false;
 		document.getElementById("weight").disabled = false;
-		
+		document.getElementById("iso").disabled = true;
 	} else {
 		document.getElementById("cameratype").disabled = true;
 		document.getElementById("format").disabled = false;
@@ -67,15 +70,19 @@ producttypeEle.addEventListener("change", async () => {
 		document.getElementById("isused").disabled = true;
 		document.getElementById("productionyear").disabled = true;
 		document.getElementById("weight").disabled = true;
+		document.getElementById("iso").disabled = false;
 	}
 });
 
 const cameratypeEle = document.getElementById("cameratype");
 cameratypeEle.addEventListener("change", async () => {
 	const value = cameratypeEle.value
-	if (value === "1") {
+	if (value === "digital") {
 		document.getElementById("iso").disabled = true;
+		document.getElementById("pixel").disabled = false;
+		
 	} else {
 		document.getElementById("iso").disabled = false;
+		document.getElementById("pixel").disabled = true;
 	}
 });

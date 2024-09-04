@@ -34,7 +34,7 @@ window.onload = async () => {
     }
 
 
-    // const newDate = formatDate(new Date(birthdayInput))
+    
     await getUserProfile();
     async function getUserProfile() {
         const res = await fetch("/userprofile");
@@ -96,18 +96,13 @@ document.addEventListener('DOMContentLoaded', (e) => {
             let phone = document.getElementById("phoneinput").value;
             let address = document.getElementById("addressinput").value;
             let email = document.getElementById("emailinput").value;
-            // console.log("nickname:[" + nickname + "]");
-            // console.log("gender:[" + gender + "]");
-            // console.log("birthday:[" + birthday + "]");
-            // console.log("phone:[" + phone + "]");
-            // console.log("address:[" + address + "]");
-            // console.log("email:[" + email + "]");
+            
 
             if (email === null || email === "") {
                 alert("Email can't empty");
                 return;
             } else {
-                console.log("hihihi9999")
+                // console.log("hihihi9999")
                 const formObject = {
                     nickname: nickname,
                     gender: gender,
@@ -116,7 +111,7 @@ document.addEventListener('DOMContentLoaded', (e) => {
                     address: address,
                     email: email,
                 }
-                console.log("hihii7777")
+                // console.log("hihii7777")
                 const res = await fetch('/updateprofile', {
                     method: 'POST',
                     headers: {
@@ -125,11 +120,11 @@ document.addEventListener('DOMContentLoaded', (e) => {
                     body: JSON.stringify(formObject),
                 }
             )
-                console.log("hihi444")
+                // console.log("hihi444")
                 const data = await res.json()
                 console.log("data:[" + JSON.stringify(data) + "]")
                 if (res.ok) {
-                    console.log("hihi")
+                    // console.log("hihi")
                     window.location.href = "/profile.html";
                 } else {
                     alert(data.message, "Update Failed")

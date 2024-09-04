@@ -32,8 +32,10 @@ orderRoutes.get("/order", async (req, res) => {
         return;
     }
     const orderDetailsResult = await pgClient.query(`select * from order_details join product on product.id = order_details.product_id where orders_id =${orderNum};`)
+    const orderStatusResult = await pgClient.query(`SELECT state FROM orders where id = ${orderNum}`)
+    const orderStatus = orderStatusResult.rows[0]
     const data = orderDetailsResult.rows
     const totalPriceQResult = await pgClient.query(`select total from orders WHERE id =${orderNum};`)
     const totalPrice = totalPriceQResult.rows[0]
-    res.status(200).json({ data, totalPrice })
+    res.status(200).json({ data, totalPrice, orderStatus })
 })

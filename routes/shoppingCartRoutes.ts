@@ -10,9 +10,9 @@ shoppingCartRouter.get("/shoppingcart", async (req, res) =>{
         return;
     }
     try {
-        let queryResult = await pgClient.query(`select * from shopping_cart join product on product.id = shopping_cart.product_id where member_id =${userId};`)
+        let queryResult = await pgClient.query(`select * from shopping_cart join product on product.id = shopping_cart.product_id join product_image on product_image.product_id = product.id where member_id =${userId};`)
         let data = queryResult.rows
-
+        console.log(data)
         let totalPriceQueryResult = await pgClient.query(`select sum(product_price * quantity) as total from shopping_cart 
 join product on product.id = shopping_cart.product_id
 where member_id =${userId}; `)
@@ -28,6 +28,7 @@ shoppingCartRouter.post('/selectedQuantity', async (req, res) =>{
     let data = req.body
     let id = data.id
     let quantity = data.quantity
+    console.log(data)
     try {
         await pgClient.query(`UPDATE shopping_cart SET quantity = '${quantity}' WHERE id = '${id}';`)
     res.status(200).json({ message: 'Quantity updated!' });

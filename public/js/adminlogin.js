@@ -25,7 +25,7 @@ window.onload = () => {
         const data = await res.json()
         if (res.ok) {
 
-            window.location = "/index.html"
+            window.location = "/adminchangepw.html"
         } else {
             alert(data.message)
         }
@@ -44,3 +44,6 @@ function closeNav() {
     document.getElementById("main").style.marginLeft = "0";
     document.body.style.backgroundColor = "white";
 }
+// updatedBtn.addEventListener("click", (e) => {
+//     window.location.href = "http://localhost:8080/adminchangepw.html";
+// });

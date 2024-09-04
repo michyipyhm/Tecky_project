@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         productDiv.className = 'product';
         productDiv.innerHTML = `
             <div><fieldset>
-                <div class="productPicture">Photo</div>
+                <div class="productPicture"><img src="${product.image_path}" width="150" height="150"/></div>
                 <div class="productProperty">
                     <div class="productName_Details">
                         <div class="productName">Product Name: ${product.product_name}</div>
@@ -33,9 +33,12 @@ document.addEventListener('DOMContentLoaded', async () => {
             </fieldset></div>
         `;
         shoppingCartForm.appendChild(productDiv);
+        const totalPrice = document.getElementById('totalPrice');
+        totalPrice.textContent = `Total Price: ${result.totalPrice.total}`
+    
         console.log(quantity)
         //選擇數量
-        const quantitySelect = document.getElementById('quantity')
+        const quantitySelect = productDiv.querySelector('#quantity')
         quantitySelect.addEventListener("change", async (e) => {
             e.preventDefault()
             const newQuantity = e.target.value
@@ -79,9 +82,6 @@ document.addEventListener('DOMContentLoaded', async () => {
                 return;
             }
         })
-
-        const totalPrice = document.getElementById('totalPrice');
-        totalPrice.textContent = `Total Price: ${result.totalPrice.total}`;
     }
 });
 
