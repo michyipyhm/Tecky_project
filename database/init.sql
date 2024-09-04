@@ -53,14 +53,14 @@ CREATE TABLE product(
     "camera_type" VARCHAR(255),
     "brand_id" INTEGER NOT NULL,
     "origin_id" INTEGER NOT NULL,
-    "format_id" INTEGER NOT NULL,
+    "format_id" INTEGER ,
     "product_price" INTEGER NOT NULL,
     "product_quantity" INTEGER NOT NULL,
     "production_year" INTEGER,
     "weight" INTEGER,
     "pixel" INTEGER,
     "iso" INTEGER,
-    "is_used" BOOLEAN NOT NULL,
+    "is_used" BOOLEAN ,
     FOREIGN KEY (brand_id) REFERENCES brand(id),
     FOREIGN KEY (origin_id) REFERENCES origin(id),
     FOREIGN KEY (format_id) REFERENCES format(id)
@@ -103,20 +103,6 @@ CREATE TABLE product_image(
     FOREIGN KEY (product_id) REFERENCES product(id)
 );
 
-<<<<<<< HEAD
-CREATE TABLE order_details(
-    "id" SERIAL PRIMARY KEY,
-    "orders_id" INTEGER NOT NULL,
-    "product_id" INTEGER NOT NULL,
-    "quantity" INTEGER NOT NULL,
-    "product_price" INTEGER NOT NULL,
-    "subtoal" INTEGER NOT NULL,
-    FOREIGN KEY (product_id) REFERENCES product(id),
-    FOREIGN KEY (orders_id) REFERENCES orders(id)
-);
-
-=======
->>>>>>> e58e0c0b9b1ab8926b6e7674a635c4532dd80c09
 CREATE TABLE admin_post(
     "id" SERIAL PRIMARY KEY,
     "product_id" INTEGER NOT NULL,
