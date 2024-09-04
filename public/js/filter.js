@@ -5,8 +5,6 @@ const handleSelectChange = async (e) => {
   console.log("js 5 selected:", e.target.value, e.target.name + "_area");
 
   let body = {};
-  const formData = new FormData(document.querySelector("#filterForm"));
-  console.log("js 10 formData is", formData);
 
   let clearArray = [
     "product_type_area",
@@ -24,8 +22,12 @@ const handleSelectChange = async (e) => {
   console.log("current position is", currentPosition);
 
   for (let i = currentPosition + 1; i < clearArray.length; i++) {
+    console.log("js 15 clearArray is", clearArray[i]);
     clearContent(clearArray[i]);
   }
+  const formData = new FormData(document.querySelector("#filterForm"));
+  console.log("js 10 formData is", formData);
+
 
   // let ammendBody = Object.keys(body);
   // let startIndex = Math.max(0, ammendBody.length - currentPosition);
@@ -105,67 +107,42 @@ const handleSelectChange = async (e) => {
 
   console.log(displayName, "html", htmlName);
   console.log(dynamicHTML);
-  document.querySelector(`#${result.nextCriteria + "_area"}`).innerHTML = `
+
+  if (result.nextCriteria) {
+    document.querySelector(`#${result.nextCriteria + "_area"}`).innerHTML = `
           <label for="${htmlName}">${displayName}:</label>
             <select name="${result.nextCriteria}" id="${htmlName}">
               <option value="" disabled selected>Select ${displayName}</option>
               ${dynamicHTML}
             </select>`;
 
-  const cardIds = [
-    "card1",
-    "card2",
-    "card3",
-    "card4",
-    "card5",
-    "card6",
-    "card7",
-    "card8",
-    "card9",
-  ];
-
-  // console.log('product from ts ', result.products)
-  for (let i = 0; i < result.products.length; i++) {
-    console.log("product is", result.products[i])
-    let imagePath = result.products[i].image_path;
-    let productName = result.products[i].product_name;
-    let price = result.products[i].product_price;
-    // console.log("image path is", imagePath)
-    // console.log("product name is", productName);
-    // console.log("price is", price);
-    if (imagePath !== null) {
-      let cardId = cardIds[i % cardIds.length];
-      // console.log("cardId is", cardId);
-      cardIds.forEach((cardId, index) => {
-        
-        document.querySelector(`#${cardId}`).innerHTML = `
-        <img src="" class="gallery-item" alt="gallery" />
-              <div class="card-body">
-                <div class="product-name"></div>
-                <div class="price"></div>
-                <a href="#" class="btn btn-light">Add to cart</a>
-              </div>`;
-
-        // console.log("forloop image path is", imagePath);
-        let img = document.querySelector(`#${cardId} img`);
-        console.log("img is", img);
-        img.src = imagePath;
-        let productNameDiv = document.querySelector(`#${cardId} .card-body .product-name`);
-        productNameDiv.innerHTML = productName;
-        let priceDiv = document.querySelector(`#${cardId} .card-body .price`);
-        priceDiv.innerHTML = `$${price}`;
-      });
+    const newSelect = document.querySelector(`#${htmlName}`);
+    console.log("new select is", newSelect);
+    if (newSelect) {
+      newSelect.addEventListener("change", handleSelectChange);
     } else {
-      console.log("image path is null");
+      console.error(`"${htmlName}" not found`);
     }
   }
 
-  const newSelect = document.querySelector(`#${htmlName}`);
-  console.log("new select is", newSelect);
-  if (newSelect) {
-    newSelect.addEventListener("change", handleSelectChange);
-  } else {
-    console.error(`"${htmlName}" not found`);
+  document.querySelector(`#products-container`).innerHTML = "";
+  for (let i = 0; i < result.products.length; i++) {
+    console.log("product is", result.products[i]);
+    let imagePath = result.products[i].image_path;
+    let productName = result.products[i].product_name;
+    let price = result.products[i].product_price;
+
+    document.querySelector(`#products-container`).innerHTML += `
+          <div class="col">
+            <div class="card" id="card1">
+              <img src="${imagePath}" class="gallery-item" alt="gallery" />
+              <div class="card-body">
+                <div class="product-name">${productName}</div>
+                <div class="price">${price}</div>
+                <a href="#" class="btn btn-light">Add to cart</a>
+              </div>
+            </div>
+          </div>`;
   }
 };
 

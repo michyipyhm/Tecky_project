@@ -11,7 +11,6 @@ let flow_one_Digital = [
   "is_used",
   "origin_country",
   "brand_name",
-  "weight",
 ];
 
 let flow_one_Analog = [
@@ -21,7 +20,6 @@ let flow_one_Analog = [
   "iso",
   "origin_country",
   "brand_name",
-  "weight",
 ];
 
 let flow_two = [
@@ -56,12 +54,15 @@ filter.post("/filter", async (req, res) => {
     }
   }
 
-
   if (req.body.order === "dec") {
-      query += ` ORDER BY product_price DESC`;
-    } else if (req.body.order === "asc") {
-      query += ` ORDER BY product_price ASC`;
-    }
+    query += ` ORDER BY product_price DESC`;
+  } else if (req.body.order === "asc") {
+    query += ` ORDER BY product_price ASC`;
+  }
+
+
+  
+  console.log("query is", query);
 
   // priceHighToLow = await pgClient.query(query += `ORDER BY product_price DESC`);
   // priceLowToHigh = await pgClient.query(query += `ORDER BY product_price ASC`);
@@ -70,7 +71,8 @@ filter.post("/filter", async (req, res) => {
   try {
     products = (await pgClient.query(query)).rows;
   } catch (err) {
-    res.status(500).json({ message: "filter error" });
+    console.log("error is", err);
+    res.status(500).json({ message: "filter error 1" });
   }
 
   // console.log("products are", products)
@@ -103,35 +105,41 @@ filter.post("/filter", async (req, res) => {
 
   console.log("*******nextCriteria is", nextCriteria);
 
-  let optionQuery = `SELECT ${nextCriteria} FROM product 
+  let nextOptions;
+  if (!nextCriteria) {
+    nextOptions = "";
+    nextCriteria = "";
+  } else {
+    let optionQuery = `SELECT ${nextCriteria} FROM product 
     JOIN product_image ON product.id = product_image.product_id 
     JOIN brand ON product.brand_id = brand.id
     JOIN origin ON product.origin_id = origin.id
     JOIN format ON product.format_id = format.id
     `;
+    console.log("check object req body length", Object.keys(req.body).length);
+    if (Object.keys(req.body).length > 0) {
+      optionQuery += " WHERE ";
+      let count = 0;
 
-  if (Object.keys(req.body).length > 0) {
-    query += " WHERE ";
-    let count = 0;
+      for (let key in req.body) {
+        console.log(key);
+        if (count > 0) optionQuery += " AND ";
+        optionQuery += `${key} = '${req.body[key]}'`;
+        count++;
+      }
 
-    for (let key in req.body) {
-      console.log(key);
-      if (count > 0) query += " AND ";
-      query += `${key} = '${req.body[key]}'`;
-      count++;
+      optionQuery += ` GROUP BY ${nextCriteria}`;
     }
 
-    optionQuery += ` GROUP BY ${nextCriteria}`;
-  }
+    console.log("optionQuery is", optionQuery);
 
-  console.log("optionQuery is", optionQuery);
-
-  let nextOptions;
-  try {
-    nextOptions = (await pgClient.query(optionQuery)).rows;
-    console.log("nextOptions are", nextOptions);
-  } catch (err) {
-    res.status(500).json({ message: "filter error" });
+    try {
+      nextOptions = (await pgClient.query(optionQuery)).rows;
+      console.log("nextOptions are", nextOptions);
+    } catch (err) {
+      res.status(500).json({ message: "filter error 2" });
+      return;
+    }
   }
 
   // let imagePath ;
@@ -143,7 +151,7 @@ filter.post("/filter", async (req, res) => {
   //   imagePath = (await (pgClient.query(query))).rows;
   //   console.log("imagePath is >>>>>>>", imagePath);
   //   // .rows.map((row) => row.image_path);
-  
+
   // } catch (error) {
   //   console.log("imagePath error >>>>>", error);
   //   res
