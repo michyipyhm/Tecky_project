@@ -51,8 +51,6 @@ const handleSelectChange = async (e) => {
   });
   const result = await res.json();
 
-
-
   console.log("js 20 result is", result);
 
   console.log(document.querySelector(`#${result.nextCriteria + "_area"}`));
@@ -114,20 +112,54 @@ const handleSelectChange = async (e) => {
               ${dynamicHTML}
             </select>`;
 
+  const cardIds = [
+    "card1",
+    "card2",
+    "card3",
+    "card4",
+    "card5",
+    "card6",
+    "card7",
+    "card8",
+    "card9",
+  ];
 
   // console.log('product from ts ', result.products)
-  for (let imagePath of result.products){
-    if (imagePath!== null){
-      let img = document.querySelector(".gallery-item");
-      console.log("img is", img)
-      console.log("forloop image path is", imagePath)
-      img.src = imagePath.image_path;
-  } else {
+  for (let i = 0; i < result.products.length; i++) {
+    console.log("product is", result.products[i])
+    let imagePath = result.products[i].image_path;
+    let productName = result.products[i].product_name;
+    let price = result.products[i].product_price;
+    // console.log("image path is", imagePath)
+    // console.log("product name is", productName);
+    // console.log("price is", price);
+    if (imagePath !== null) {
+      let cardId = cardIds[i % cardIds.length];
+      // console.log("cardId is", cardId);
+      cardIds.forEach((cardId, index) => {
+        
+        document.querySelector(`#${cardId}`).innerHTML = `
+        <img src="" class="gallery-item" alt="gallery" />
+              <div class="card-body">
+                <div class="product-name"></div>
+                <div class="price"></div>
+                <a href="#" class="btn btn-light">Add to cart</a>
+              </div>`;
+
+        // console.log("forloop image path is", imagePath);
+        let img = document.querySelector(`#${cardId} img`);
+        console.log("img is", img);
+        img.src = imagePath;
+        let productNameDiv = document.querySelector(`#${cardId} .card-body .product-name`);
+        productNameDiv.innerHTML = productName;
+        let priceDiv = document.querySelector(`#${cardId} .card-body .price`);
+        priceDiv.innerHTML = `$${price}`;
+      });
+    } else {
       console.log("image path is null");
     }
-  };
+  }
 
-  
   const newSelect = document.querySelector(`#${htmlName}`);
   console.log("new select is", newSelect);
   if (newSelect) {

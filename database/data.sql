@@ -98,16 +98,16 @@ INSERT INTO product_image (product_id, image_path)
     -- ( '/photo/Camera/digitalcamera/camD2.jpg'),
     -- ( '/photo/Camera/digitalcamera/camD3.jpg'),
     -- ( '/photo/Camera/digitalcamera/camD4.jpg'),
-    (8, '/photo/Camera/digitalcamera/camE1.jpg'),
+    -- (8, '/photo/Camera/digitalcamera/camE1.jpg'),
     -- ( '/photo/Camera/digitalcamera/camE2.jpg'),
     -- ( '/photo/Camera/digitalcamera/camE3.jpg'),
     -- ( '/photo/Camera/digitalcamera/camE4.jpg'),
-    (9, '/photo/Camera/digitalcamera/camF1.jpg');
+    -- (9, '/photo/Camera/digitalcamera/camF1.jpg');
     -- ( '/photo/Camera/digitalcamera/camF2.jpg'),
     -- ( '/photo/Camera/digitalcamera/camF3.jpg'),
     -- ( '/photo/Camera/digitalcamera/camF4.jpg'),
-    -- ( '/photo/film/fujicolor100.webp'),
-    -- ( '/photo/film/fujicolorSuperiaVenus800.webp');
+    (8, '/photo/film/fujicolor100.webp'),
+    (9, '/photo/film/fujicolorSuperiaVenus800.webp');
     -- ( '/photo/film/fujifilmSuperia400.webp'),
     -- ( '/photo/film/kodakcolourplus200.webp'),
     -- ( '/photo/film/kodakgold200.webp'),
