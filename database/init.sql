@@ -79,7 +79,7 @@ CREATE TABLE orders(
     "member_id" INTEGER NOT NULL,
     "total" INTEGER NOT NULL,
     "state" VARCHAR(255),
-    "stripe_id" INTEGER,
+    "stripe_id" VARCHAR(255),
     "payment_type" VARCHAR(255),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (member_id) REFERENCES member(id)

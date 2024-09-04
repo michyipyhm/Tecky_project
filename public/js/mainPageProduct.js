@@ -3,6 +3,7 @@ window.onload = async () => {
 
   try {
     const response = await fetch("/api/product-image");
+    console.log("response is:", response)
     if (!response.ok) {
       throw new Error("fetch error!");
     }
@@ -29,17 +30,19 @@ window.onload = async () => {
       const cardId = `card${index + 1}`;
       console.log("cardId is:", cardId);
 
-      const nameElement = document.querySelector(`#${cardId} .card-body .product-name`);
-      const priceElement = document.querySelector(`#${cardId} .card-body .price`);
+      const nameElement = document.querySelector(
+        `#${cardId} .card-body .product-name`
+      );
+      const priceElement = document.querySelector(
+        `#${cardId} .card-body .price`
+      );
       nameElement.innerHTML = products.product_name;
       priceElement.innerHTML = `$ ${products.product_price}`;
     });
-  }catch (error) {
+  } catch (error) {
     console.log("Error is:", error);
   }
 };
-
-
 
 function openNav() {
   document.getElementById("mySidenav").style.width = "250px";
@@ -52,4 +55,3 @@ function closeNav() {
   document.getElementById("main").style.marginLeft = "0";
   document.body.style.backgroundColor = "#08192c";
 }
-
