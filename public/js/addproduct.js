@@ -40,53 +40,42 @@ window.onload = () => {
 	const addproductEle = document.querySelector("#addproduct-form")
 	addproductEle.addEventListener("submit", async (e) => {
 		e.preventDefault();
-
-
-		// const form = document.forms['addproduct-form'];
-
-		// const productname = e.target.productname.value
-		// console.log("productname:[" + productname + "]");
-		// const producttype = e.target.producttype.value
-		// console.log("producttype:[" + producttype + "]");
-		// const cameratype = e.target.cameratype.value
-		// console.log("cameratype:[" + cameratype + "]");
-		// const brand = e.target.brand.value
-		// console.log("brand:[" + brand + "]");
-		// const format = e.target.format.value
-		// console.log("format:[" + format + "]");
-		// const productprice = e.target.productprice.value
-		// console.log("productprice:[" + productprice + "]");
-		// const productquantity = e.target.productquantity.value
-		// console.log("productquantity:[" + productquantity + "]");
-		// const productionyear = e.target.productionyear.value
-		// console.log("productionyear:[" + productionyear + "]");
-		// const weight = e.target.weight.value
-		// console.log("weight:[" + weight + "]");
-		// const pixel = e.target.pixel.value
-		// console.log("pixel:[" + pixel + "]");
-		// const iso = e.target.iso.value
-		// console.log("iso:[" + iso + "]");
-		// const isused = e.target.isused.value
-		// console.log("isused:[" + isused + "]");
-		// const imageuploads = e.target.imageuploads
-		// console.log(imageuploads.files[0]);
-		// console.log("form:[" + form + "]");
-		// const formData = new FormData(form)
-		// console.log(form.addproduct-form.value)
-		// console.log(form.addproduct-form.files[0])
-
 		const form = e.target
-
-
 		const formData = new FormData(form)
 		const res = await fetch("/addproduct", {
 			method: "POST",
 			body: formData,
 		})
-		// const data = await res.json()
-		// console.log(data)
-		// document.querySelector('#addproduct-result').textContent = data
 	})
-
-
 }
+//////////////////////////////////////////////////
+const producttypeEle = document.getElementById("producttype");
+producttypeEle.addEventListener("change", async () => {
+	const value = producttypeEle.value
+	if (value === "1") {
+		document.getElementById("cameratype").disabled = false;
+		document.getElementById("format").disabled = true;
+		document.getElementById("pixel").disabled = false;
+		document.getElementById("isused").disabled = false;
+		document.getElementById("productionyear").disabled = false;
+		document.getElementById("weight").disabled = false;
+		
+	} else {
+		document.getElementById("cameratype").disabled = true;
+		document.getElementById("format").disabled = false;
+		document.getElementById("pixel").disabled = true;
+		document.getElementById("isused").disabled = true;
+		document.getElementById("productionyear").disabled = true;
+		document.getElementById("weight").disabled = true;
+	}
+});
+
+const cameratypeEle = document.getElementById("cameratype");
+cameratypeEle.addEventListener("change", async () => {
+	const value = cameratypeEle.value
+	if (value === "1") {
+		document.getElementById("iso").disabled = true;
+	} else {
+		document.getElementById("iso").disabled = false;
+	}
+});
