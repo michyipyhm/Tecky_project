@@ -1,44 +1,42 @@
 window.onload = async () => {
-  const cardIds = ["card1", "card2", "card3", "card4", "card5", "card6"];
-  //main page load product img
-  try {
-    const response = await fetch("/api/product-image");
-    if (!response.ok) {
-      throw new Error("fetch error!");
-    }
-    const imagePaths = await response.json();
-    cardIds.forEach((cardId, index) => {
-      const imgElement = document.querySelector(`#${cardId} >img`);
-      const imagePath = imagePaths[index];
-      imgElement.src = imagePath;
-    });
-  } catch (error) {
-    console.log("Error is:", error);
-  }
-  //main page load product info
+  const productInfocardIds = ["card1", "card2", "card3", "card4", "card5", "card6"];
+
+
   try {
     const response = await fetch("/api/product-info");
     if (!response.ok) {
       throw new Error("fetch error!");
     }
-    const products = await response.json();
-    console.log(products);
-    products.forEach((products, index) => {
+    const productInfo = await response.json();
+    console.log("productInfo is:", productInfo);
+
+    productInfo.forEach((productInfo, index) => {
+      console.log('index is', index)
       const cardId = `card${index + 1}`;
 
-      const nameElement = document.querySelector(
-        `#${cardId} .card-body .product-name`
-      );
-      const priceElement = document.querySelector(
-        `#${cardId} .card-body .price`
-      );
-      nameElement.innerHTML = products.product_name;
-      priceElement.innerHTML = `$ ${products.product_price}`;
+
+      const imgElement = document.querySelector(`#${cardId} >img`);
+      const idElement = document.querySelector(`#${cardId} .card-body .product-id`);
+      const nameElement = document.querySelector(`#${cardId} .card-body .product-name`);
+      const priceElement = document.querySelector(`#${cardId} .card-body .price`);
+      
+      const imagePath = productInfo.image_path;
+      const idPath = productInfo.product_id;
+      const namePath = productInfo.product_name;
+      const pricePath = productInfo.product_price;
+
+
+      console.log("pricePath is:", pricePath);
+
+      idElement.innerHTML = `WSP012-${idPath}`;
+      imgElement.src = imagePath;
+      nameElement.innerHTML = namePath;
+      priceElement.innerHTML = `$ ${pricePath}`;
     });
   } catch (error) {
     console.log("Error is:", error);
   }
-  //main page add to cart
+  
   document.querySelectorAll('.card').forEach(cardDiv => {
     const productNameDiv = cardDiv.querySelector('.product-name')
     const productName = productNameDiv.textContent
