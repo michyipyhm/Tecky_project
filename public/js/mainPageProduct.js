@@ -25,10 +25,10 @@ window.onload = async () => {
       throw new Error("fetch error!");
     }
     const products = await response.json();
-    // console.log("products are:", products);
+    // console.log(products);
     products.forEach((products, index) => {
       const cardId = `card${index + 1}`;
-      console.log("cardId is:", cardId);
+      // console.log("cardId is:", cardId);
 
       const nameElement = document.querySelector(
         `#${cardId} .card-body .product-name`
@@ -42,7 +42,34 @@ window.onload = async () => {
   } catch (error) {
     console.log("Error is:", error);
   }
-};
+  document.querySelectorAll('.card').forEach(cardDiv => {
+    const productNameDiv = cardDiv.querySelector('.product-name')
+    const productName = productNameDiv.textContent
+    const addToCartBtns = cardDiv.querySelectorAll('.btn.btn-light')
+
+    addToCartBtns.forEach(button => {
+      button.addEventListener('click', async (e) => {
+        e.preventDefault()
+        // console.log(productName)
+        const name = productName
+        const body = {
+            name: name
+        }
+        const res = await fetch("/addToCart", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(body)
+        })
+        const data = await res.json()
+        if (res.ok) {
+            alert(data.message);
+        }
+    })
+    })
+  })
+}
 
 function openNav() {
   document.getElementById("mySidenav").style.width = "250px";
