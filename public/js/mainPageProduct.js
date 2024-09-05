@@ -3,7 +3,7 @@ window.onload = async () => {
 
 
   try {
-    const response = await fetch("/api/product-info");
+    const response = await fetch("/product-info");
     if (!response.ok) {
       throw new Error("fetch error!");
     }
@@ -28,7 +28,7 @@ window.onload = async () => {
 
       console.log("pricePath is:", pricePath);
 
-      idElement.innerHTML = `WSP012-${idPath}`;
+      idElement.innerHTML = idPath;
       imgElement.src = imagePath;
       nameElement.innerHTML = namePath;
       priceElement.innerHTML = `$ ${pricePath}`;
@@ -40,6 +40,8 @@ window.onload = async () => {
   document.querySelectorAll('.card').forEach(cardDiv => {
     const productNameDiv = cardDiv.querySelector('.product-name')
     const productName = productNameDiv.textContent
+    const productIdSpan = cardDiv.querySelector('.product-id')
+    const productId = productIdSpan.textContent
     const addToCartBtns = cardDiv.querySelectorAll('.btn.btn-light')
     const checkProductDetails = cardDiv.querySelectorAll('.gallery-item')
 
@@ -66,14 +68,11 @@ window.onload = async () => {
     checkProductDetails.forEach(button => {
       button.addEventListener('click', async (e) => {
         e.preventDefault()
-        const name = productName
-        window.location.href = `/product.html?product=${name}`
+        const id = productId
+        window.location.href = `/product.html?product=${id}`
       })
     })
   })
-  //main page click to product page
-
-
 }
 
 function openNav() {
