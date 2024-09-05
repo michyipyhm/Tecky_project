@@ -57,7 +57,7 @@ producttypeEle.addEventListener("change", async () => {
 	const value = producttypeEle.value
 	if (value === "camera") {
 		document.getElementById("cameratype").disabled = false;
-		document.getElementById("format").disabled = true;
+		
 		document.getElementById("pixel").disabled = false;
 		document.getElementById("isused").disabled = false;
 		document.getElementById("productionyear").disabled = false;
@@ -65,7 +65,7 @@ producttypeEle.addEventListener("change", async () => {
 		document.getElementById("iso").disabled = true;
 	} else {
 		document.getElementById("cameratype").disabled = true;
-		document.getElementById("format").disabled = false;
+		
 		document.getElementById("pixel").disabled = true;
 		document.getElementById("isused").disabled = true;
 		document.getElementById("productionyear").disabled = true;
