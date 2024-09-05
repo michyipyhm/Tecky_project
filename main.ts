@@ -7,29 +7,12 @@ import { userRouter } from "./routes/userRoutes";
 import { productInfo } from './routes/mainPageProduct';
 import { filter } from './routes/filter';
 import { shoppingCartRouter } from './routes/shoppingCartRoutes';
-<<<<<<< HEAD
-import { shoppingCartDeleteRoutes } from './routes/shoppingCartDeleteRoutes';
-import { shoppingCartSendOrder } from './routes/shoppingCartSendOrder';
-import { orderRoutes } from './routes/orderRoutes';
-import { stripeCheckout } from './routes/stripeCheckout';
-import { isAdminLoggedIn } from "./utils/admin";
-=======
-<<<<<<< HEAD
 import { shoppingCartDeleteRoutes} from './routes/shoppingCartDeleteRoutes';
 import { shoppingCartSendOrder} from './routes/shoppingCartSendOrder';
 import { orderRoutes} from './routes/orderRoutes';
 import { stripeCheckout} from './routes/stripeCheckout';
 import { isAdminLoggedIn } from "./utils/admin";
 import { productRoutes} from './routes/productRoutes';
-=======
-import { orderRoutes} from './routes/orderRoutes';
-import { stripeCheckout} from './routes/stripeCheckout';
-import { isAdminLoggedIn } from "./utils/admin";
-import { shoppingCartDeleteRoutes } from './routes/shoppingCartDeleteRoutes';
-import { shoppingCartSendOrder } from './routes/shoppingCartSendOrder';
->>>>>>> 59eafcdaf04db6bbf691f81146c5c6c09f2bd009
-
->>>>>>> d6c24d6493f1a4638097e0cc96b7c1dadc2f448d
 
 const app = express();
 
@@ -68,8 +51,8 @@ app.use('/', shoppingCartRouter);
 app.use('/', shoppingCartDeleteRoutes);
 app.use('/', shoppingCartSendOrder);
 app.use('/', orderRoutes);
-app.use('/', productInfo)
-app.use('/', filter)
+app.use('/', productInfo);
+app.use('/', filter);
 app.use('/', productRoutes);
 
 app.use(express.static("public"));
