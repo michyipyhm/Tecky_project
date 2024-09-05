@@ -28,10 +28,6 @@ const handlePriceOrder = async (e) => {
     for (const [key, value] of formData) {
       console.log(`"js340: ", ${key}: ${value}\n`);
       body[key] = value.toLowerCase();
-      // count++;
-      // if (count === limit) {
-      //   break;
-      // }
     }
 
     console.log("price order is", priceOrder);
@@ -106,13 +102,6 @@ const handleSelectChange = async (e) => {
   }
   const formData = new FormData(document.querySelector("#filterForm"));
   console.log("js 10 formData is", formData);
-
-  // let ammendBody = Object.keys(body);
-  // let startIndex = Math.max(0, ammendBody.length - currentPosition);
-
-  // for (let i = startIndex; i < currentPosition; i++) {
-  //   delete body[clearArray[i]];
-  // }
 
   for (const [key, value] of formData) {
     console.log(`"js340: ", ${key}: ${value}\n`);
@@ -216,7 +205,7 @@ const handleSelectChange = async (e) => {
               <img src="${imagePath}" class="gallery-item" alt="gallery" />
               <div class="card-body">
                 <div class="product-name">${productName}</div>
-                <div class="price">${price}</div>
+                <div class="price">$ ${price}</div>
                 <a href="#" class="btn btn-light">Add to cart</a>
               </div>
             </div>
@@ -228,4 +217,17 @@ productTypeSelect.addEventListener("change", handleSelectChange);
 
 function clearContent(target) {
   document.querySelector(`#${target}`).innerHTML = "";
+}
+
+
+function openNav() {
+  document.getElementById("mySidenav").style.width = "250px";
+  document.getElementById("main").style.marginLeft = "250px";
+  document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
+}
+
+function closeNav() {
+  document.getElementById("mySidenav").style.width = "0";
+  document.getElementById("main").style.marginLeft = "0";
+  document.body.style.backgroundColor = "#08192c";
 }

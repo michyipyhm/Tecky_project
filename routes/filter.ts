@@ -39,10 +39,7 @@ filter.post("/filter", async (req, res) => {
       JOIN origin ON product.origin_id = origin.id
       JOIN format ON product.format_id = format.id`;
 
-  // let priceHighToLow;
-  // let priceLowToHigh;
-
-  if (Object.keys(req.body).length > 1) {
+  if (Object.keys(req.body).length > 0) {
     query += " WHERE ";
     let count = 0;
 
@@ -71,9 +68,6 @@ filter.post("/filter", async (req, res) => {
 
   console.log("query is", query);
 
-  // priceHighToLow = await pgClient.query(query += `ORDER BY product_price DESC`);
-  // priceLowToHigh = await pgClient.query(query += `ORDER BY product_price ASC`);
-
   let products;
   try {
     products = (await pgClient.query(query)).rows;
@@ -81,8 +75,6 @@ filter.post("/filter", async (req, res) => {
     console.log("error is", err);
     return res.status(500).json({ message: "filter error 1" });
   }
-
-  // console.log("products are", products)
 
   let ObjectArray = Object.keys(req.body);
 
@@ -123,6 +115,7 @@ filter.post("/filter", async (req, res) => {
     JOIN origin ON product.origin_id = origin.id
     JOIN format ON product.format_id = format.id
     `;
+
     console.log("check object req body length", Object.keys(req.body).length);
     if (Object.keys(req.body).length > 0) {
       optionQuery += " WHERE ";

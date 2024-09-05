@@ -1,9 +1,8 @@
 window.onload = async () => {
-  const productInfocardIds = ["card1", "card2", "card3", "card4", "card5", "card6"];
 
 
   try {
-    const response = await fetch("/api/product-info");
+    const response = await fetch("/product-info");
     if (!response.ok) {
       throw new Error("fetch error!");
     }
@@ -36,7 +35,7 @@ window.onload = async () => {
   } catch (error) {
     console.log("Error is:", error);
   }
-  
+
   document.querySelectorAll('.card').forEach(cardDiv => {
     const productNameDiv = cardDiv.querySelector('.product-name')
     const productName = productNameDiv.textContent

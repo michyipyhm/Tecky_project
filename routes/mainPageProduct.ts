@@ -3,12 +3,12 @@ import { pgClient } from '../main';
 
 export const productInfo = express();
 
-  productInfo.get("/api/product-info", async (req: Request, res: Response) => {
+  productInfo.get("/product-info", async (req: Request, res: Response) => {
     try {
       const product_info_result = await pgClient.query(
         `select product_id, image_path, product_name, product_price, created_at from product
           JOIN product_image ON product.id = product_image.product_id 
-        ORDER by created_at`
+        ORDER by created_at DESC`
       );
       res.json(
         product_info_result.rows.map((row) => ({
