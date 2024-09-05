@@ -42,26 +42,33 @@ filter.post("/filter", async (req, res) => {
   // let priceHighToLow;
   // let priceLowToHigh;
 
-  if (Object.keys(req.body).length > 0) {
+  if (Object.keys(req.body).length > 1) {
     query += " WHERE ";
     let count = 0;
 
     for (let key in req.body) {
-      console.log("key is", key);
-      if (count > 0) query += " AND ";
+      console.log("key is", key,"count is",count);
+      if (key == "price_order") continue;
+      if (count > 0) {
+        query += " AND ";
+      }
       query += `${key} = '${req.body[key]}'`;
       count++;
     }
   }
 
-  if (req.body.order === "dec") {
-    query += ` ORDER BY product_price DESC`;
-  } else if (req.body.order === "asc") {
-    query += ` ORDER BY product_price ASC`;
+  let priceOrder;
+
+  if (req.body.price_order === "dec") {
+    priceOrder = "DESC";
+  } else if (req.body.price_order === "asc") {
+    priceOrder = "ASC";
   }
 
+  if (priceOrder) {
+    query += ` ORDER BY product_price ${priceOrder}`;
+  }
 
-  
   console.log("query is", query);
 
   // priceHighToLow = await pgClient.query(query += `ORDER BY product_price DESC`);
@@ -72,7 +79,7 @@ filter.post("/filter", async (req, res) => {
     products = (await pgClient.query(query)).rows;
   } catch (err) {
     console.log("error is", err);
-    res.status(500).json({ message: "filter error 1" });
+    return res.status(500).json({ message: "filter error 1" });
   }
 
   // console.log("products are", products)
@@ -123,6 +130,7 @@ filter.post("/filter", async (req, res) => {
 
       for (let key in req.body) {
         console.log(key);
+        if (key == "price_order") continue;
         if (count > 0) optionQuery += " AND ";
         optionQuery += `${key} = '${req.body[key]}'`;
         count++;
@@ -142,27 +150,11 @@ filter.post("/filter", async (req, res) => {
     }
   }
 
-  // let imagePath ;
-  // try {
-  //   // const image_path_result = await pgClient.query(
-  //   //   `select image_path from product_image`
-  //   // );
-  //   // console.log("result is!!!!!!!!", image_path_result);
-  //   imagePath = (await (pgClient.query(query))).rows;
-  //   console.log("imagePath is >>>>>>>", imagePath);
-  //   // .rows.map((row) => row.image_path);
-
-  // } catch (error) {
-  //   console.log("imagePath error >>>>>", error);
-  //   res
-  //     .status(500)
-  //     .json({ message: "An error occurred while retrieving the images." });
-  // }
-
   res.status(200).json({
     nextCriteria: nextCriteria,
     nextOptions: nextOptions,
     products: products,
+    priceOrder: priceOrder,
   });
   return;
 });

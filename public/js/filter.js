@@ -1,5 +1,84 @@
 const productTypeSelect = document.getElementById("productType");
 
+const decOrderBtn = document.querySelector("#price-dec");
+const ascOrderBtn = document.querySelector("#price-asc");
+
+const handlePriceOrder = async (e) => {
+  decOrderBtn.addEventListener("click", () => {
+    setPriceOrder("dec");
+  });
+  ascOrderBtn.addEventListener("click", () => {
+    setPriceOrder("asc");
+  });
+
+  async function setPriceOrder(order) {
+    const priceOrder = {
+      price_order: order,
+    };
+    let body={};
+
+    const formData = new FormData(document.querySelector("#filterForm"));
+
+    let test = [...formData];
+
+    let limit = test[0].length;
+    console.log("limit is", limit);
+
+    // let count = 0;
+    for (const [key, value] of formData) {
+      console.log(`"js340: ", ${key}: ${value}\n`);
+      body[key] = value.toLowerCase();
+      // count++;
+      // if (count === limit) {
+      //   break;
+      // }
+    }
+
+    console.log("price order is", priceOrder);
+
+    body = { ...body, ...priceOrder };
+
+    console.log("request body is", body);
+
+    try {
+      const res = await fetch("/filter", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(body),
+      });
+      const result = await res.json();
+      console.log("result is", result);
+
+
+  document.querySelector(`#products-container`).innerHTML = "";
+  for (let i = 0; i < result.products.length; i++) {
+    console.log("product is", result.products[i]);
+    let imagePath = result.products[i].image_path;
+    let productName = result.products[i].product_name;
+    let price = result.products[i].product_price;
+
+    document.querySelector(`#products-container`).innerHTML += `
+          <div class="col">
+            <div class="card" id="card1">
+              <img src="${imagePath}" class="gallery-item" alt="gallery" />
+              <div class="card-body">
+                <div class="product-name">${productName}</div>
+                <div class="price">${price}</div>
+                <a href="#" class="btn btn-light">Add to cart</a>
+              </div>
+            </div>
+          </div>`;
+  }
+    } catch {
+      console.error("Error fetching data");
+    }
+  }
+};
+
+handlePriceOrder();
+
 const handleSelectChange = async (e) => {
   e.preventDefault();
   console.log("js 5 selected:", e.target.value, e.target.name + "_area");
@@ -27,7 +106,6 @@ const handleSelectChange = async (e) => {
   }
   const formData = new FormData(document.querySelector("#filterForm"));
   console.log("js 10 formData is", formData);
-
 
   // let ammendBody = Object.keys(body);
   // let startIndex = Math.max(0, ammendBody.length - currentPosition);
@@ -151,88 +229,3 @@ productTypeSelect.addEventListener("change", handleSelectChange);
 function clearContent(target) {
   document.querySelector(`#${target}`).innerHTML = "";
 }
-
-// // Slider
-// const rangevalue = document.querySelector(".slider-container .price-slider");
-// const rangeInputvalue = document.querySelectorAll(".range-input input");
-
-// let priceGap = 100;
-
-// const priceInputvalue = document.querySelectorAll(".price-input input");
-
-// for (let i = 0; i < priceInputvalue.length; i++) {
-//   priceInputvalue[i].addEventListener("input", (e) => {
-//     // Parse min and max values of the range input
-//     let minp = parseInt(priceInputvalue[0].value);
-//     let maxp = parseInt(priceInputvalue[1].value);
-//     let diff = maxp - minp;
-
-//     if (minp < 0) {
-//       alert("minimum price cannot be less than 0");
-//       priceInputvalue[0].value = 0;
-//       minp = 0;
-//     }
-
-//     // Validate the input values
-//     if (maxp > 10000) {
-//       alert("maximum price cannot be greater than 10000");
-//       priceInputvalue[1].value = 10000;
-//       maxp = 10000;
-//     }
-
-//     if (minp > maxp - priceGap) {
-//       priceInputvalue[0].value = maxp - priceGap;
-//       minp = maxp - priceGap;
-
-//       if (minp < 0) {
-//         priceInputvalue[0].value = 0;
-//         minp = 0;
-//       }
-//     }
-
-//     // Check if the price gap is met
-//     // and max price is within the range
-//     if (diff >= priceGap && maxp <= rangeInputvalue[1].max) {
-//       if (e.target.className === "min-input") {
-//         rangeInputvalue[0].value = minp;
-//         let value1 = rangeInputvalue[0].max;
-//         rangevalue.style.left = `${(minp / value1) * 100}%`;
-//       } else {
-//         rangeInputvalue[1].value = maxp;
-//         let value2 = rangeInputvalue[1].max;
-//         rangevalue.style.right = `${100 - (maxp / value2) * 100}%`;
-//       }
-//     }
-//   });
-// }
-
-// for (let i = 0; i < rangeInputvalue.length; i++) {
-//   rangeInputvalue[i].addEventListener("input", (e) => {
-//     let minVal = parseInt(rangeInputvalue[0].value);
-//     let maxVal = parseInt(rangeInputvalue[1].value);
-
-//     let diff = maxVal - minVal;
-
-//     // Check if the price gap is exceeded
-//     if (diff < priceGap) {
-//       // Check if the input is the min range input
-//       if (e.target.className === "min-range") {
-//         rangeInputvalue[0].value = maxVal - priceGap;
-//       } else {
-//         rangeInputvalue[1].value = minVal + priceGap;
-//       }
-//     } else {
-//       // Update price inputs and range progress
-//       priceInputvalue[0].value = minVal;
-//       priceInputvalue[1].value = maxVal;
-//       rangevalue.style.left = `${(minVal / rangeInputvalue[0].max) * 100}%`;
-//       rangevalue.style.right = `${
-//         100 - (maxVal / rangeInputvalue[1].max) * 100
-//       }%`;
-//     }
-//   });
-// }
-
-// console.log("rangevalue is", rangevalue);
-// console.log("rangeInputvalue is", rangeInputvalue);
-// console.log("priceInputvalue is", priceInputvalue);

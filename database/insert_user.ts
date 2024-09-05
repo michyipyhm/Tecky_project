@@ -24,12 +24,26 @@ async function insertUser() {
     }
 
     console.log("insert member done")
-    pgClient.end()
+
+
+}
+
+async function insertAdmin() {
+    await pgClient.query(`INSERT INTO admin (admin_name,password) VALUES ('admin1','${await hashPassword('12345678')}')`)
+    console.log("insert admin done")
 
 }
 
 
-insertUser()
 // INSERT INTO admin (admin_name,password)
 //     VALUES ('admin1', '12345678');
 
+
+
+async function main() {
+    await insertUser()
+    await insertAdmin()
+    pgClient.end()
+}
+
+main()

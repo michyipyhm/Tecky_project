@@ -7,10 +7,18 @@ import { userRouter } from "./routes/userRoutes";
 import { productInfo } from './routes/mainPageProduct';
 import { filter } from './routes/filter';
 import { shoppingCartRouter } from './routes/shoppingCartRoutes';
+<<<<<<< HEAD
+import { shoppingCartDeleteRoutes} from './routes/shoppingCartDeleteRoutes';
+import { shoppingCartSendOrder} from './routes/shoppingCartSendOrder';
+import { orderRoutes} from './routes/orderRoutes';
+import { stripeCheckout} from './routes/stripeCheckout';
+import { isAdminLoggedIn } from "./utils/admin";
+=======
 import { shoppingCartDeleteRoutes } from './routes/shoppingCartDeleteRoutes';
 import { shoppingCartSendOrder } from './routes/shoppingCartSendOrder';
 import { orderRoutes } from './routes/orderRoutes';
 import { stripeCheckout } from './routes/stripeCheckout';
+>>>>>>> 8f054e0df910000e75b83538630b2028130a77f0
 
 const app = express();
 
@@ -40,6 +48,7 @@ app.use(
 declare module "express-session" {
   interface SessionData {
     userId?: number;
+    adminName: string
   }
 }
 
@@ -53,6 +62,7 @@ app.use('/', filter)
 
 app.use(express.static("public"));
 app.use(isLoggedIn, express.static("private"));
+app.use(isAdminLoggedIn, express.static("admin"));
 
 app.use((req, res) => {
   res.redirect("404.html");
