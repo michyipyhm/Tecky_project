@@ -12,6 +12,7 @@ export const productInfo = express();
       );
       res.json(
         product_info_result.rows.map((row) => ({
+          id: row.id,
           product_name: row.product_name,
           product_price: row.product_price,
           image_path: row.image_path,
@@ -26,6 +27,7 @@ export const productInfo = express();
     }
   });
   
+//將product加入購物車
 productInfo.post("/addToCart", async (req, res) => {
   const userId = req.session.userId
   const productName = req.body.name

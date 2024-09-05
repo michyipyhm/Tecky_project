@@ -27,7 +27,7 @@ window.onload = async () => {
 
       console.log("pricePath is:", pricePath);
 
-      idElement.innerHTML = `WSP012-${idPath}`;
+      idElement.innerHTML = idPath;
       imgElement.src = imagePath;
       nameElement.innerHTML = namePath;
       priceElement.innerHTML = `$ ${pricePath}`;
@@ -39,28 +39,37 @@ window.onload = async () => {
   document.querySelectorAll('.card').forEach(cardDiv => {
     const productNameDiv = cardDiv.querySelector('.product-name')
     const productName = productNameDiv.textContent
+    const productIdSpan = cardDiv.querySelector('.product-id')
+    const productId = productIdSpan.textContent
     const addToCartBtns = cardDiv.querySelectorAll('.btn.btn-light')
+    const checkProductDetails = cardDiv.querySelectorAll('.gallery-item')
 
     addToCartBtns.forEach(button => {
       button.addEventListener('click', async (e) => {
         e.preventDefault()
-        // console.log(productName)
         const name = productName
         const body = {
-            name: name
+          name: name
         }
         const res = await fetch("/addToCart", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(body)
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(body)
         })
         const data = await res.json()
         if (res.ok) {
-            alert(data.message);
+          alert(data.message);
         }
+      })
     })
+    checkProductDetails.forEach(button => {
+      button.addEventListener('click', async (e) => {
+        e.preventDefault()
+        const id = productId
+        window.location.href = `/product.html?product=${id}`
+      })
     })
   })
 }
