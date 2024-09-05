@@ -13,6 +13,10 @@ import { orderRoutes} from './routes/orderRoutes';
 import { stripeCheckout} from './routes/stripeCheckout';
 import { isAdminLoggedIn } from "./utils/admin";
 import { productRoutes} from './routes/productRoutes';
+<<<<<<< HEAD
+
+=======
+>>>>>>> d70c3b339170842a31beaa9e19aa5e6568643ab0
 
 const app = express();
 

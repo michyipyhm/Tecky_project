@@ -3,7 +3,7 @@ import { pgClient } from '../main';
 
 export const productInfo = express();
 
-  productInfo.get("/api/product-info", async (req: Request, res: Response) => {
+  productInfo.get("/product-info", async (req: Request, res: Response) => {
     try {
       const product_info_result = await pgClient.query(
         `select product_id, image_path, product_name, product_price, created_at from product
@@ -27,6 +27,7 @@ export const productInfo = express();
     }
   });
   
+//將product加入購物車
 productInfo.post("/addToCart", async (req, res) => {
   const userId = req.session.userId
   const productName = req.body.name

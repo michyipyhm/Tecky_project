@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     productDiv.className = 'product';
     productDiv.innerHTML = `
         <div class="firstSection">
-            <div class="photo"></div>
+            <div class="photo"><img src="${product.image_path}" width="500" height="500"/></div>
             <div class="productBtn">
                 <div class="price">$${product.product_price}</div>
                 <div class="productId">WSP012-${product.id}</div>
@@ -25,6 +25,13 @@ document.addEventListener('DOMContentLoaded', async () => {
         <div class="secondSection>
             <div class="description">
             <h2>Description</h2>
+            <div class="cameraType">Type: ${product.camera_type}</div>
+            <div class="brand">Brand: ${product.brand_name}</div></div>
+            <div class="origin">Origin Country: ${product.origin_country}</div>
+            <div class="year">Year: ${product.production_year}</div>
+            <div class="format">Format: ${product.format_name}</div>
+            <div class="weight">Weight: ${product.weight}</div>
+            <div class="isoDiv">ISO: <span id="iso>${product.iso}</span></div>
             </div>
         </div>
     `;
