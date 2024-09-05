@@ -13,7 +13,10 @@ import { orderRoutes} from './routes/orderRoutes';
 import { stripeCheckout} from './routes/stripeCheckout';
 import { isAdminLoggedIn } from "./utils/admin";
 import { productRoutes} from './routes/productRoutes';
+<<<<<<< HEAD
 
+=======
+>>>>>>> d70c3b339170842a31beaa9e19aa5e6568643ab0
 
 const app = express();
 
@@ -52,14 +55,14 @@ app.use('/', shoppingCartRouter);
 app.use('/', shoppingCartDeleteRoutes);
 app.use('/', shoppingCartSendOrder);
 app.use('/', orderRoutes);
-app.use('/', productInfo)
-app.use('/', filter)
+app.use('/', productInfo);
+app.use('/', filter);
 app.use('/', productRoutes);
 
+app.use(express.static("uploads"))
 app.use(express.static("public"));
 app.use(isLoggedIn, express.static("private"));
 app.use(isAdminLoggedIn, express.static("admin"));
-
 app.use((req, res) => {
   res.redirect("404.html");
 });

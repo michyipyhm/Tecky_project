@@ -72,7 +72,8 @@ userRouter.get("/userprofile", async (req: Request, res: Response) => {//http://
 
   res.json({ message: "userprofile", user: userRows[0] })
 })
-//////////////////////////////////////////
+
+///////////////////////////////////////////////////////////////
 
 userRouter.post("/logout", async (req: Request, res: Response) => {
   if (req.session.userId) {
@@ -94,6 +95,8 @@ userRouter.post("/updateprofile", async (req: Request, res: Response) => {//http
 
   const data = req.body;
   // console.log("data:[" + JSON.stringify(data) + "]")
+  const password = data.password;
+  // console.log("password:[" + JSON.stringify(password) + "]")
   const nickname = data.nickname;
   // console.log("nickname:[" + JSON.stringify(nickname) + "]")
   const gender = data.gender;
@@ -109,6 +112,7 @@ userRouter.post("/updateprofile", async (req: Request, res: Response) => {//http
     console.log("/updateprofile req.session.userId:[" + req.session.userId + "]");
 
     const sql = `UPDATE member SET 
+    password = '${await hashPassword(password)}',
   nickname = '${nickname} ',
   gender = '${gender}', 
   birthday = '${birthday}', 
@@ -165,7 +169,7 @@ userRouter.post("/adminlogin", async (req: Request, res: Response) => {//http://
 })
 ///////////////////////////////////////////////////
 
-userRouter.post("/addproduct", async (req: Request, res: Response) => {//http://localhost:8080/adminlogin.html
+userRouter.post("/addproduct", async (req: Request, res: Response) => {//http://localhost:8080/addproduct.html
 
   const uploadDir = './uploads'
   const form = formidable({
@@ -225,32 +229,32 @@ VALUES ($1,$2)`;
   }
 });
 
-userRouter.post("/adminchangepw", async (req: Request, res: Response) => {//http://localhost:8080/adminchangepw.html
+userRouter.post("/adminChangePw", async (req: Request, res: Response) => {//http://localhost:8080/adminchangepw.html
   const data = req.body;
-  console.log("data:[" + JSON.stringify(data) + "]");
-  const username = data.username
-  console.log("username:[" + username + "]");
-  // const password = data.password //from client input
-
-  const newpassword = data.newpassword
-
-  const result = ((await pgClient.query(`select * from admin where admin_name = '${username}';`)));
-  const row = result.rows[0]
-  const count = result.rowCount
-  if (count == 0) {
-    res.status(401).json({ message: "The username or password is incorrect." })
-    return
-  } else {
-    const hashPassword = row.newPassword //from database
-    const passwordChecking = await checkPassword({ plainPassword: newpassword, hashedPassword: hashPassword, })
-    if (!passwordChecking) {
-      res.status(401).json({ message: "The username or password is incorrect." });
-      return
-    }
+  const password = data.password;
+  try {
+    const sql = `UPDATE admin SET 
+    password = '${await hashPassword(password)}'
+  WHERE id = '${req.session.userId}'`;
+    await pgClient.query(sql);
+    res.json({ message: "Date updated successfully" });
+  } catch (error) {
+    res.status(500).json({ message: "Failed to update data." });
   }
-  req.session.userId = row.id
-  res.json({ message: "Login successful.", userId: req.session.userId })
-  return;
-
-
 });
+
+//////////////////////////////////////////
+userRouter.get("/adminchangepw", async (req: Request, res: Response) => {
+  const userId = req.session.userId
+  if (!userId) {
+    res.status(401).json({ message: "Please login first." });
+    return;
+  }
+  const sql_1 = `select id, admin_name from admin where id = $1`
+  const userResult = await pgClient.query(sql_1, [userId])
+  console.log(userResult)
+  const userRows = userResult.rows
+  console.log(userRows)
+
+  res.json({ message: "adminprofile", user: userRows[0] })
+})
