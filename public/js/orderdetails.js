@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   let res = await fetch(`/order?orderNum=${orderNumber}`)
 
   let result = await res.json()
+  console.log(result)
   const orderId = document.getElementById('orderNum');
   orderId.textContent = `TECKYACADEMY-C32-WSP012-${orderNumber}`
 
@@ -29,9 +30,9 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     if (orderStatus.textContent === 'Paid') {
       checkOut.style.display = 'none';
-  } else {
-    checkOut.style.display = 'block';
-  }
+    } else {
+      checkOut.style.display = 'block';
+    }
 
     //Stripe
     const stripe = Stripe('pk_test_51PreUORwdDaooQDsXVRYADhkpUyJjq3dMOSpQuv4mYsDcrw1kR9F0l157cC5IeJSOeSC0ipQXwVCy4cy6p2j05F100pYHXCLcU');

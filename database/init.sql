@@ -61,6 +61,8 @@ CREATE TABLE product(
     "pixel" INTEGER,
     "iso" INTEGER,
     "is_used" BOOLEAN ,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (brand_id) REFERENCES brand(id),
     FOREIGN KEY (origin_id) REFERENCES origin(id),
     FOREIGN KEY (format_id) REFERENCES format(id)

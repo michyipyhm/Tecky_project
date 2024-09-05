@@ -14,7 +14,7 @@ shoppingCartRouter.get("/shoppingcart", async (req, res) =>{
         let data = queryResult.rows
         console.log(data)
         let totalPriceQueryResult = await pgClient.query(`select sum(product_price * quantity) as total from shopping_cart 
-join product on product.id = shopping_cart.product_id
+join product on product.id = shopping_cart.product_id   
 where member_id =${userId}; `)
         let totalPrice = totalPriceQueryResult.rows[0];
         res.status(200).json({ data, totalPrice });
