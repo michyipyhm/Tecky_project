@@ -36,7 +36,35 @@ window.onload = async () => {
   } catch (error) {
     console.log("Error is:", error);
   }
-};
+  
+  document.querySelectorAll('.card').forEach(cardDiv => {
+    const productNameDiv = cardDiv.querySelector('.product-name')
+    const productName = productNameDiv.textContent
+    const addToCartBtns = cardDiv.querySelectorAll('.btn.btn-light')
+
+    addToCartBtns.forEach(button => {
+      button.addEventListener('click', async (e) => {
+        e.preventDefault()
+        // console.log(productName)
+        const name = productName
+        const body = {
+            name: name
+        }
+        const res = await fetch("/addToCart", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(body)
+        })
+        const data = await res.json()
+        if (res.ok) {
+            alert(data.message);
+        }
+    })
+    })
+  })
+}
 
 function openNav() {
   document.getElementById("mySidenav").style.width = "250px";
