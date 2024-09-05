@@ -6,7 +6,7 @@
 }
 
 body {
-    background-color: #08192c;
+    background-color: hsl(210, 100%, 56%);
     color: aliceblue;
     margin-left: 10vh;
     margin-right: 10vh;
