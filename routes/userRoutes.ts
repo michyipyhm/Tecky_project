@@ -188,10 +188,10 @@ userRouter.post("/addproduct", async (req: Request, res: Response) => {//http://
     console.log(data, image)
     // console.log("image is ", image.imageuploads[0].newFilename)
 
-    const digital_camera_sql = `INSERT INTO product (product_name, product_type, camera_type, brand_id, origin_id, product_price, product_quantity, production_year, weight, pixel, is_used) 
-  VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11) RETURNING id;`
-    const analog_camera_sql = `INSERT INTO product (product_name, product_type, camera_type, brand_id, origin_id, product_price, product_quantity, production_year, weight, pixel, iso, is_used) 
+    const digital_camera_sql = `INSERT INTO product (product_name, product_type, camera_type, brand_id, origin_id, format_id, product_price, product_quantity, production_year, weight, pixel, is_used) 
   VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12) RETURNING id;`
+    const analog_camera_sql = `INSERT INTO product (product_name, product_type, camera_type, brand_id, origin_id, format_id, product_price, product_quantity, production_year, weight, pixel, iso, is_used) 
+  VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13) RETURNING id;`
     const film_sql = `INSERT INTO product (product_name, product_type,  brand_id, origin_id, format_id, product_price, product_quantity, iso) 
   VALUES ($1,$2,$3,$4,$5,$6,$7,$8) RETURNING id;`
 
@@ -203,10 +203,10 @@ userRouter.post("/addproduct", async (req: Request, res: Response) => {//http://
     if (data.producttype[0] == "camera") {
       if (data.cameratype[0] == "digital") {
         sql = digital_camera_sql
-        dataArray = [data.productname[0], data.producttype[0], data.cameratype[0], data.brand[0], data.origin[0], data.productprice[0], data.productquantity[0], data.productionyear[0], data.weight[0], data.pixel[0], data.isused[0]]
+        dataArray = [data.productname[0], data.producttype[0], data.cameratype[0], data.brand[0], data.origin[0], data.format[0], data.productprice[0], data.productquantity[0], data.productionyear[0], data.weight[0], data.pixel[0], data.isused[0]]
       } else {
         sql = analog_camera_sql
-        dataArray = [data.productname[0], data.producttype[0], data.cameratype[0], data.brand[0], data.origin[0], data.productprice[0], data.productquantity[0], data.productionyear[0], data.weight[0], data.pixel[0], data.iso[0], data.isused[0]]
+        dataArray = [data.productname[0], data.producttype[0], data.cameratype[0], data.brand[0], data.origin[0], data.format[0], data.productprice[0], data.productquantity[0], data.productionyear[0], data.weight[0], data.pixel[0], data.iso[0], data.isused[0]]
       }
     } else {
       sql = film_sql
