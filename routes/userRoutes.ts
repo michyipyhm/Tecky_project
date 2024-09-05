@@ -176,7 +176,7 @@ userRouter.post("/addproduct", async (req: Request, res: Response) => {//http://
     uploadDir,
     keepExtensions: true,
     maxFiles: 1,
-    maxFileSize: 2000 * 1024, // 2MB
+    maxFileSize: 20000 * 1024, // 20MB
     filter: part => part.mimetype?.startsWith('image/') || false,
   })
   try {
