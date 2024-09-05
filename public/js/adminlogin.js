@@ -25,7 +25,7 @@ window.onload = () => {
         const data = await res.json()
         if (res.ok) {
 
-            window.location = "/adminchangepw.html"
+            window.location = "/admin.html"
         } else {
             alert(data.message)
         }

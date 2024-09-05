@@ -12,8 +12,6 @@ function closeNav() {
     document.body.style.backgroundColor = "white";
 }
 
-
-
 window.onload = async () => {
     const usernameLabel = document.querySelector("#usernameLabel");
     const nicknameLabel = document.querySelector("#nicknameLabel");
@@ -23,25 +21,17 @@ window.onload = async () => {
     const addressLabel = document.querySelector("#addressLabel");
     const emailLabel = document.querySelector("#emailLabel");
 
-
-
     function formatDate(date) {
         const year = date.getFullYear();
         const month = String(date.getMonth() + 1).padStart(2, '0');
         const day = String(date.getDate()).padStart(2, '0');
-
         return `${day}-${month}-${year}`;
     }
 
-
-    
     await getUserProfile();
     async function getUserProfile() {
         const res = await fetch("/userprofile");
         const data = await res.json();
-        
-
-
         if (res.ok) {
             const user = data.user;
             const date = formatDate(new Date(user.birthday))
@@ -89,14 +79,13 @@ document.addEventListener('DOMContentLoaded', (e) => {
     document.querySelector("#updatedBtn")
         .addEventListener('click', async function (e) {
             e.preventDefault()
-
+            let password = document.getElementById("newPwinput").value;
             let nickname = document.getElementById("nicknameinput").value;
             let gender = document.getElementById("genderSelect").value;
             let birthday = document.getElementById("birthdayinput").value;
             let phone = document.getElementById("phoneinput").value;
             let address = document.getElementById("addressinput").value;
             let email = document.getElementById("emailinput").value;
-            
 
             if (email === null || email === "") {
                 alert("Email can't empty");
@@ -104,6 +93,7 @@ document.addEventListener('DOMContentLoaded', (e) => {
             } else {
                 // console.log("hihihi9999")
                 const formObject = {
+                    password: password,
                     nickname: nickname,
                     gender: gender,
                     birthday: birthday,
@@ -111,7 +101,6 @@ document.addEventListener('DOMContentLoaded', (e) => {
                     address: address,
                     email: email,
                 }
-                // console.log("hihii7777")
                 const res = await fetch('/updateprofile', {
                     method: 'POST',
                     headers: {
@@ -119,19 +108,15 @@ document.addEventListener('DOMContentLoaded', (e) => {
                     },
                     body: JSON.stringify(formObject),
                 }
-            )
-                // console.log("hihi444")
+                )
                 const data = await res.json()
-                console.log("data:[" + JSON.stringify(data) + "]")
+                // console.log("data:[" + JSON.stringify(data) + "]")
                 if (res.ok) {
-                    // console.log("hihi")
+                    alert("Updated")
                     window.location.href = "/profile.html";
                 } else {
                     alert(data.message, "Update Failed")
                 }
-                
             }
-
-            
         })
 })
