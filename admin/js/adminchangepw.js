@@ -11,7 +11,7 @@ function closeNav() {
 }
 
 window.onload = async () => {
-    const usernameLabel = document.querySelector("#adminChangePw-form");
+    const usernameLabel = document.querySelector("#usernameLabel");
 
     await getAdminProfile();
     async function getAdminProfile() {

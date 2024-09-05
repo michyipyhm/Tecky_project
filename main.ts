@@ -55,10 +55,10 @@ app.use('/', productInfo);
 app.use('/', filter);
 app.use('/', productRoutes);
 
+app.use(express.static("uploads"))
 app.use(express.static("public"));
 app.use(isLoggedIn, express.static("private"));
 app.use(isAdminLoggedIn, express.static("admin"));
-
 app.use((req, res) => {
   res.redirect("404.html");
 });

@@ -72,21 +72,7 @@ userRouter.get("/userprofile", async (req: Request, res: Response) => {//http://
 
   res.json({ message: "userprofile", user: userRows[0] })
 })
-//////////////////////////////////////////
-userRouter.get("/adminchangepw", async (req: Request, res: Response) => {
-  const userId = req.session.userId
-  if (!userId) {
-    res.status(401).json({ message: "Please login first." });
-    return;
-  }
-  const sql_1 = `select id, admin_name from admin where id = $1`
-  const userResult = await pgClient.query(sql_1, [userId])
-  console.log(userResult)
-  const userRows = userResult.rows
-  console.log(userRows)
 
-  res.json({ message: "adminprofile", user: userRows[0] })
-})
 ///////////////////////////////////////////////////////////////
 
 userRouter.post("/logout", async (req: Request, res: Response) => {
@@ -256,3 +242,19 @@ userRouter.post("/adminChangePw", async (req: Request, res: Response) => {//http
     res.status(500).json({ message: "Failed to update data." });
   }
 });
+
+//////////////////////////////////////////
+userRouter.get("/adminchangepw", async (req: Request, res: Response) => {
+  const userId = req.session.userId
+  if (!userId) {
+    res.status(401).json({ message: "Please login first." });
+    return;
+  }
+  const sql_1 = `select id, admin_name from admin where id = $1`
+  const userResult = await pgClient.query(sql_1, [userId])
+  console.log(userResult)
+  const userRows = userResult.rows
+  console.log(userRows)
+
+  res.json({ message: "adminprofile", user: userRows[0] })
+})
