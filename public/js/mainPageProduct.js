@@ -1,9 +1,8 @@
 window.onload = async () => {
   const cardIds = ["card1", "card2", "card3", "card4", "card5", "card6"];
-
+  //main page load product img
   try {
     const response = await fetch("/api/product-image");
-    console.log("response is:", response)
     if (!response.ok) {
       throw new Error("fetch error!");
     }
@@ -11,24 +10,21 @@ window.onload = async () => {
     cardIds.forEach((cardId, index) => {
       const imgElement = document.querySelector(`#${cardId} >img`);
       const imagePath = imagePaths[index];
-      // console.log("****imagePath for ${cardId} is****", imagePath);
       imgElement.src = imagePath;
-      // console.log("final srccc for ${cardId} is***", imgElement.src);
     });
   } catch (error) {
     console.log("Error is:", error);
   }
-
+  //main page load product info
   try {
     const response = await fetch("/api/product-info");
     if (!response.ok) {
       throw new Error("fetch error!");
     }
     const products = await response.json();
-    // console.log(products);
+    console.log(products);
     products.forEach((products, index) => {
       const cardId = `card${index + 1}`;
-      // console.log("cardId is:", cardId);
 
       const nameElement = document.querySelector(
         `#${cardId} .card-body .product-name`
@@ -42,33 +38,44 @@ window.onload = async () => {
   } catch (error) {
     console.log("Error is:", error);
   }
+  //main page add to cart
   document.querySelectorAll('.card').forEach(cardDiv => {
     const productNameDiv = cardDiv.querySelector('.product-name')
     const productName = productNameDiv.textContent
     const addToCartBtns = cardDiv.querySelectorAll('.btn.btn-light')
+    const checkProductDetails = cardDiv.querySelectorAll('.gallery-item')
 
     addToCartBtns.forEach(button => {
       button.addEventListener('click', async (e) => {
         e.preventDefault()
-        // console.log(productName)
         const name = productName
         const body = {
-            name: name
+          name: name
         }
         const res = await fetch("/addToCart", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(body)
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(body)
         })
         const data = await res.json()
         if (res.ok) {
-            alert(data.message);
+          alert(data.message);
         }
+      })
     })
+    checkProductDetails.forEach(button => {
+      button.addEventListener('click', async (e) => {
+        e.preventDefault()
+        const name = productName
+        window.location.href = `/product.html?product=${name}`
+      })
     })
   })
+  //main page click to product page
+
+
 }
 
 function openNav() {
