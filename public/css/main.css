@@ -8,15 +8,12 @@
 * {
     margin: 0;
     padding: 0;
-    /* box-sizing: border-box; */
 }
 
 
 body {
     background-color: #fafdff;
     color: #08192c;
-    /* margin-left: 10vh;
-    margin-right: 10vh; */
 }
 
 /* navbar */
