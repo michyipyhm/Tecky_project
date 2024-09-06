@@ -102,7 +102,6 @@ body {
 
 .carousel-indicators {
   bottom: -50px;
-
 }
 
  .carousel-indicators .active {
@@ -115,10 +114,8 @@ body {
 }
   
 .carousel-caption {
-    /* background-color: rgba(0, 0, 0, 0.9); */
     bottom: auto;
     height: 50%;
- 
 }
 
 .carousel-inner-parent {
@@ -197,6 +194,7 @@ body {
   color: #08192c;
 }
 
+/*product card*/
 #third-section {
   height: auto;
   padding-bottom: 10%;
@@ -301,6 +299,7 @@ img{
   border-color: rgba(254, 190, 152, 0.6);
 }
 
+/*footer*/
 .contact-us-box{
   display: flex;
   justify-content: flex-start;
@@ -316,13 +315,4 @@ img{
 .fa-lg{
   font-size: 30px;
 }
-/* .footer {
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    background-color: rgba(254, 190, 152, 1);
-    color: black;
-    text-align: center;
- }
-  */
+
