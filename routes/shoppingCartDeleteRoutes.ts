@@ -6,8 +6,9 @@ export const shoppingCartDeleteRoutes = express.Router()
 shoppingCartDeleteRoutes.delete("/deleteShoppingCartItem", async (req, res) =>{
     const data = req.body
     const id = data.id
+    console.log("You are delected product", data)
     try {
-        await pgClient.query(`DELETE FROM shopping_cart WHERE id = '${id}';`)
+        await pgClient.query(`DELETE FROM shopping_cart WHERE product_id = '${id}';`)
     res.status(200).json({ message: 'Item deteted!' });
     } catch (err) {
       console.error(err);
