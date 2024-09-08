@@ -30,7 +30,7 @@ shoppingCartRouter.post('/selectedQuantity', async (req, res) =>{
     let quantity = data.quantity
     console.log(data)
     try {
-        await pgClient.query(`UPDATE shopping_cart SET quantity = '${quantity}' WHERE id = '${id}';`)
+        await pgClient.query(`UPDATE shopping_cart SET quantity = '${quantity}' WHERE product_id = '${id}';`)
     res.status(200).json({ message: 'Quantity updated!' });
     } catch (err) {
       console.error(err);
