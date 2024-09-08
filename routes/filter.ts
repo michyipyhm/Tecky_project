@@ -3,6 +3,30 @@ import { pgClient } from "../main";
 
 export const filter = express.Router();
 
+filter.get("/getProduct", async (req: Request, res: Response) => {
+  try {
+    const product_info_result = await pgClient.query(
+      `select product_id, image_path, product_name, product_price, created_at from product
+        JOIN product_image ON product.id = product_image.product_id 
+      ORDER by created_at DESC`
+    );
+    res.json(
+      product_info_result.rows.map((row) => ({
+        id: row.id,
+        product_name: row.product_name,
+        product_price: row.product_price,
+        image_path: row.image_path,
+        product_id: row.product_id,
+        created_at: row.created_at,
+      }))
+    );
+  } catch (error) {
+    res.status(500).json({
+      message: "An error occurred while retrieving the product information.",
+    });
+  }
+});
+
 let flow_one = ["product_type", "camera_type"];
 
 let flow_one_Digital = [
@@ -79,7 +103,7 @@ filter.post("/filter", async (req, res) => {
   let ObjectArray = Object.keys(req.body);
 
   let lastCriteria =
-    ObjectArray.length > 0 ? ObjectArray[ObjectArray.length - 1] : "none";
+    ObjectArray.length >= 0 ? ObjectArray[ObjectArray.length - 1] : "none";
   console.log("last criteria is", lastCriteria);
 
   let nextCriteria;
@@ -117,7 +141,7 @@ filter.post("/filter", async (req, res) => {
     `;
 
     console.log("check object req body length", Object.keys(req.body).length);
-    if (Object.keys(req.body).length > 0) {
+    if (Object.keys(req.body).length >= 0) {
       optionQuery += " WHERE ";
       let count = 0;
 

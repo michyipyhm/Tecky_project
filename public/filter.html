@@ -59,12 +59,12 @@
                   class="nav-link mx-lg-2 active"
                   aria-current="page"
                   id="nav-home"
-                  href="#"
+                  href="/"
                   >Home</a
                 >
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="./filter.html">Camera</a>
+                <a class="nav-link" href="./filter.html">Products</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="./shoppingcart.html">Shopping Cart</a>
@@ -91,62 +91,57 @@
       </div>
     </nav>
 
-    <div id="second-section">
-      <h1>Products</h1>
-      <form id="filterForm">
-        <div id="product_type_area">
-          <label for="productType">Product Type:</label>
-          <select name="product_type" id="productType">
-            <option value="" disabled selected>Select Product Type</option>
-            <option value="camera">Camera</option>
-            <option value="film">Film</option>
-          </select>
+    <div class="product-title-container">
+      <div class="product-title-inner">
+        <div class="product-title-topic">
+          <a href="/" class="product-title-topic-link text-decoration-none"
+            >Home</a
+          ><span> / </span><a>Collection</a><span> / </span>
         </div>
-        <div id="camera_type_area"></div>
-        <div id="is_used_area"></div>
-        <div id="format_name_area"></div>
-        <div id="iso_area"></div>
-        <div id="origin_country_area"></div>
-        <div id="brand_name_area"></div>
-      </form>
-      <div id="results"></div>
-
-      <div class="price-input-container">
-        <div class="price-input">
-          <div class="price-field">
-            <span>FROM</span>
-            <input type="number" class="min-input" value="80" />
-          </div>
-          <div class="price-field">
-            <span>TO</span>
-            <input type="number" class="max-input" value="3000" />
-          </div>
-        </div>
-        <div class="slider-container">
-          <div class="price-slider"></div>
-        </div>
-      </div>
-
-      <div>
-        <button type="dec-button" class="btn btn-primary" id="price-dec">
-          Price DEC
-        </button>
-        <button type="asc-button" class="btn btn-primary" id="price-asc">
-          Price ASC
-        </button>
+        <div id="product-title">Products</div>
       </div>
     </div>
+    <div class="full-width-line"></div>
 
+    <div class="filter-product-container">
+      <div id="second-section d-none d-sm-block">
+        <div class="sort-container">
+            <button type="dec-button" class="btn btn-primary" id="price-dec">
+              Price High to Low
+            </button>
+            <button type="asc-button" class="btn btn-primary" id="price-asc">
+              Price Low to High
+            </button>
+          </div>
+        <form id="filterForm">
+          <div class="form-group" id="product_type_area">
+            <label for="productType">Product Type:</label>
+            <select name="product_type" id="productType">
+              <option value="" disabled selected>Select Product Type</option>
+              <option value="camera">Camera</option>
+              <option value="film">Film</option>
+            </select>
+          </div>
+          <div class="form-group" id="camera_type_area"></div>
+          <div class="form-group" id="is_used_area"></div>
+          <div class="form-group" id="format_name_area"></div>
+          <div class="form-group" id="iso_area"></div>
+          <div class="form-group" id="origin_country_area"></div>
+          <div class="form-group" id="brand_name_area"></div>
+        </form>  
+      </div>
+      <div id="results"></div>
 
-    <div id="third-section">
-      <section class="gallery min-vh-100">
-        <div class="container-lg">
-          <div
-            id="products-container"
-            class="row gy-4 row-cols-1 row-cols-sm-2 row-cols-md-3"
-          ></div>
-        </div>
-      </section>
+      <div id="third-section">
+        <section class="gallery min-vh-100">
+          <div class="container-lg">
+            <div
+              id="products-container"
+              class="row gy-4 row-cols-1 row-cols-sm-2 row-cols-md-3"
+            ></div>
+          </div>
+        </section>
+      </div>
     </div>
 
     <div id="newsletter-constainer" class="py-5">

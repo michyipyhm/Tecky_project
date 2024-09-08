@@ -83,46 +83,103 @@ body {
   width: 70%;
 }
 
-/*Price input*/
-.price-input-container {
-  width: 100%;
+.product-title-container {
+  width: 95%;
+  height: 150px;
+  margin: 20px;
 }
 
-.price-input .price-field {
+/*Product filter*/
+.filter-product-container {
   display: flex;
-  margin-bottom: 10px;
-  margin-top: 10px;
 }
 
-.price-field span {
+.second-section {
+  width: 25%;
+  height: auto;
+  padding: 50px 0;
+  background-color: aqua;
+  position: fixed;
+}
+
+
+
+.product-title-topic {
+  font-size: 14px;
+  margin-left: 5px;
+  color: #6d757d;
+}
+
+.product-title-topic .product-title-topic-link {
+  color: #6d757d;
+}
+
+.product-title-inner #product-title {
+  font-size: 60px;
+  color: #08192c;
+  margin-top: 10px;
+  font-family: "Cinzel", serif
+}
+
+.full-width-line {
+  width: 100%;
+  height: 1px; 
+  background-color: #d6d6d6;
+  margin:  20px 0; /* Spacing above and below the line */
+}
+
+#filterForm {
+  /* width: 95%; */
+  height: 150px;
+  margin: 20px;
+}
+
+.form-group {
+  font-size: 18px;
+  margin: 20px 0;
+}
+
+.form-group label {
+  font-weight: 500;
   margin-right: 10px;
-  font-size: 15px;
 }
 
-.price-field input {
-  flex: 1;
-  height: 25px;
-  font-size: 15px;
-  border-radius: 9px;
-  text-align: center;
-  border: 0px;
-  background: #e4e4e4;
+.form-group select {
+  border: none;
+  border-bottom: 1px solid #ffd8c2;
+  border-radius: 0;
+  background-color: transparent;
+  color: #6d757d;
+  font-size: 18px;
+  padding: 5px 10px;
+  transition: 1s border-color;
 }
 
-.price-input {
-  width: 28%;
-  font-size: 19px;
+.form-group select:focus {
+  border-color: #ffd8c2;
 }
 
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
+.sort-container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+ 
 }
 
+.sort-container .btn {
+  background-color: transparent;
+  color: #6d757d;
+  border: #ffd8c2  1px solid;
+  border-radius: 50px;
+  padding: 8px 20px;
+  transition: 0.3s background-color;
+  margin-top: 15px;
+  margin-right: 10px;
+}
 
-.btn {
-  margin-top: 10px;
+.sort-container .btn:hover {
+  background-color: #ffd8c2;
+  color: #08192c;
 }
 
 /*product card*/
@@ -137,7 +194,7 @@ img{
 
 .gallery{
   background-color: rgb(255, 255, 255);
-  padding: 0px 10%;
+  /* padding: 0px 10%; */
   margin-top: 30px;
 }
   
