@@ -23,7 +23,7 @@ INSERT INTO origin ( origin_country)
 
 
 INSERT INTO format ( format_name)
-    VALUES ( '135mm'), ( '120mm');
+    VALUES ( '135mm'), ( 'digital');
 
 
 /*相機*/
@@ -106,6 +106,7 @@ INSERT INTO product_image (product_id, image_path)
     (6, '/photo/film/kodakcolourplus200.webp'),
     -- (14, '/photo/film/kodakgold200.webp'),
     (7,'/photo/film/kodakultramax400.webp');
+
 
 
 INSERT INTO shopping_cart (product_id,member_id,quantity) VALUES
