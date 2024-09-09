@@ -13,8 +13,8 @@ export const isAdminLoggedIn = async (
         if (count === 1 && row.admin_name === req.session.adminName) {
             next()
         } else {
-            // res.status(401).json({message: "please login first"})
-            res.redirect("/login.html")
+            res.status(401).json({message: "please login first"})
+            res.redirect("/adminlogin.html")
             // redirect to index page
         }
     }
