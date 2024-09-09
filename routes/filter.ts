@@ -6,7 +6,7 @@ export const filter = express.Router();
 filter.get("/getProduct", async (req: Request, res: Response) => {
   try {
     const product_info_result = await pgClient.query(
-      `select product_id, image_path, product_name, product_price, created_at from product
+      `select product_id, image_path, product_name, product_price, product_quantity, created_at from product
         JOIN product_image ON product.id = product_image.product_id 
       ORDER by created_at DESC`
     );
@@ -17,6 +17,7 @@ filter.get("/getProduct", async (req: Request, res: Response) => {
         product_price: row.product_price,
         image_path: row.image_path,
         product_id: row.product_id,
+        product_quantity: row.product_quantity,
         created_at: row.created_at,
       }))
     );

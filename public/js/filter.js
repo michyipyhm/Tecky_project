@@ -52,15 +52,32 @@ const handlePriceOrder = async (e) => {
         console.log("product is", result.products[i]);
         let imagePath = result.products[i].image_path;
         let productId = result.products[i].product_id;
+        let quantity = result.products[i].product_quantity;
         let productName = result.products[i].product_name;
         let price = result.products[i].product_price;
+
+        let quantityText = "";
+        let quantityClass = "";
+
+        if (quantity > 5) {
+          quantityText = "In stock";
+          quantityClass = "quantity-green";
+        } else if (quantity <= 0) {
+          quantityText = "Out of stock";
+          quantityClass = "quantity-gray";
+        } else {
+          quantityText = `Still ${quantity} left`;
+          quantityClass = "quantity-red";
+        }
 
         document.querySelector(`#products-container`).innerHTML += `
           <div class="col">
             <div class="card" id="card1">
               <img src="${imagePath}" class="gallery-item" alt="gallery" />
               <div class="card-body">
-                <div class="producy-idDiv">WSP012-<span class="product-id">${productId}</span></div>
+                <div class="producy-idDiv">WSP012-<span class="product-id">${productId}</span>
+                &nbsp;<span class="quantity ${quantityClass}">${quantityText}</span>
+                </div>
                 <div class="product-name">${productName}</div>
                 <div class="price">$ ${price}</div>
                 <a href="#" class="btn btn-light">Add to cart</a>
@@ -76,39 +93,52 @@ const handlePriceOrder = async (e) => {
 
 window.onload = async () => {
   try {
-    handlePriceOrder();
     const res = await fetch("/getProduct");
     const result = await res.json();
-    
+
     console.log("result is", result);
     document.querySelector(`#products-container`).innerHTML = "";
     for (let i = 0; i < result.length; i++) {
-      console.log("product is", result[i].product_name);
+      console.log("102 product is", result[i].product_name);
       let imagePath = result[i].image_path;
       let productId = result[i].product_id;
+      let quantity = result[i].product_quantity;
       let productName = result[i].product_name;
       let price = result[i].product_price;
+
+      let quantityText = "";
+      let quantityClass = "";
+
+      if (quantity > 5) {
+        quantityText = "In stock";
+        quantityClass = "quantity-green";
+      } else if (quantity <= 0) {
+        quantityText = "Out of stock";
+        quantityClass = "quantity-gray";
+      } else {
+        quantityText = `Still ${quantity} left`;
+        quantityClass = "quantity-red";
+      }
 
       document.querySelector(`#products-container`).innerHTML += `
         <div class="col">
           <div class="card" id="card1">
             <img src="${imagePath}" class="gallery-item" alt="gallery" />
             <div class="card-body">
-              <div class="producy-idDiv">WSP012-<span class="product-id">${productId}</span></div>
+              <div class="producy-idDiv">WSP012-<span class="product-id">${productId}</span>                
+              &nbsp;<span class="quantity ${quantityClass}">${quantityText}</span>
+              </div>
               <div class="product-name">${productName}</div>
               <div class="price">$ ${price}</div>
               <a href="#" class="btn btn-light">Add to cart</a>
             </div>
           </div>
         </div>`;
-    } 
+    }
   } catch (error) {
     console.error("Error fetching data");
   }
 };
-
-
-
 
 handlePriceOrder();
 
@@ -242,13 +272,13 @@ const handleSelectChange = async (e) => {
     let quantityClass = "";
 
     if (quantity > 5) {
-      quantityText = "貨量充足";
+      quantityText = "In stock";
       quantityClass = "quantity-green";
     } else if (quantity <= 0) {
-      quantityText = "缺貨";
+      quantityText = "Out of stock";
       quantityClass = "quantity-gray";
     } else {
-      quantityText = `剩餘 ${quantity} 件`;
+      quantityText = `Still ${quantity} left`;
       quantityClass = "quantity-red";
     }
 
@@ -267,18 +297,18 @@ const handleSelectChange = async (e) => {
             </div>
           </div>`;
   }
-  document.querySelectorAll('.card').forEach(cardDiv => {
-    const productNameDiv = cardDiv.querySelector('.product-name')
-    const productName = productNameDiv.textContent
-    const productIdSpan = cardDiv.querySelector('.product-id')
-    const productId = productIdSpan.textContent
-    const addToCartBtns = cardDiv.querySelectorAll('.btn.btn-light')
-    const checkProductDetails = cardDiv.querySelectorAll('.gallery-item')
+  document.querySelectorAll(".card").forEach((cardDiv) => {
+    const productNameDiv = cardDiv.querySelector(".product-name");
+    const productName = productNameDiv.textContent;
+    const productIdSpan = cardDiv.querySelector(".product-id");
+    const productId = productIdSpan.textContent;
+    const addToCartBtns = cardDiv.querySelectorAll(".btn.btn-light");
+    const checkProductDetails = cardDiv.querySelectorAll(".gallery-item");
 
-    addToCartBtns.forEach(button => {
-      button.addEventListener('click', async (e) => {
-        e.preventDefault()
-        const name = productName
+    addToCartBtns.forEach((button) => {
+      button.addEventListener("click", async (e) => {
+        e.preventDefault();
+        const name = productName;
         const body = {
           name: name,
         };
@@ -293,7 +323,7 @@ const handleSelectChange = async (e) => {
         if (res.ok) {
           alert(data.message);
         } else {
-          alert(data.message)
+          alert(data.message);
         }
       });
     });
@@ -312,4 +342,3 @@ productTypeSelect.addEventListener("change", handleSelectChange);
 function clearContent(target) {
   document.querySelector(`#${target}`).innerHTML = "";
 }
-
