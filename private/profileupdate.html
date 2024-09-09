@@ -35,18 +35,63 @@
 </head>
 
 <body>
-  <!-- <nav class="navbar navbar-expand-lg navbar-light bg-light"> -->
-  <div id="mySidenav" class="sidenav">
-    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-    <a href="#">About</a>
-    <a href="#">Product</a>
-    <a href="#">Clients</a>
-    <a href="#">Clients</a>
-    <a href="#">Clients</a>
-    <a href="#">Clients</a>
-  </div>
-  <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Home</span>
-  <!-- </nav> -->
+  <nav class="navbar navbar-expand-lg bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand me-auto" href="/">Film Village</a>
+
+      <div
+        class="offcanvas offcanvas-end"
+        tabindex="-1"
+        id="offcanvasNavbar"
+        aria-labelledby="offcanvasNavbarLabel"
+      >
+        <div class="offcanvas-header">
+          <div class="offcanvas-title" id="offcanvasNavbarLabel">
+            Film Village
+          </div>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="offcanvas"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="offcanvas-body">
+          <ul class="navbar-nav justify-content-center flex-grow-1 pe-3">
+            <li class="nav-item">
+              <a class="nav-link mx-lg-2 active" aria-current="page" id="nav-home" href="#"
+                >Home</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="./filter.html">Products</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="./shoppingcart.html">Shopping Cart</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="./order.html">Order</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">About</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      
+      <a href="./login.html" class="loginBtn text-decoration-none"
+        >Login</a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="offcanvas"
+        data-bs-target="#offcanvasNavbar"
+        aria-controls="offcanvasNavbar"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    </div>
+  </nav>
 
   
     <div class="container">
