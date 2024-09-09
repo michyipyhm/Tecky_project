@@ -9,68 +9,67 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
     crossorigin="anonymous"></script>
-  <link rel="stylesheet" href="css/profileupdate.css">"
+  <link rel="stylesheet" href="/public/css/profileupdate.css">"
   <title>Profile Update</title>
 </head>
 
 <body>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div id="mySidenav" class="sidenav">
-      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-      <a href="#">About</a>
-      <a href="#">Product</a>
-      <a href="#">Clients</a>
-      <a href="#">Clients</a>
-      <a href="#">Clients</a>
-      <a href="#">Clients</a>
-    </div>
-    <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Home</span>
-  </nav>
+  <!-- <nav class="navbar navbar-expand-lg navbar-light bg-light"> -->
+  <div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <a href="#">About</a>
+    <a href="#">Product</a>
+    <a href="#">Clients</a>
+    <a href="#">Clients</a>
+    <a href="#">Clients</a>
+    <a href="#">Clients</a>
+  </div>
+  <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Home</span>
+  <!-- </nav> -->
 
-  <form id="updatePage">
+  
+    <div class="container">
+      <h1 class="title">Profile Update Page</h1>
+      <form id="updatePage">
+      <div class="form-group">
+        Username : <span class="form-group" id="usernameLabel">??</span>
+      </div>
 
-    <h1>Profile Update Page</h1>
-    <div>
-      Username : <span id="usernameLabel">??</span>
-    </div>
+      <div class="form-group">New Password :
+        <br>
+        <input type="password" id="newPwinput" name="newPw" value="" />
+      </div>
+      <div class="form-group">Confirm Password :<input type="password" id="confirmPwinput" name="confirmPw" value="" />
+      </div>
 
-    <div>New Password :<input type="password" id="newPwinput" name="newPw" value="" />
+      <div class="form-group">Nickname :<span id="nicknameLabel">??</span>
+        <input type="text" id="nicknameinput" name="nickname" value="" />
+      </div>
+      <div class="form-group">
+        Gender :<span id="genderLabel">??</span>
+        <select type="radio" name="gender" id="genderSelect">
+          <option>Male</option>
+          <option>Female</option>
+        </select>
+      </div>
+      <div class="form-group">Birthday :<span id="birthdayLabel">??</span>
+        <input type="date" id="birthdayinput" name="birthday" />
+      </div>
+      <div class="form-group">Phone :<span id="phoneLabel">??</span>
+        <input type="text" id="phoneinput" name="phone" value="" />
+      </div>
+      <div class="form-group">Address :<span id="addressLabel">??</span>
+        <input type="text" id="addressinput" name="address" value="" />
+      </div>
+      <div class="form-group">Email :<span id="emailLabel">??</span>
+        <input type="text" id="emailinput" name="email" />
+      </div>
+      <button type="submit" id="updatedBtn" class="updatedBtn">Update The Profile Now</button>
+      <button type="button" id="shoppingCartBtn" class="shoppingCartBtn">Shopping Cart</button>
+      <button type="button" id="orderRecordBtn" class="orderRecordBtn">Order Record</button>
+      <button type="button" id="logoutBtn" class="logoutBtn">Logout</button>
     </div>
-    <div>Confirm Password :<input type="password" id="confirmPwinput" name="confirmPw" value="" />
-    </div>
-
-    <div>Nickname :<span id="nicknameLabel">??</span>
-      <input type="text" id="nicknameinput" name="nickname" value="123243" />
-    </div>
-    <div>
-      Gender :<span id="genderLabel">??</span>
-      <select type="radio" name="gender" id="genderSelect">
-        <option>Male</option>
-        <option>Female</option>
-      </select>
-    </div>
-    <div>Birthday :<span id="birthdayLabel">??</span>
-      <input type="date" id="birthdayinput" name="birthday" />
-    </div>
-    <div>Phone :<span id="phoneLabel">??</span>
-      <input type="text" id="phoneinput" name="phone" value="45554433" />
-    </div>
-    <div>Address :<span id="addressLabel">??</span>
-      <input type="text" id="addressinput" name="address" value="fdgddsfsdfghj" />
-    </div>
-    <div>Email :<span id="emailLabel">??</span>
-      <input type="text" id="emailinput" name="email" />
-    </div>
-    <button type="submit" id="updatedBtn" class="updatedBtn">Update The Profile Now</button>
-
   </form>
-
-
-
-  <button type="button" id="shoppingCartBtn" class="shoppingCartBtn">Shopping Cart</button>
-  <button type="button" id="orderRecordBtn" class="orderRecordBtn">Order Record</button>
-  <button type="button" id="logoutBtn" class="logoutBtn">Logout</button>
-
   <div class="footer">
     <h2>ABOUT US</h2>
     <div>Contact us</div>

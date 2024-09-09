@@ -30,17 +30,19 @@ body {
   font-size: 30px;
 }
 
+
 .loginBtn {
-  background-color: rgba(254, 190, 152, 1);
-  color: white;
-  border: none;
+  background-color: transparent;
+  color: #6d757d;
+  border: #ffd8c2  1px solid;
   border-radius: 50px;
   padding: 8px 20px;
   transition: 0.3s background-color;
 }
 
 .loginBtn:hover {
-  background-color: rgba(254, 190, 152, 0.6);
+  background-color: #ffd8c2;
+  color: #08192c;
 }
 
 .navbar-toggler{
@@ -63,7 +65,6 @@ body {
 .nav-link:hover, .nav-link.active {
   color: #08192c;
  }
-
 
 .nav-link::before {
   content: "";
@@ -174,7 +175,7 @@ body {
   left: 0;
   width: 0;
   height: 100%;
-  background: rgba(254, 190, 152, 1);
+  background: #ffd8c2;
   z-index: -1;
   transition: .5s;
 }
@@ -236,9 +237,20 @@ img{
 }
 
 .card-body .btn {
+  background-color: transparent;
+  color: #6d757d;
+  border: #ffd8c2 1px solid;
+  border-radius: 50px;
+  padding: 6px 16px;
+  transition: 0.3s background-color;
   margin-top: 10px;
+  font-size: 14px;
 }
 
+.card-body .btn:hover {
+  background-color: #ffd8c2;
+  color: #08192c;
+}
 
 /* newsletter */
 #newsletter-constainer{
@@ -286,14 +298,15 @@ img{
 .newsletter-title .btn {
   border-top-right-radius: 25px;
   border-bottom-right-radius: 25px;
-  background-color: rgba(254, 190, 152, 1);
+  background-color: #ffd8c2;
   color: white;
-  border-color: rgba(254, 190, 152, 1);
+  border-color: #ffd8c2;
 }
 
 .newsletter-title .btn:hover {
   background-color: rgba(254, 190, 152, 0.6);
   border-color: rgba(254, 190, 152, 0.6);
+  color: #6d757d;
 }
 
 /*footer*/
@@ -309,10 +322,11 @@ img{
   justify-content: flex-start;
 }
 
-.fa-lg{
+.fa-instagram{
   font-size: 30px;
 }
 
+<<<<<<< HEAD
 .quantity {
   border: 1px solid black;
   border-radius: 3px;
@@ -320,3 +334,9 @@ img{
   padding: 1px;
   /* background-color: #ff6c6c; */
 }
+=======
+.fa-facebook{
+  font-size: 28px;
+}
+
+>>>>>>> 81d2d12141cec75930888f1e925f6eb191cdf65c

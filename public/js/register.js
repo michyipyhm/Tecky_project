@@ -47,8 +47,10 @@ window.onload = () => {
     const data = await res.json()
     if (res.ok) {
       window.location.href = "/login.html"
+      alert("Register successful")
     } else {
       alert(data.message)
+      
     }
   })
 }
