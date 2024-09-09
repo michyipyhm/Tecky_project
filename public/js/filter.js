@@ -234,15 +234,32 @@ const handleSelectChange = async (e) => {
     // console.log("product is", result.products[i]);
     let imagePath = result.products[i].image_path;
     let productId = result.products[i].product_id;
+    let quantity = result.products[i].product_quantity;
     let productName = result.products[i].product_name;
     let price = result.products[i].product_price;
+
+    let quantityText = "";
+    let quantityClass = "";
+
+    if (quantity > 5) {
+      quantityText = "貨量充足";
+      quantityClass = "quantity-green";
+    } else if (quantity <= 0) {
+      quantityText = "缺貨";
+      quantityClass = "quantity-gray";
+    } else {
+      quantityText = `剩餘 ${quantity} 件`;
+      quantityClass = "quantity-red";
+    }
 
     document.querySelector(`#products-container`).innerHTML += `
           <div class="col">
             <div class="card" id="card1">
               <img src="${imagePath}" class="gallery-item" alt="gallery" />
               <div class="card-body">
-                <div class="producy-idDiv">WSP012-<span class="product-id">${productId}</span></div>
+                <div class="producy-idDiv">WSP012-<span class="product-id">${productId}</span>
+                &nbsp;<span class="quantity ${quantityClass}">${quantityText}</span>
+                </div>
                 <div class="product-name">${productName}</div>
                 <div class="price">$ ${price}</div>
                 <a href="#" class="btn btn-light">Add to cart</a>
@@ -250,19 +267,18 @@ const handleSelectChange = async (e) => {
             </div>
           </div>`;
   }
+  document.querySelectorAll('.card').forEach(cardDiv => {
+    const productNameDiv = cardDiv.querySelector('.product-name')
+    const productName = productNameDiv.textContent
+    const productIdSpan = cardDiv.querySelector('.product-id')
+    const productId = productIdSpan.textContent
+    const addToCartBtns = cardDiv.querySelectorAll('.btn.btn-light')
+    const checkProductDetails = cardDiv.querySelectorAll('.gallery-item')
 
-  document.querySelectorAll(".card").forEach((cardDiv) => {
-    const productNameDiv = cardDiv.querySelector(".product-name");
-    const productName = productNameDiv.textContent;
-    const productIdSpan = cardDiv.querySelector(".product-id");
-    const productId = productIdSpan.textContent;
-    const addToCartBtns = cardDiv.querySelectorAll(".btn.btn-light");
-    const checkProductDetails = cardDiv.querySelectorAll(".gallery-item");
-
-    addToCartBtns.forEach((button) => {
-      button.addEventListener("click", async (e) => {
-        e.preventDefault();
-        const name = productName;
+    addToCartBtns.forEach(button => {
+      button.addEventListener('click', async (e) => {
+        e.preventDefault()
+        const name = productName
         const body = {
           name: name,
         };
@@ -276,6 +292,8 @@ const handleSelectChange = async (e) => {
         const data = await res.json();
         if (res.ok) {
           alert(data.message);
+        } else {
+          alert(data.message)
         }
       });
     });

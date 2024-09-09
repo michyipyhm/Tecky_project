@@ -43,6 +43,6 @@ function openNav() {
    
 }
 
-function register() {
-    window.location.href = "/register.html"
-}
+registerBtn.addEventListener("click", (e) => {
+     window.location.href = "/register.html"
+  });

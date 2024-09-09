@@ -111,10 +111,10 @@ INSERT INTO product_image (product_id, image_path)
 
 INSERT INTO shopping_cart (product_id,member_id,quantity) VALUES
     (1,1,1),
-    (2,1,2),
-    (3,2,3),
-    (4,2,4),
-    (5,3,5),
-    (6,3,6);
+    (2,1,1),
+    (3,2,1),
+    (4,2,1),
+    (5,3,1),
+    (6,3,1);
 
 

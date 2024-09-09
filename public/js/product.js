@@ -11,97 +11,55 @@ document.addEventListener('DOMContentLoaded', async () => {
     productDiv.className = 'product';
     productDiv.innerHTML = `
         <div class="firstSection">
-            <div class="photo"><img src="${product.image_path}" width="500" height="500"/></div>
-            <div class="productBtn">
-                <div class="price">$${product.product_price}</div>
-                <div class="productId">WSP012-${product.id}</div>
-                <div class="pickUp">
-                    <div calss="pickUpLocation">Pickup available at Kowloon Bay Tecky Academy<div>
-                    <div class="pickUpTime">Usually ready in 2-4 days</div>
-                </div>
-                <div class="addToCart"><a href="#" class="btn btn-light">Add to cart</a></div>
+            <div class="photo"><img src="${product.image_path}" width="600" height="600"/>
             </div>
-        </div>
-        <div class="secondSection>
-            <div class="description">
-            <h2>Description</h2>
-            <div class="cameraType">Type: ${product.camera_type}</div>
-            <div class="brand">Brand: ${product.brand_name}</div></div>
-            <div class="origin">Origin Country: ${product.origin_country}</div>
-            <div class="year">Year: ${product.production_year}</div>
-            <div class="format">Format: ${product.format_name}</div>
-            <div class="weight">Weight: ${product.weight}</div>
-            <div class="isoDiv">ISO: <span id="iso>${product.iso}</span></div>
+            <div class="productBtn">
+                <div class="productName"><h1>${product.product_name}</h1><br>
+                    <span class="productId">WSP012-${product.id}</span>
+                </div>
+                <div class="description">
+                    <div><h2>Description</h2></div>
+                    <div><span class="descriptionRow">Type: </span>${product.camera_type || 'N/A'}</div>
+                    <div><span class="descriptionRow">Format: </span>${product.format_name === 'digital' ? 'N/A' : product.format_name}</div>
+                    <div><span class="descriptionRow">Brand: </span>${product.brand_name || 'N/A'}</div>
+                    <div><span class="descriptionRow">Origin: </span>${product.origin_country || 'N/A'}</div>
+                    <div><span class="descriptionRow">Year: </span>${product.production_year || 'N/A'}</div>
+                    <div><span class="descriptionRow">Weight: </span>${product.weight || 'N/A'}</div>
+                    <div><span class="descriptionRow">ISO: </span>${product.iso || 'N/A'}</div>
+                </div>
+                <div class="price"><span class="priceFont">Price: $${product.product_price}<span>
+                </div>
+                <div class="pickUp">
+                    <div calss="pickUpLocation">Pickup available at Kowloon Bay Tecky Academy
+                    </div>
+                    <div class="pickUpTime">Usually ready in 2-4 days
+                    </div>
+                </div>
+                <div class="addToCart"><button type="button" class="btn btn-primary btn-lg">Add to cart</button>
+                </div>
             </div>
         </div>
     `;
     productDetails.appendChild(productDiv)
-    const productTitle = document.getElementById('productName');
-    productTitle.textContent = `${product.product_name}`
-
-    document.querySelectorAll('.card').forEach(cardDiv => {
-        const productNameDiv = cardDiv.querySelector('.product-name')
-        const productName = productNameDiv.textContent
-        const productIdSpan = cardDiv.querySelector('.product-id')
-        const productId = productIdSpan.textContent
-        const addToCartBtns = cardDiv.querySelectorAll('.btn.btn-light')
-        const checkProductDetails = cardDiv.querySelectorAll('.gallery-item')
-
-        addToCartBtns.forEach(button => {
-            button.addEventListener('click', async (e) => {
-                e.preventDefault()
-                const name = productName
-                const body = {
-                    name: name
-                }
-                const res = await fetch("/addToCart", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify(body)
-                })
-                const data = await res.json()
-                if (res.ok) {
-                    alert(data.message);
-                }
-            })
+    const name = product.product_name
+    const addToCartBtns = document.querySelector('.btn.btn-primary.btn-lg')
+    addToCartBtns.addEventListener('click', async (e) => {
+        e.preventDefault()
+        const body = {
+            name: name
+        }
+        const res = await fetch("/addToCart", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(body)
         })
-        checkProductDetails.forEach(button => {
-            button.addEventListener('click', async (e) => {
-                e.preventDefault()
-                const id = productId
-                window.location.href = `/product.html?product=${id}`
-            })
-        })
-    })
-    document.querySelectorAll('.card').forEach(cardDiv => {
-        const productNameDiv = cardDiv.querySelector('.product-name')
-        const productName = productNameDiv.textContent
-        const productIdSpan = cardDiv.querySelector('.product-id')
-        const productId = productIdSpan.textContent
-        const addToCartBtns = cardDiv.querySelectorAll('.btn.btn-light')
-        const checkProductDetails = cardDiv.querySelectorAll('.gallery-item')
-
-        addToCartBtns.forEach(button => {
-            button.addEventListener('click', async (e) => {
-                e.preventDefault()
-                const name = productName
-                const body = {
-                    name: name
-                }
-                const res = await fetch("/addToCart", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify(body)
-                })
-                const data = await res.json()
-                if (res.ok) {
-                    alert(data.message);
-                }
-            })
-        })
+        const data = await res.json()
+        if (res.ok) {
+            alert(data.message);
+        } else {
+            alert(data.message);
+        }
     })
 })
