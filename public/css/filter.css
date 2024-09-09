@@ -212,7 +212,7 @@ img{
   width: 100%;
 }
 
-<<<<<<< HEAD
+
 .quantity {
   border: 1px solid black;
   border-radius: 3px;
@@ -233,7 +233,8 @@ img{
 .quantity-gray {
   background-color: #a6a6a6;
   color: white;
-=======
+}
+
 .producy-idDiv{
   font-size: 10px;
   margin-bottom: 10px;
@@ -339,5 +340,4 @@ img{
 
 .fa-facebook{
   font-size: 28px;
->>>>>>> 81d2d12141cec75930888f1e925f6eb191cdf65c
 }

@@ -8,7 +8,7 @@ import * as fs from 'fs';
 export const userRouter = express.Router();
 //////////////////////////////////////////
 
-userRouter.post("/login", async (req: Request, res: Response) => {//http://localhost:8080/login.html
+userRouter.post("/login", async (req: Request, res: Response) => {
   const data = req.body
   const username = data.username
   const password = data.password //from client input

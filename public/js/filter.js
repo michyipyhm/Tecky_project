@@ -3,40 +3,6 @@ const productTypeSelect = document.getElementById("productType");
 const decOrderBtn = document.querySelector("#price-dec");
 const ascOrderBtn = document.querySelector("#price-asc");
 
-
-window.onload = async () => {
-  try {
-    const res = await fetch("/getProduct");
-    const result = await res.json();
-
-    console.log("result is", result);
-    // document.querySelector(`#products-container`).innerHTML = "";
-    for (let i = 0; i < result.length; i++) {
-      console.log("product is", result[i].product_name);
-      let imagePath = result[i].image_path;
-      let productId = result[i].product_id;
-      let productName = result[i].product_name;
-      let price = result[i].product_price;
-
-      document.querySelector(`#products-container`).innerHTML += `
-        <div class="col">
-          <div class="card" id="card1">
-            <img src="${imagePath}" class="gallery-item" alt="gallery" />
-            <div class="card-body">
-              <div class="producy-idDiv">WSP012-<span class="product-id">${productId}</span></div>
-              <div class="product-name">${productName}</div>
-              <div class="price">$ ${price}</div>
-              <a href="#" class="btn btn-light">Add to cart</a>
-            </div>
-          </div>
-        </div>`;
-    }
-  } catch (error) {
-    console.error("Error fetching data");
-  }
-};
-
-
 const handlePriceOrder = async (e) => {
   decOrderBtn.addEventListener("click", () => {
     setPriceOrder("dec");
@@ -107,6 +73,42 @@ const handlePriceOrder = async (e) => {
     }
   }
 };
+
+window.onload = async () => {
+  try {
+    handlePriceOrder();
+    const res = await fetch("/getProduct");
+    const result = await res.json();
+    
+    console.log("result is", result);
+    document.querySelector(`#products-container`).innerHTML = "";
+    for (let i = 0; i < result.length; i++) {
+      console.log("product is", result[i].product_name);
+      let imagePath = result[i].image_path;
+      let productId = result[i].product_id;
+      let productName = result[i].product_name;
+      let price = result[i].product_price;
+
+      document.querySelector(`#products-container`).innerHTML += `
+        <div class="col">
+          <div class="card" id="card1">
+            <img src="${imagePath}" class="gallery-item" alt="gallery" />
+            <div class="card-body">
+              <div class="producy-idDiv">WSP012-<span class="product-id">${productId}</span></div>
+              <div class="product-name">${productName}</div>
+              <div class="price">$ ${price}</div>
+              <a href="#" class="btn btn-light">Add to cart</a>
+            </div>
+          </div>
+        </div>`;
+    } 
+  } catch (error) {
+    console.error("Error fetching data");
+  }
+};
+
+
+
 
 handlePriceOrder();
 
@@ -265,7 +267,6 @@ const handleSelectChange = async (e) => {
             </div>
           </div>`;
   }
-<<<<<<< HEAD
   document.querySelectorAll('.card').forEach(cardDiv => {
     const productNameDiv = cardDiv.querySelector('.product-name')
     const productName = productNameDiv.textContent
@@ -278,21 +279,6 @@ const handleSelectChange = async (e) => {
       button.addEventListener('click', async (e) => {
         e.preventDefault()
         const name = productName
-=======
-  
-  document.querySelectorAll(".card").forEach((cardDiv) => {
-    const productNameDiv = cardDiv.querySelector(".product-name");
-    const productName = productNameDiv.textContent;
-    const productIdSpan = cardDiv.querySelector(".product-id");
-    const productId = productIdSpan.textContent;
-    const addToCartBtns = cardDiv.querySelectorAll(".btn.btn-light");
-    const checkProductDetails = cardDiv.querySelectorAll(".gallery-item");
-
-    addToCartBtns.forEach((button) => {
-      button.addEventListener("click", async (e) => {
-        e.preventDefault();
-        const name = productName;
->>>>>>> 81d2d12141cec75930888f1e925f6eb191cdf65c
         const body = {
           name: name,
         };
@@ -327,14 +313,3 @@ function clearContent(target) {
   document.querySelector(`#${target}`).innerHTML = "";
 }
 
-function openNav() {
-  document.getElementById("mySidenav").style.width = "250px";
-  document.getElementById("main").style.marginLeft = "250px";
-  document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
-}
-
-function closeNav() {
-  document.getElementById("mySidenav").style.width = "0";
-  document.getElementById("main").style.marginLeft = "0";
-  document.body.style.backgroundColor = "#08192c";
-}
