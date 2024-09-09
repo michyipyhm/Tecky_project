@@ -9,7 +9,7 @@ export const isLoggedIn = (
       //called Next here
     } else {
         res.status(401).json({message: "please login first"})
-        res.redirect("/login.html")
+        // res.redirect("/login.html")
       // redirect to index page
       return;
     }

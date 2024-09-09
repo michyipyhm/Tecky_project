@@ -1,4 +1,6 @@
 
+
+
   
   .sidenav {
     height: 100%;
@@ -45,8 +47,8 @@
   }
 
   .container {
-    width: 500px;
-    height: 500px;
+    width: 600px;
+    height: 1100px;
     border-width: 5px;
     border-style: groove;
     line-height: 1.9;
@@ -59,21 +61,15 @@
   }
   
   .title {
-    width: 455px;
-    height: 70px;
+    width: 555px;
+    height: 100px;
     font-weight: bold;
     text-align: center;
     margin-bottom: 20px;
     border-bottom: 3px solid;
   }
   
-  .title1 {
-    font-weight: bold;
-    text-align: center;
-    margin-bottom: 20px;
-  }
-  
-  #adminlogin-form {
+  #updatePage {
     width: 400px;
     margin: 0 auto;
   }
@@ -88,32 +84,32 @@
     padding: 10px;
     cursor: pointer;
     transition: background-color 0.3s;
-  }
-  
-  .btn-submit {
-    background-color: #007bff;
-    color: #fff;
-  }
-  
-  .btn-submit:hover {
-    background-color: #0056b3;
-  }
-  
-  .btn-register {
-    background-color: #28a745;
-    color: #fff;
-  }
-  
-  .btn-register:hover {
-    background-color: #218838;
-  }
-  
-  .button2 {
     text-align: center;
     margin-top: 20px;
   }
   
-
+  .btn-1 {
+    background-color: #007bff;
+    color: #fff;
+  }
+  
+  .btn-1:hover {
+    background-color: #0056b3;
+  }
+  
+  .btn-2 {
+    background-color: #28a745;
+    color: #fff;
+  }
+  
+  .btn-2:hover {
+    background-color: #218838;
+  }
+  
+  /* .button2 {
+    text-align: center;
+    margin-top: 20px;
+  } */
   /* ////////////////////////////////////////// */
 
   .figtree {

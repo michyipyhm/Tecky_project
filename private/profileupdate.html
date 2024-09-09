@@ -2,15 +2,36 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous" />
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
-    crossorigin="anonymous"></script>
-  <link rel="stylesheet" href="/public/css/profileupdate.css">"
-  <title>Profile Update</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>profileupdate</title>
+
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+    crossorigin="anonymous"
+  />
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&family=Figtree:ital,wght@0,300..900;1,300..900&display=swap"
+    rel="stylesheet"
+  />
+  <script
+    src="https://kit.fontawesome.com/346f7ab6b7.js"
+    crossorigin="anonymous"
+  ></script>
+  
+  <script src="./bootstrap.bundle.min.js"></script>
+  <link rel="stylesheet" href="css/profileupdate.css" />
 </head>
 
 <body>
@@ -36,50 +57,147 @@
       </div>
 
       <div class="form-group">New Password :
-        <br>
         <input type="password" id="newPwinput" name="newPw" value="" />
       </div>
       <div class="form-group">Confirm Password :<input type="password" id="confirmPwinput" name="confirmPw" value="" />
       </div>
 
       <div class="form-group">Nickname :<span id="nicknameLabel">??</span>
+        <br>
         <input type="text" id="nicknameinput" name="nickname" value="" />
       </div>
       <div class="form-group">
         Gender :<span id="genderLabel">??</span>
+        <br>
         <select type="radio" name="gender" id="genderSelect">
           <option>Male</option>
           <option>Female</option>
         </select>
       </div>
       <div class="form-group">Birthday :<span id="birthdayLabel">??</span>
+        <br>
         <input type="date" id="birthdayinput" name="birthday" />
       </div>
       <div class="form-group">Phone :<span id="phoneLabel">??</span>
+        <br>
         <input type="text" id="phoneinput" name="phone" value="" />
       </div>
       <div class="form-group">Address :<span id="addressLabel">??</span>
+        <br>
         <input type="text" id="addressinput" name="address" value="" />
       </div>
       <div class="form-group">Email :<span id="emailLabel">??</span>
+        <br>
         <input type="text" id="emailinput" name="email" />
       </div>
-      <button type="submit" id="updatedBtn" class="updatedBtn">Update The Profile Now</button>
-      <button type="button" id="shoppingCartBtn" class="shoppingCartBtn">Shopping Cart</button>
-      <button type="button" id="orderRecordBtn" class="orderRecordBtn">Order Record</button>
-      <button type="button" id="logoutBtn" class="logoutBtn">Logout</button>
+      <button type="submit" id="updatedBtn" class="updatedBtn btn btn-1">Update The Profile Now</button>
+      <button type="button" id="shoppingCartBtn" class="shoppingCartBtn btn btn-2">Shopping Cart</button>
+      <button type="button" id="orderRecordBtn" class="orderRecordBtn btn btn-1">Order Record</button>
+      <button type="button" id="logoutBtn" class="logoutBtn btn btn-2">Logout</button>
     </div>
   </form>
-  <div class="footer">
-    <h2>ABOUT US</h2>
-    <div>Contact us</div>
-    <div>Customer feedback</div>
-    <div>聯絡我們</div>
-    <div>送貨及取貨</div>
-    <div>付款方式</div>
-    <div>訂單追蹤</div>
+  <div class="footer py-5">
+    <div class="container-lg">
+      <div class="row g-4">
 
+        <div class="col-md-6 col-lg-4">
+          <h5 class="fw-light mb-3">Quick links</h5>
+
+          <ul class="list-unstyled">
+            <li class="my-3">
+              <a href="#" class="text-decoration-none text-muted">
+                <i class="fa-solid fa-chevron-right me-1"></i>About us
+              </a>
+            </li>
+          </ul>
+          <ul class="list-unstyled">
+            <li class="my-3">
+              <a href="#" class="text-decoration-none text-muted">
+                <i class="fa-solid fa-chevron-right me-1"></i>Privacy Policy
+              </a>
+            </li>
+          </ul>
+          <ul class="list-unstyled">
+            <li class="my-3">
+              <a href="#" class="text-decoration-none text-muted">
+                <i class="fa-solid fa-chevron-right me-1"></i>Refund Policy
+              </a>
+            </li>
+          </ul>
+          <ul class="list-unstyled">
+            <li class="my-3">
+              <a href="#" class="text-decoration-none text-muted">
+                <i class="fa-solid fa-chevron-right me-1"></i>Shipping Policy
+              </a>
+            </li>
+          </ul>
+          <ul class="list-unstyled">
+            <li class="my-3">
+              <a href="#" class="text-decoration-none text-muted">
+                <i class="fa-solid fa-chevron-right me-1"></i>Shop Location
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+          <h5 class="fw-light mb-3">Contact Us</h5>
+          <div class="contact-us-box my-2">
+            <span class="me-3">
+              <i class="fas fa-map-marker-alt"></i>
+            </span>
+            <span class="fw-light">
+              Room 1103, 11/F, Exchange Tower 33 Wang Chiu Road, Kowloon Bay,
+              Kowloon, Hong Kong
+            </span>
+          </div>
+          <div class="contact-us-box my-2">
+            <span class="me-3">
+              <i class="fa-solid fa-phone"></i>
+            </span>
+            <span class="fw-light"> +852 9725 6400 </span>
+          </div>
+          <div class="contact-us-box my-2">
+            <span class="me-3">
+              <i class="fa-solid fa-envelope"></i>
+            </span>
+            <span class="fw-light"> hello@tecky.io </span>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+          <h5 class="fw-light mb-3">Follow Us</h5>
+          <div class="follow-us-box my-2">
+            <ul class="list-unstyled">
+              <li>
+                <a
+                  href="#"
+                  class="text-decoration-none text-muted text-white"
+                >
+                  <i class="fa-brands fa-instagram fa-lg"></i>
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div class="follow-us-box my-2">
+            <ul class="list-unstyled">
+              <li>
+                <a
+                  href="#"
+                  class="text-decoration-none text-muted text-white"
+                >
+                  <i class="fa-brands fa-facebook"></i>
+                </a>
+              </li>
+            </ul>
+        </div>
+
+
+      </div>
+    </div>
   </div>
+  </div>
+
 
   <script src="js/profileupdate.js"></script>
 </body>
