@@ -21,10 +21,13 @@ productInfo.get("/product-info", async (req: Request, res: Response) => {
         created_at: row.created_at,
       }))
     );
+    return
   } catch (error) {
     res.status(500).json({
       message: "An error occurred while retrieving the product information.",
     });
+    return
+
   }
 });
 
