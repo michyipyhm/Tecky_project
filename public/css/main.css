@@ -327,16 +327,12 @@ img{
 }
 
 .quantity {
-  border: 1px solid black;
+  border: transparent;
   border-radius: 3px;
-  margin: 1px;
-  padding: 1px;
-  /* background-color: #ff6c6c; */
+  margin: 5px;
+  padding: 0 5px;
 }
+
 .fa-facebook{
   font-size: 28px;
 }
-<<<<<<< HEAD
-
-=======
->>>>>>> acfcf2f20672b5d7b0e518fe8000d2237523da96

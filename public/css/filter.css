@@ -223,16 +223,31 @@ img{
 .quantity-green {
   background-color: #6cc971;
   color: white;
+  border: transparent;
+  border-radius: 3px;
+  margin: 5px;
+  padding: 0 5px;
 }
+
 
 .quantity-red {
   background-color: #ff6c6c;
   color: white;
+  border: transparent;
+  border-radius: 3px;
+  margin: 5px;
+  padding: 0 5px;
+
 }
 
 .quantity-gray {
   background-color: #a6a6a6;
   color: white;
+  border: transparent;
+  border-radius: 3px;
+  margin: 5px;
+  padding: 0 5px;
+
 }
 
 .producy-idDiv{
