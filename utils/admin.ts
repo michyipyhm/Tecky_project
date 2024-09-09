@@ -14,7 +14,7 @@ export const isAdminLoggedIn = async (
             next()
         } else {
             res.status(401).json({message: "please login first"})
-            res.redirect("/adminlogin.html")
+            // res.redirect("/adminlogin.html")
             // redirect to index page
         }
     }
