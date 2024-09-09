@@ -1,6 +1,11 @@
 document.addEventListener('DOMContentLoaded', async () => {
 
     let res = await fetch("/checkOrder")
+        if (res.status === 401) {
+        alert('Please login first.');
+        window.location.href = '/index.html';
+        return;
+    }
 
     let result = await res.json()
 
@@ -20,16 +25,16 @@ document.addEventListener('DOMContentLoaded', async () => {
         const orderDiv = document.createElement('div');
         orderDiv.className = 'order';
         orderDiv.innerHTML = `
-            <div><fieldset>
-                <div class="orderId">Order Number: <span>TECKYACADEMY-C32-WSP012-</span>${order.id}</div>
-                <div class="orderTotalPrice">Price: ${order.total}</div>
-                <div class="orderStatus">Status: ${order.state} </div>
-                <div class="orderDate">Order Date: ${createdDate}</div>
-                <button type="button" id="detailsBtn" name="checkDetails">Details</button>
-            </fieldset></div>
+            <div class="card" id="orderCard">
+                <div class="orderId"><span id="orderFont">Order Number: </span><span>TECKYACADEMY-C32-WSP012-</span>${order.id}</div>
+                <div class="orderTotalPrice"><span id="orderFont">Total Price: </span>$${order.total}</div>
+                <div class="orderStatus"><span id="orderFont">Status: </span>
+                <span id="statFont" class="${order.state === 'Paid' ? 'paid' : ''}">${order.state}</span> </div>
+                <div class="orderDate"><span id="orderFont">Order Date: </span>${createdDate}</div>
+                <button type="button" class="btn btn-info" id="detailsBtn">Details</button>
+            </div>
         `;
         orderForm.appendChild(orderDiv)
-
 
         const detailsBtn = orderDiv.querySelector('#detailsBtn')
         detailsBtn.addEventListener("click", async (e) => {

@@ -1,23 +1,46 @@
 document.addEventListener('DOMContentLoaded', async () => {
 
     let res = await fetch("/shoppingcart")
-
+    if (res.status === 401) {
+        alert('Please login first.');
+        window.location.href = '/index.html';
+        return;
+    }
     let result = await res.json()
 
-    const shoppingCartForm = document.getElementById('shoppingCartForm');
+    const shoppingCartForm = document.getElementById('shoppingCartForm')
+    const cartEmptyDiv = document.querySelector('.cartEmpty')
+    const orderBtn = document.querySelector('#orderBtnForm')
+
+    if (result.data.length > 0) {
+        cartEmptyDiv.style.display = 'none'
+    }
+    if (result.data.length <= 0) {
+        orderBtn.style.display = 'none'
+    }
 
     for (let product of result.data) {
         const productDiv = document.createElement('div');
         productDiv.className = 'product';
         productDiv.innerHTML = `
-            <div><fieldset>
-                <div class="productPicture"><img src="${product.image_path}" width="150" height="150"/></div>
+            <div class="card" id="shoppingCartCard">
+                <div class="productPicture"><img src="${product.image_path}" width="300" height="300"/></div>
                 <div class="productProperty">
-                    <div class="productName_Details">
-                        <div class="productName">Product Name: ${product.product_name}</div>
-                        <div class="productDetails">Product Details: </div>
+                    <div class="productName">${product.product_name}
                     </div>
-                    <div class="productQuantity_Price">
+                    <div class="productRow">
+                        <div class="productDetails">
+                            <span id="productDetailsH1">Product Details</span><br>
+                            <div>Type: <span>${product.camera_type || 'N/A'}</span></div>
+                            <div>Format:  <span id="productDetailsFormat">
+                                ${product.format_name === 'digital' ? 'N/A' : product.format_name}</span></div>
+                            <div>Origin: <span>${product.origin_country || 'N/A'}</span></div>
+                            <div>ISO: <span>${product.iso || 'N/A'}</span></div>
+                            <div>Year:  <span>${product.production_year || 'N/A'}</span></div>
+                            <div>Weight:  <span">${product.weight || 'N/A'}</span></div>
+                        </div>
+                        <div class="productQuantity">
+                            <div class="productPrice">Product Price:<span id="priceNum">$${product.product_price}</span></div>
                         <label for="quantity">Quantity:</label>
                             <select id="quantity" name="quantity">
                                 <option value="1" ${product.quantity == 1 ? "selected" : ""}>1</option>
@@ -26,17 +49,15 @@ document.addEventListener('DOMContentLoaded', async () => {
                                 <option value="4" ${product.quantity == 4 ? "selected" : ""}>4</option>
                                 <option value="5" ${product.quantity == 5 ? "selected" : ""}>5</option>
                             </select>
-                            <div class="productPrice">Product Price: ${product.product_price}</div>
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-outline-danger" id="deleteProduct" name="deleteProduct">Delect</button>
                     </div>
                 <div>
-                <button type="button" id="deleteProduct" name="deleteProduct">刪除</button>
-            </fieldset></div>
         `;
         shoppingCartForm.appendChild(productDiv);
         const totalPrice = document.getElementById('totalPrice');
-        totalPrice.textContent = `Total Price: ${result.totalPrice.total}`
-    
-        console.log(quantity)
+        totalPrice.textContent = `Total Price: $${result.totalPrice.total}`
         //選擇數量
         const quantitySelect = productDiv.querySelector('#quantity')
         quantitySelect.addEventListener("change", async (e) => {
@@ -56,7 +77,11 @@ document.addEventListener('DOMContentLoaded', async () => {
             })
             const data = await res.json()
             if (res.ok) {
-                alert(data.message);
+                alert(data.message)
+                location.reload()
+            } else {
+                alert(data.message)
+                location.reload()
             }
         })
         //刪除物品
@@ -79,15 +104,16 @@ document.addEventListener('DOMContentLoaded', async () => {
             if (res.ok) {
                 alert(data.message);
                 productDiv.remove();
+                location.reload();
                 return;
             }
         })
     }
-});
+})
 
 //去order畫面
-const OrderBtn = document.querySelector('#order-button')
-OrderBtn.addEventListener("click", async (e) => {
+const orderBtn = document.querySelector('#order-button')
+orderBtn.addEventListener("click", async (e) => {
     e.preventDefault()
 
     const res = await fetch("/shoppingCartSendOrder", {
@@ -97,9 +123,18 @@ OrderBtn.addEventListener("click", async (e) => {
         },
         body: JSON.stringify({})
     })
+    const data = await res.json()
     if (res.ok) {
-        const data = await res.json()
-        alert(data.message)
+        alert(data.message);
         window.location.href = "/order.html"
     }
+    if (res.status === 500) {
+        alert(data.message);
+        return;
+    }
+    if (res.status === 400) {
+        alert(data.message);
+        return;
+    }
+
 })
