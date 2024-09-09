@@ -64,7 +64,7 @@
 
   .container {
     width: 500px;
-    height: 500px;
+    height: 1000px;
     border-width: 5px;
     border-style: groove;
     line-height: 1.9;
@@ -91,7 +91,7 @@
     margin-bottom: 20px;
   }
   
-  #login-form {
+  #addproduct-form {
     width: 400px;
     margin: 0 auto;
   }
@@ -106,14 +106,16 @@
     padding: 10px;
     cursor: pointer;
     transition: background-color 0.3s;
+    text-align: center;
+    margin-top: 20px;
   }
   
-  .btn-submit {
+  .btn-1 {
     background-color: #007bff;
     color: #fff;
   }
   
-  .btn-submit:hover {
+  .btn-1:hover {
     background-color: #0056b3;
   }
   
