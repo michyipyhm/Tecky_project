@@ -200,3 +200,25 @@ img {
 #gallery-modal .modal-img {
   width: 100%;
 }
+
+.quantity {
+  border: 1px solid black;
+  border-radius: 3px;
+  margin: 1px;
+  padding: 1px;
+}
+
+.quantity-green {
+  background-color: #6cc971;
+  color: white;
+}
+
+.quantity-red {
+  background-color: #ff6c6c;
+  color: white;
+}
+
+.quantity-gray {
+  background-color: #a6a6a6;
+  color: white;
+}

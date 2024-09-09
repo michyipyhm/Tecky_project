@@ -313,3 +313,10 @@ img{
   font-size: 30px;
 }
 
+.quantity {
+  border: 1px solid black;
+  border-radius: 3px;
+  margin: 1px;
+  padding: 1px;
+  /* background-color: #ff6c6c; */
+}
