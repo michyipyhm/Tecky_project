@@ -82,12 +82,14 @@
     margin-bottom: 20px;
   }
   
-  .btn {
+  #login-form.btn {
     width: 100%;
     border-radius: 5px;
     padding: 10px;
     cursor: pointer;
     transition: background-color 0.3s;
+    text-align: center;
+    margin-top: 20px;
   }
   
   .btn-submit {
@@ -109,8 +111,7 @@
   }
   
   .button2 {
-    text-align: center;
-    margin-top: 20px;
+    
   }
   
 /* ////////////////////////////////////////// */
