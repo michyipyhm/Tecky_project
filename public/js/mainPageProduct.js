@@ -31,13 +31,13 @@ window.onload = async () => {
       nameElement.innerHTML = namePath;
       priceElement.innerHTML = `$ ${pricePath}`;
       if (quantityPath > 5) {
-        quanElement.innerHTML = "貨量充足";
+        quanElement.innerHTML = "In stock";
         quanElement.style.backgroundColor = "#6cc971";
       } else if (quantityPath < 5 && quantityPath > 0) {
-        quanElement.innerHTML = `剩餘 ${quantityPath} 件`;
+        quanElement.innerHTML = `Still ${quantityPath} left`;
         quanElement.style.backgroundColor = "#ff6c6c";
       } else if (quantityPath <= 0) {
-        quanElement.innerHTML = "缺貨";
+        quanElement.innerHTML = "Out of stock";
         quanElement.style.backgroundColor = "#a6a6a6";
       }
     });
