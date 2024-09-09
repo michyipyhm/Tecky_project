@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                             </select>
                         </div>
                     </div>
-                    <button type="button" class="btn btn-outline-danger" id="deleteProduct" name="deleteProduct">Delect</button>
+                    <button type="button" class="btn btn-outline-danger" id="deleteProduct" name="deleteProduct">Delete</button>
                     </div>
                 <div>
         `;

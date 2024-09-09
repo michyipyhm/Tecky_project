@@ -30,10 +30,10 @@ window.onload = async () => {
       imgElement.src = imagePath;
       nameElement.innerHTML = namePath;
       priceElement.innerHTML = `$ ${pricePath}`;
-      if (quantityPath > 5) {
+      if (quantityPath > 1) {
         quanElement.innerHTML = "In stock";
         quanElement.style.backgroundColor = "#6cc971";
-      } else if (quantityPath < 5 && quantityPath > 0) {
+      } else if (quantityPath <= 1 && quantityPath > 0) {
         quanElement.innerHTML = `Still ${quantityPath} left`;
         quanElement.style.backgroundColor = "#ff6c6c";
       } else if (quantityPath <= 0) {

@@ -11,22 +11,18 @@ document.addEventListener('DOMContentLoaded', async () => {
     productDiv.className = 'product';
     productDiv.innerHTML = `
         <div class="firstSection">
-            <div class="photo"><img src="${product.image_path}" width="600" height="600"/>
+            <div class="row">
+            <div class="col-md-6">
+                <div class="productImage">
+                    <img src="${product.image_path}"/>
+                </div>
             </div>
+            <div class="col-md-6">
             <div class="productBtn">
                 <div class="productName"><h1>${product.product_name}</h1><br>
                     <span class="productId">WSP012-${product.id}</span>
                 </div>
-                <div class="description">
-                    <div><h2>Description</h2></div>
-                    <div><span class="descriptionRow">Type: </span>${product.camera_type || 'N/A'}</div>
-                    <div><span class="descriptionRow">Format: </span>${product.format_name === 'digital' ? 'N/A' : product.format_name}</div>
-                    <div><span class="descriptionRow">Brand: </span>${product.brand_name || 'N/A'}</div>
-                    <div><span class="descriptionRow">Origin: </span>${product.origin_country || 'N/A'}</div>
-                    <div><span class="descriptionRow">Year: </span>${product.production_year || 'N/A'}</div>
-                    <div><span class="descriptionRow">Weight: </span>${product.weight || 'N/A'}</div>
-                    <div><span class="descriptionRow">ISO: </span>${product.iso || 'N/A'}</div>
-                </div>
+               
                 <div class="price"><span class="priceFont">Price: $${product.product_price}<span>
                 </div>
                 <div class="pickUp">
@@ -35,14 +31,26 @@ document.addEventListener('DOMContentLoaded', async () => {
                     <div class="pickUpTime">Usually ready in 2-4 days
                     </div>
                 </div>
-                <div class="addToCart"><button type="button" class="btn btn-primary btn-lg">Add to cart</button>
+                <div class="addToCart">
+                <button type="button" class="btn btn-light">Add to cart</button>
                 </div>
+                 <div class="description">
+                    <div><h3>Description</h3></div>
+                    <div><span class="descriptionRow">Type: </span>${product.camera_type || 'N/A'}</div>
+                    <div><span class="descriptionRow">Format: </span>${product.format_name === 'digital' ? 'N/A' : product.format_name}</div>
+                    <div><span class="descriptionRow">Brand: </span>${product.brand_name || 'N/A'}</div>
+                    <div><span class="descriptionRow">Origin: </span>${product.origin_country || 'N/A'}</div>
+                    <div><span class="descriptionRow">Year: </span>${product.production_year || 'N/A'}</div>
+                    <div><span class="descriptionRow">Weight: </span>${product.weight || 'N/A'}</div>
+                    <div><span class="descriptionRow">ISO: </span>${product.iso || 'N/A'}</div>
+                </div>
+            </div>
             </div>
         </div>
     `;
     productDetails.appendChild(productDiv)
     const name = product.product_name
-    const addToCartBtns = document.querySelector('.btn.btn-primary.btn-lg')
+    const addToCartBtns = document.querySelector('.btn.btn-light')
     addToCartBtns.addEventListener('click', async (e) => {
         e.preventDefault()
         const body = {

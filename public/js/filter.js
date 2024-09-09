@@ -59,13 +59,13 @@ const handlePriceOrder = async (e) => {
         let quantityText = "";
         let quantityClass = "";
 
-        if (quantity > 5) {
+        if (quantity > 1) {
           quantityText = "In stock";
           quantityClass = "quantity-green";
         } else if (quantity <= 0) {
           quantityText = "Out of stock";
           quantityClass = "quantity-gray";
-        } else {
+        } else if (quantity === 1 ) {
           quantityText = `Still ${quantity} left`;
           quantityClass = "quantity-red";
         }
@@ -109,13 +109,13 @@ window.onload = async () => {
       let quantityText = "";
       let quantityClass = "";
 
-      if (quantity > 5) {
+      if (quantity > 1) {
         quantityText = "In stock";
         quantityClass = "quantity-green";
       } else if (quantity <= 0) {
         quantityText = "Out of stock";
         quantityClass = "quantity-gray";
-      } else {
+      } else if (quantity === 1 ) {
         quantityText = `Still ${quantity} left`;
         quantityClass = "quantity-red";
       }
@@ -271,13 +271,13 @@ const handleSelectChange = async (e) => {
     let quantityText = "";
     let quantityClass = "";
 
-    if (quantity > 5) {
+    if (quantity > 1) {
       quantityText = "In stock";
       quantityClass = "quantity-green";
     } else if (quantity <= 0) {
       quantityText = "Out of stock";
       quantityClass = "quantity-gray";
-    } else {
+    } else if (quantity === 1 ) {
       quantityText = `Still ${quantity} left`;
       quantityClass = "quantity-red";
     }

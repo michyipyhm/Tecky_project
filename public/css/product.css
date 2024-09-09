@@ -85,162 +85,74 @@ body {
     width: 70%;
 }
 
-/*carosel*/
+/*product details*/
 
-.form-control {
-    width: 50%;
-    height: 30px;
+#productDetails {
+    margin-left: 2%;
+    margin-right: 2%;
+    /* height: ;
+    width: auto; */
+    margin: 80px 0 ;
 }
 
-.carousel-indicators [data-bs-target] {
-    width: 12px;
-    height: 12px;
-    border-radius: 100%;
-    box-shadow: inset 1px 1px 1px 1px rgba(0, 0, 0, 0.5);
-}
-
-.carousel-indicators {
-    bottom: -50px;
-}
-
-.carousel-indicators .active {
-    background-color: rgb(251, 236, 228);
-}
-
-.carousel-item-inner {
-    display: flex !important;
-    align-items: center;
-}
-
-.carousel-caption {
-    bottom: auto;
-    height: 50%;
-}
-
-.carousel-inner-parent {
+.product {
     display: flex;
-    justify-content: center;
-    height: 100%;
+    flex-direction: column;
 }
 
-.caption-inner-box {
-    width: 100%;
-    height: 100%;
-    margin-top: 200px;
+.firstSection {
     display: flex;
-    justify-content: center;
+    flex-direction: row;
 }
 
-.carousel-item-inner .btn-box {
-    width: 400px;
-    height: 60px;
+.description {
+    margin-top: 10%;
+    color: #6d757d;
 }
 
-.btn-box {
-    padding: 10px;
-    text-align: center;
+.productBtn {
+    display: flex;
+    flex-direction: column;
+    margin-left: 5%;
 }
 
-.carousel-item-inner .btn-box {
-    opacity: 0;
-    transition: opacity 0.5s ease;
+.productId {
+    font-size: small;
+}
+.priceFont {
+    font-size: 40px;
 }
 
-.carousel-item-inner:hover .btn-box {
-    opacity: 1;
-}
-
-.btn-box>a {
-    position: relative;
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    width: 50%;
-    height: 50px;
-    background-color: rgb(251, 236, 228);
-    border: 2px solid rgb(251, 236, 228);
-    border-radius: 8px;
-    font-size: 18px;
-    color: #000000;
-    text-decoration: none;
-    letter-spacing: 1px;
-    z-index: 1;
-    overflow: hidden;
-    transition: .8s;
-}
-
-.btn-box>a::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 0;
-    height: 100%;
-    background: rgba(254, 190, 152, 1);
-    z-index: -1;
-    transition: .5s;
-}
-
-.btn-box>a:hover::before {
-    width: 100%;
-}
-
-.text1 {
-    font-size: 25px;
-    margin-top: 38px;
-    margin-bottom: 32px;
-    margin-left: 20px;
-    color: #08192c;
-}
-
-/*product card*/
-#third-section {
-    height: auto;
-    padding-bottom: 10%;
-}
-
-img {
-    max-width: 100%;
-}
-
-.gallery {
-    background-color: rgb(255, 255, 255);
-    padding: 0px 10%;
-    margin-top: 30px;
-}
-
-.gallery img {
-    background-color: rgb(251, 236, 228);
-    padding: 15px;
-    width: 100%;
-    height: 100%;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
-    cursor: pointer;
-    border-radius: 5px;
-}
-
-#gallery-modal .modal-img {
-    width: 100%;
-}
-
-.producy-idDiv {
-    font-size: 10px;
+.pickUp {
+    border: 1px solid #ffd8c2;
+    /* display: block; */
+    flex-direction: column;
+    margin-top: 40px;
     margin-bottom: 10px;
+    padding: 10px 25px;
+    border-radius: 20px;
+    margin-right: 40px;
 }
 
-.product-name {
-    font-size: 20px;
-    margin-bottom: 4px;
+.pickUpLocation {
+    margin-bottom: 10%;
 }
 
-.price {
-    font-size: 16px
-}
-
-.card-body .btn {
+.addToCart .btn {
+    background-color: transparent;
+    color: #000000;
+    border: #ffd8c2 1px solid;
+    border-radius: 50px;
+    padding: 10px 26px;
+    transition: 0.3s background-color;
     margin-top: 10px;
-}
-
+    font-size: 18px;
+  }
+  
+  .addToCart .btn:hover {
+    background-color: #ffd8c2;
+    color: #08192c;
+  }
 
 /* newsletter */
 #newsletter-constainer {
@@ -315,56 +227,3 @@ img {
     font-size: 30px;
 }
 
-#productDetails {
-    margin-left: 2%;
-    margin-right: 2%;
-    height: auto;
-    width: auto;
-}
-
-.product {
-    display: flex;
-    flex-direction: column;
-}
-
-.firstSection {
-    display: flex;
-    flex-direction: row;
-}
-
-.photo {
-    width: 60%;
-}
-
-.productBtn {
-    display: flex;
-    flex-direction: column;
-    margin-left: 5%;
-}
-
-.productId {
-    font-size: small;
-}
-.priceFont {
-    font-size: xx-large;
-}
-
-.pickUp {
-    border: 2px solid rgb(0, 195, 255);
-    display: inline-block;
-    flex-direction: column;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    padding: 10px;
-    border-radius: 10px;
-    width: auto;
-    /* background-color: aqua; */
-}
-
-.pickUpLocation {
-    margin-bottom: 10%;
-}
-
-/* .descriptionRow {
-    font-weight: bolder;
-} */
