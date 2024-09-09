@@ -265,7 +265,6 @@ const handleSelectChange = async (e) => {
             </div>
           </div>`;
   }
-<<<<<<< HEAD
   document.querySelectorAll('.card').forEach(cardDiv => {
     const productNameDiv = cardDiv.querySelector('.product-name')
     const productName = productNameDiv.textContent
@@ -278,21 +277,6 @@ const handleSelectChange = async (e) => {
       button.addEventListener('click', async (e) => {
         e.preventDefault()
         const name = productName
-=======
-  
-  document.querySelectorAll(".card").forEach((cardDiv) => {
-    const productNameDiv = cardDiv.querySelector(".product-name");
-    const productName = productNameDiv.textContent;
-    const productIdSpan = cardDiv.querySelector(".product-id");
-    const productId = productIdSpan.textContent;
-    const addToCartBtns = cardDiv.querySelectorAll(".btn.btn-light");
-    const checkProductDetails = cardDiv.querySelectorAll(".gallery-item");
-
-    addToCartBtns.forEach((button) => {
-      button.addEventListener("click", async (e) => {
-        e.preventDefault();
-        const name = productName;
->>>>>>> 81d2d12141cec75930888f1e925f6eb191cdf65c
         const body = {
           name: name,
         };
