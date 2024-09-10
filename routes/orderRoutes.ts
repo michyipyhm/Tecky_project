@@ -1,11 +1,9 @@
-import express, { Request, Response, Router } from 'express';
+import express from 'express';
 import { pgClient } from '../main';
-import Stripe from 'stripe';
 
-const stripe = require('stripe')('sk_test_51PreUORwdDaooQDsamp23arHGzTPt6evgQoLolZw1DcnkEIyIZ86rptWHnack4RBbeMAzEj6vdViamrhUXI5nmO200vL2SOcjX');
-export const orderRoutes = express.Router()
+export const orderRouter = express.Router()
 //顯示訂單
-orderRoutes.get("/checkOrder", async (req, res) => {
+orderRouter.get("/checkOrder", async (req, res) => {
     const userId = req.session.userId
     if (!userId) {
         res.status(401).json();
@@ -22,7 +20,7 @@ orderRoutes.get("/checkOrder", async (req, res) => {
 })
 
 //訂單明細
-orderRoutes.get("/order", async (req, res) => {
+orderRouter.get("/order", async (req, res) => {
     try {
         const userId = req.session.userId
         const orderNum = req.query.orderNum
@@ -50,7 +48,7 @@ orderRoutes.get("/order", async (req, res) => {
 })
 
 // 取消order
-orderRoutes.post("/orderCancel", async (req, res) => {
+orderRouter.post("/orderCancel", async (req, res) => {
     try {
         const queryResult = await pgClient.query(`SELECT * FROM order_details JOIN product on product.id = order_details.product_id WHERE orders_id =$1`, [req.body.orderId])
         const products = queryResult.rows

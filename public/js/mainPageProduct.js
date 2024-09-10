@@ -1,6 +1,6 @@
 window.onload = async () => {
   try {
-    const response = await fetch("/product-info");
+    const response = await fetch("/getAllProducts");
     if (!response.ok) {
       throw new Error("fetch error!");
     }

@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', async () => {
     const urlParams = new URLSearchParams(window.location.search);
     const productId = urlParams.get('product');
-    const res = await fetch(`/product?product=${productId}`)
+    const res = await fetch(`/getSingleProduct?product=${productId}`)
 
     const result = await res.json()
     const product = result.data

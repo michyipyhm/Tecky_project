@@ -1,9 +1,9 @@
 import express, { query, Request, response, Response } from "express";
 import { pgClient } from "../main";
 
-export const filter = express.Router();
+export const filterRouter = express.Router();
 
-filter.get("/getProduct", async (req: Request, res: Response) => {
+filterRouter.get("/getProduct", async (req: Request, res: Response) => {
   try {
     const product_info_result = await pgClient.query(
       `select product_id, image_path, product_name, product_price, product_quantity, created_at from product
@@ -55,7 +55,7 @@ let flow_two = [
   "brand_name",
 ];
 
-filter.post("/filter", async (req, res) => {
+filterRouter.post("/filter", async (req, res) => {
   console.log("reqbody is", req.body);
 
   let query = `SELECT * FROM product 
@@ -69,7 +69,7 @@ filter.post("/filter", async (req, res) => {
     let count = 0;
 
     for (let key in req.body) {
-      console.log("key is", key,"count is",count);
+      console.log("key is", key, "count is", count);
       if (key == "price_order") continue;
       if (count > 0) {
         query += " AND ";

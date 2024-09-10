@@ -2,7 +2,7 @@ import express, { Request, Response } from "express";
 import { pgClient } from "../main";
 import { checkPassword, hashPassword } from "../utils/hash";
 import formidable from 'formidable';
-import * as fs from 'fs';
+
 
 
 export const userRouter = express.Router();

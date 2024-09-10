@@ -86,5 +86,4 @@ shoppingCartBtn.addEventListener("click", (e) => {
 
 updateBtn.addEventListener("click", (e) => {
   window.location.href = "/profileupdate.html";
-
 });
