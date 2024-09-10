@@ -31,8 +31,7 @@ npm install dotenv
 npm install stripe @types/stripe
 
 ------(密碼加密)
-npm install bcryptjs
-npm install -D @types/bcryptjs
+npm install bcryptjs -D @types/bcryptjs
 
 npm install grant dotenv(連接google)
 

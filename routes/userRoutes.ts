@@ -206,7 +206,7 @@ userRouter.post("/addproduct", async (req: Request, res: Response) => {//http://
         dataArray = [data.productname[0], data.producttype[0], data.cameratype[0], data.brand[0], data.origin[0], data.format[0], data.productprice[0], data.productquantity[0], data.productionyear[0], data.weight[0], data.pixel[0], data.isused[0]]
       } else {
         sql = analog_camera_sql
-        dataArray = [data.productname[0], data.producttype[0], data.cameratype[0], data.brand[0], data.origin[0], data.format[0], data.productprice[0], data.productquantity[0], data.productionyear[0], data.weight[0], data.pixel[0], data.iso[0], data.isused[0]]
+        dataArray = [data.productname[0], data.producttype[0], data.cameratype[0], data.brand[0], data.origin[0], data.format[0], data.productprice[0], data.productquantity[0], data.productionyear[0], data.weight[0], data.iso[0], data.isused[0]]
       }
     } else {
       sql = film_sql
@@ -220,7 +220,7 @@ userRouter.post("/addproduct", async (req: Request, res: Response) => {//http://
 VALUES ($1,$2)`;
     const result2 = await pgClient.query(sql_2, [result.rows[0].id, image.imageuploads[0].newFilename])
 
-    return data
+    return res.json({ message: "Product added successfully"});
   } catch (error) {
     console.log("catch error!", error);
     if (error instanceof Error)

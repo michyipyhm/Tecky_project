@@ -62,7 +62,7 @@ productInfo.post("/addToCart", async (req, res) => {
     const checkLimitQuery = await pgClient.query(
       `SELECT member_id FROM shopping_cart WHERE member_id = $1`,[userId])
     const checkLimit = checkLimitQuery.rows.length
-    if (checkLimit > 9) {
+    if (checkLimit > 3) {
       return res.status(400).send({ message: 'Shopping cart is full. Please check out or clear your shopping cart.' })
     }
     // add to cart

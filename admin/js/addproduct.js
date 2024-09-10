@@ -47,6 +47,7 @@ window.onload = () => {
 			body: formData
 		})
 		if (res.ok) {
+			window.location.href = "/index.html"
 			console.log("add product successful")
 		}
 	})
@@ -58,7 +59,7 @@ producttypeEle.addEventListener("change", async () => {
 	if (value === "camera") {
 		document.getElementById("cameratype").disabled = false;
 		
-		document.getElementById("pixel").disabled = false;
+		document.getElementById("pixel").disabled = true;
 		document.getElementById("isused").disabled = false;
 		document.getElementById("productionyear").disabled = false;
 		document.getElementById("weight").disabled = false;
@@ -66,7 +67,7 @@ producttypeEle.addEventListener("change", async () => {
 	} else {
 		document.getElementById("cameratype").disabled = true;
 		
-		document.getElementById("pixel").disabled = true;
+		document.getElementById("pixel").disabled = false;
 		document.getElementById("isused").disabled = true;
 		document.getElementById("productionyear").disabled = true;
 		document.getElementById("weight").disabled = true;
