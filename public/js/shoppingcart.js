@@ -65,8 +65,8 @@ document.addEventListener('DOMContentLoaded', async () => {
             const newQuantity = e.target.value
             const id = product.product_id
             const body = {
-                id: id,
-                quantity: newQuantity
+                id: id, // get product ge ID here
+                quantity: newQuantity //shopping cart ge quantity
             }
             const res = await fetch("/selectedQuantity", {
                 method: "POST",

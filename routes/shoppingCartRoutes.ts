@@ -8,21 +8,21 @@ shoppingCartRouter.get("/shoppingcart", async (req, res) =>{
     if (!userId) {
         res.status(401).json();
         return;
-    }
+    } // kick no login
     try {
         let queryResult = await pgClient.query(`select * from shopping_cart 
             join product on product.id = shopping_cart.product_id 
             join product_image on product_image.product_id = product.id 
             join origin on origin.id = product.origin_id 
             join format on format.id = product.format_id
-            where member_id =${userId};`)
+            where member_id =${userId};`) // this member ge product
         let data = queryResult.rows
         // console.log(data)
         let totalPriceQueryResult = await pgClient.query(`select sum(product_price * quantity) as total from shopping_cart 
 join product on product.id = shopping_cart.product_id   
-where member_id =${userId}; `)
+where member_id =${userId}; `) // total price
         let totalPrice = totalPriceQueryResult.rows[0];
-        res.status(200).json({ data, totalPrice });
+        res.status(200).json({ data, totalPrice }); // send price and product data to front end
     } catch (err) {
         console.error(err);
         res.status(500).send('Error fetching shopping cart');
@@ -31,7 +31,7 @@ where member_id =${userId}; `)
 
 shoppingCartRouter.post('/selectedQuantity', async (req, res) =>{
     try {
-    let data = req.body
+    let data = req.body //js 65
     let id = data.id
     let quantity = data.quantity
     console.log("Product", id , "'s quantity has been changed to", quantity)
@@ -43,7 +43,7 @@ shoppingCartRouter.post('/selectedQuantity', async (req, res) =>{
         return res.status(400).json({ message: `Available: ${currentStock}, Requested: ${quantity}` });
       }
         await pgClient.query(`UPDATE shopping_cart SET quantity = '${quantity}' WHERE product_id = '${id}';`)
-        return res.status(200).json({ message: 'Quantity updated!' });
+        return res.status(200).json({ message: 'Quantity updated!' }); // update shopping cart ge quantity
     } catch (err) {
       console.error(err);
       return res.status(500).send('Quantity failed');
